@@ -18,7 +18,7 @@
                 {
                     title: 'Dashboard',
                     icon: 'icon ion-ios-keypad',
-                    href: 'tes2',
+                    href: 'admin.dashboard',
                     active: true
                 }
             ];

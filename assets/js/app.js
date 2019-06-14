@@ -42,3 +42,4 @@ require('../components/drl-page-503/drl-page-503');
 // VIEWS
 require('../views/login/login');
 require('../views/container-admin/container-admin');
+require('../views/dashboard/dashboard');

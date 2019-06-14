@@ -16,8 +16,8 @@
             },
         });
 
-    drl.$inject = ['$scope'];
-    function drl($scope) {
+    drl.$inject = ['$scope', '$state'];
+    function drl($scope, $state) {
         let $ctrl = this;
         const clearActive = () => {
             $ctrl.menu.forEach(menu => {
@@ -61,8 +61,7 @@
             if (!element.hasOwnProperty('menu')) {
                 clearActive();
                 element['active'] = true;
-                // go to href disini
-                console.log({ href });
+                $state.go(href);
                 $ctrl.menuActiveNow.push(element);
             }
             if (elementParent !== null) {
