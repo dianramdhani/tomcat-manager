@@ -16,9 +16,17 @@
             }
         });
 
-    drl.$inject = [];
-    function drl() {
+    drl.$inject = ['$timeout', '$document'];
+    function drl($timeout, $document) {
         let $ctrl = this;
-        $ctrl.$onInit = () => { };
+        $ctrl.$onInit = () => {
+            $timeout(() => {
+                let libSlimElement = document.createElement('script');
+                libSlimElement.src = './assets/lib/slim/js/slim.js';
+                libSlimElement.id = 'slim-lib';
+                angular.element(`#${libSlimElement.id}`).remove();
+                angular.element($document[0].body).append(libSlimElement);
+            });
+        };
     }
 })();
