@@ -7,12 +7,24 @@ const app = {
         filename: 'app.js',
     },
     module: {
-        rules: [{
-            test: /\.html$/,
-            use: [
-                'html-loader'
-            ]
-        }]
+        rules: [
+            {
+                test: /\.html$/,
+                use: [
+                    'html-loader'
+                ]
+            },
+            {
+                test: /\.(png|jp(e*)g|svg)$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8000,
+                        name: '[path][name].[ext]'
+                    }
+                }]
+            }
+        ]
     }
 };
 
