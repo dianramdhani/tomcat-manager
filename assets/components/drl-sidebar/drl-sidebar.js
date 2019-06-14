@@ -16,28 +16,11 @@
             },
         });
 
-    drl.$inject = ['$scope', '$state'];
-    function drl($scope, $state) {
+    drl.$inject = ['$scope', '$state', '$timeout'];
+    function drl($scope, $state, $timeout) {
         let $ctrl = this;
-        const clearActive = () => {
-            $ctrl.menu.forEach(menu => {
-                if (menu.hasOwnProperty('active')) {
-                    menu.active = false;
-                }
-                if (menu.hasOwnProperty('menu')) {
-                    menu.menu.forEach(_menu => {
-                        if (_menu.hasOwnProperty('active')) {
-                            _menu.active = false;
-                        }
-                    });
-                }
-            });
-            $ctrl.menuActiveNow = [];
-        };
-
         $ctrl.$onInit = () => {
             const checkActive = () => {
-                $ctrl.menuActiveNow = [];
                 $ctrl.menu.forEach(menu => {
                     if (menu.hasOwnProperty('active')) {
                         if (menu.active) {
@@ -54,7 +37,26 @@
                 });
             };
 
-            checkActive();
+            $timeout(() => {
+                $ctrl.menuActiveNow = [];
+                checkActive();
+            });
+        };
+
+        const clearActive = () => {
+            $ctrl.menu.forEach(menu => {
+                if (menu.hasOwnProperty('active')) {
+                    menu.active = false;
+                }
+                if (menu.hasOwnProperty('menu')) {
+                    menu.menu.forEach(_menu => {
+                        if (_menu.hasOwnProperty('active')) {
+                            _menu.active = false;
+                        }
+                    });
+                }
+            });
+            $ctrl.menuActiveNow = [];
         };
 
         $scope.active = (element, href, elementParent = null) => {

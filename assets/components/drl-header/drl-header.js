@@ -14,12 +14,11 @@
             }
         });
 
-    drl.$inject = ['$scope', '$state', 'AuthService'];
-    function drl($scope, $state, AuthService) {
+    drl.$inject = ['$scope', '$state', '$timeout', 'AuthService'];
+    function drl($scope, $state, $timeout, AuthService) {
         let $ctrl = this;
         $ctrl.$onInit = () => {
             const checkActive = () => {
-                $ctrl.menuActiveNow = [];
                 $ctrl.menu.dropdownC.forEach(menu => {
                     if (menu.hasOwnProperty('active')) {
                         if (menu.active) {
@@ -29,7 +28,10 @@
                 });
             };
 
-            checkActive();
+            $timeout(() => {
+                $ctrl.menuActiveNow = [];
+                checkActive();
+            });
         };
 
         const clearActive = () => {
