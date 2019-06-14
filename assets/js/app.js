@@ -1,9 +1,10 @@
-window.app = angular.module('TomcatManager', []);
+window.app = angular.module('TomcatManager', ['ngCookies']);
 
 // ROUTES
 
 // SERVICES
 require('../services/util.service');
+require('../services/auth.service');
 
 // COMPONENTS
 require('../components/drl-header/drl-header');

@@ -5,12 +5,19 @@
                 Tomcat Instance Management System
             </a>
         </h2>
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Enter your username">
-        </div>
-        <div class="form-group mg-b-50">
-            <input type="password" class="form-control" placeholder="Enter your password">
-        </div>
-        <button class="btn btn-primary btn-block btn-signin drl-btn-signin">Sign In</button>
+        <div id="drl-alert-container"></div>
+        <form name="formLogin" ng-submit="login()">
+            <div class="form-group">
+                <input name="credentialUsername" type="text" class="form-control" placeholder="Enter your username"
+                    required ng-class="{'is-valid':formLogin.credentialUsername.$valid}"
+                    ng-model="dataLogin.credentialUsername">
+            </div>
+            <div class="form-group mg-b-50">
+                <input name="credentialPassword" type="password" class="form-control" placeholder="Enter your password"
+                    required ng-class="{'is-valid':formLogin.credentialPassword.$valid}"
+                    ng-model="dataLogin.credentialPassword">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block btn-signin drl-btn-signin">Sign In</button>
+        </form>
     </div>
 </div>

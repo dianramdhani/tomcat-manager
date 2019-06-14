@@ -10,9 +10,16 @@
             controller: _
         });
 
-    _.$inject = [];
-    function _() {
-        let $ctrl = this;
-        $ctrl.$onInit = () => { };
+    _.$inject = ['$scope', 'UtilService', 'AuthService'];
+    function _($scope, UtilService, AuthService) {
+        $scope.login = () => {
+            AuthService.login($scope.dataLogin.credentialUsername, $scope.dataLogin.credentialPassword)
+                .then(res => {
+                    console.log({ res });
+                })
+                .catch(err => {
+                    UtilService.drlAlert('danger', err.data.message, '');
+                });
+        };
     }
 })();

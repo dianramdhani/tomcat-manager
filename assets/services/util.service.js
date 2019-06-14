@@ -25,6 +25,7 @@
                         alertScope.$destroy();
                     }
                 });
+            alertContainer.empty();
             alertContainer.prepend($compile(alertComponent)(alertScope));
         }
 
