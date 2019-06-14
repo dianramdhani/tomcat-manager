@@ -1,0 +1,14 @@
+<label class="sidebar-label">Navigation</label>
+
+<ul class="nav nav-sidebar">
+    <li class="sidebar-nav-item" ng-repeat="menu in $ctrl.menu" ng-class="{'with-sub': menu.menu}">
+        <a href="" class="sidebar-nav-link" ng-class="{active: menu.active}" ng-click="active(menu, menu.href)"><i
+                class="{{menu.icon}}"></i> {{menu.title}}</a>
+        <ul class="nav sidebar-nav-sub" ng-if="menu.menu">
+            <li class="nav-sub-item" ng-repeat="_menu in menu.menu">
+                <a href="" class="nav-sub-link" ng-class="{active: _menu.active}"
+                    ng-click="active(_menu, _menu.href, menu)">{{_menu.title}}</a>
+            </li>
+        </ul>
+    </li>
+</ul>

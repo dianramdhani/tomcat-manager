@@ -1,0 +1,8 @@
+<div class="slim-pageheader">
+    <ol class="breadcrumb slim-breadcrumb">
+        <li class="breadcrumb-item" ng-repeat="menuActiveNow in $ctrl.menuActiveNow.slice().reverse() track by $index">
+            {{menuActiveNow.title}}
+        </li>
+    </ol>
+    <h6 class="slim-pagetitle">{{$ctrl.menuActiveNow[0].title}}</h6>
+</div>

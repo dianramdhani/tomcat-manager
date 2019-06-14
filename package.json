@@ -1,0 +1,28 @@
+{
+  "name": "tomcat-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack -p --progress",
+    "build:dev": "webpack --mode=development -p --progress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dianramdhani/tomcat-manager.git"
+  },
+  "author": "Dian Ramdhani Lubis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dianramdhani/tomcat-manager/issues"
+  },
+  "homepage": "https://github.com/dianramdhani/tomcat-manager#readme",
+  "devDependencies": {
+    "html-loader": "^0.5.5",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.3"
+  },
+  "dependencies": {
+    "angular": "^1.7.8"
+  }
+}
