@@ -10,9 +10,10 @@
             controller: drl
         });
 
-    drl.$inject = [];
-    function drl() {
-        let $ctrl = this;
-        $ctrl.$onInit = () => { };
+    drl.$inject = ['$scope', 'AuthService'];
+    function drl($scope, AuthService) {
+        $scope.logout = () => {
+            AuthService.logout();
+        };
     }
 })();

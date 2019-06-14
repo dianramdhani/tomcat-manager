@@ -1,6 +1,25 @@
-window.app = angular.module('TomcatManager', ['ngCookies']);
+window.app = angular.module('TomcatManager', ['ui.router', 'ngCookies']);
+
+// RUN
+(function () {
+    'use strict';
+
+    window.app
+        .run(Run);
+
+    Run.$inject = ['$rootScope', '$cookies', '$state'];
+    function Run($rootScope, $cookies, $state) {
+        $rootScope.globals = angular.fromJson($cookies.get('globals')) || {};
+        if (typeof $rootScope.globals.currentUser === 'undefined') {
+            $state.go('login');
+        } else {
+            $state.go('admin');
+        }
+    }
+})();
 
 // ROUTES
+require('../routes/app.route');
 
 // SERVICES
 require('../services/util.service');

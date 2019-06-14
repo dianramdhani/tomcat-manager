@@ -10,12 +10,19 @@
             controller: _
         });
 
-    _.$inject = ['$scope', 'UtilService', 'AuthService'];
-    function _($scope, UtilService, AuthService) {
+    _.$inject = ['$scope', '$state', '$rootScope', 'UtilService', 'AuthService'];
+    function _($scope, $state, $rootScope, UtilService, AuthService) {
+        let $ctrl = this;
+        $ctrl.$onInit = () => {
+            if ($rootScope.globals.currentUser) {
+                $state.go('admin');
+            }
+        };
+
         $scope.login = () => {
             AuthService.login($scope.dataLogin.credentialUsername, $scope.dataLogin.credentialPassword)
-                .then(res => {
-                    console.log({ res });
+                .then(() => {
+                    $state.go('admin');
                 })
                 .catch(err => {
                     UtilService.drlAlert('danger', err.data.message, '');
