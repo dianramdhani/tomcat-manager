@@ -6,8 +6,34 @@
 
     DatasourceService.$inject = [];
     function DatasourceService() {
-        this.exposedFn = exposedFn;
+        // /manager/datasource/list/{offset}/{limit}
+        function listDatasource(offset, limit) {
 
-        function exposedFn() { }
+        }
+
+        // /manager/datasource/{datasourceId}/list
+        function listAllDatasource(datasourceId) {
+
+        }
+
+        // /manager/datasource/listAll
+        function getDatasourceByDatasourceId() {
+
+        }
+
+        // /manager/datasource/add
+        function addDatasource() {
+
+        }
+
+        // /manager/datasource/update/
+        function updateDatasource() {
+
+        }
+
+        // /manager/datasource/{datasourceId}/delete
+        function deleteDatasource(datasourceId) {
+
+        }
     }
 })();

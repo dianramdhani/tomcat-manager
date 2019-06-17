@@ -6,8 +6,159 @@
 
     ManagerService.$inject = [];
     function ManagerService() {
-        this.exposedFn = exposedFn;
+        // /manager/agent/add/
+        function createAgent() {
 
-        function exposedFn() { }
+        }
+
+        // /manager/agent/{agentId}/show
+        function showAgent(agentId) {
+
+        }
+
+        // /manager/agent/{agentId}/health
+        function checkAgentHealth(agentId) {
+
+        }
+
+        // /manager/agent/list/{offset}/{limit}
+        function listAgent(offset, limit) {
+
+        }
+
+        // /manager/agent/{agentId}/delete
+        function deleteAgent(agentId) {
+
+        }
+
+        // /manager/instance/list/{offset}/{limit}
+        function listInstance(offset, limit) {
+
+        }
+
+        // /manager/agent/update/
+        function updateAgent() {
+
+        }
+
+        // /manager/instance/{instanceId}/deployments/show/{offset}/{limit}
+        function showDeployment(instanceId, offset, limit) {
+
+        }
+
+        // /manager/instance/{instanceId}/deployments/showMap/{offset}/{limit}
+        function showMapDeployment(instanceId, offset, limit) {
+
+        }
+
+        // /manager/agent/{agentId}/action/restartWar/{contextName}
+        function actionRestartDeployment(agentId, contextName) {
+
+        }
+
+        // /manager/agent/{agentId}/action/stopWar/{contextName}
+        function actionStopDeployment(agentId, contextName) {
+
+        }
+
+        // /manager/agent/{agentId}/action/startWar/{contextName}
+        function actionStartDeployment(agentId, contextName) {
+
+        }
+
+        // /manager/agent/{agentId}/action/deploy
+        function actionDeploy(agentId) {
+
+        }
+
+        // /manager/agent/{agentId}/action/undeploy/{contextName}
+        function actionUndeploy(agentId, contextName) {
+
+        }
+
+        // /manager/agent/{agentId}/action/{instanceAction}
+        function agentAction(agentId, instanceAction) {
+
+        }
+
+        // /manager/agent/credential/list/
+        function listCredential() {
+
+        }
+
+        // /manager/instance/action/list/{serverStatus}/{offset}/{limit}
+        function actionList(serverStatus, offset, limit) {
+
+        }
+
+        // /manager/instance/{agentId}/show/
+        function showInstanceByAgentId(agentId) {
+
+        }
+
+        // /manager/instance/{agentId}/log/show
+        function datatableInstanceLog(agentId) {
+
+        }
+
+        // /manager/instance/{agentId}/chart/cpuline/show
+        function instanceCpuLineChart(agentId) {
+
+        }
+
+        // /manager/instance/{agentId}/charts/physicalmem/show
+        function instancePhysicalMemoryChart(agentId) {
+
+        }
+
+        // /manager/instance/{agentId}/charts/heapmemory/show
+        function instanceHeapMemoryChart(agentId) {
+
+        }
+
+        // /manager/deployment/{deploymentId}/charts/heapmemory/show
+        function deploymentHeapMemoryChart(deploymentId) {
+
+        }
+
+        // /manager/agent/group/{groupId}/add/instance/
+        function addInstanceToGroup(groupId) {
+
+        }
+
+        // /manager/agent/group/{groupId}/delete/instance/{instanceId}
+        function deleteInstanceFromGroup(groupId, instanceId) {
+
+        }
+
+        // /manager/agent/group/add
+        function addGroupInstance() {
+
+        }
+
+        // /manager/agent/group/list/{page}/{size}
+        function listGroupInstance(page, size) {
+
+        }
+
+        // /manager/agent/group/show/{groupId}
+        function showGroupInstance(groupId) {
+
+        }
+
+        // /manager/agent/group/{groupId}/list/instance/{page}/{size}
+        function showInstanceByGroupId(groupId, page, size) {
+
+        }
+
+        // /manager/agent/group/{groupId}/delete
+        function deleteInstanceGroup(groupId) {
+
+        }
+
+        // /manager/agent/{agentId}/tail-log/{logIdx}
+        function tailLogAgent(agentId, logIdx) {
+
+        }
     }
 })();
