@@ -43,6 +43,7 @@ require('../components/drl-pageheader/drl-pageheader');
 require('../components/drl-alert/drl-alert');
 require('../components/drl-wrapper/drl-wrapper');
 require('../components/drl-widget1/drl-widget1');
+require('../components/drl-widget2/drl-widget2');
 require('../components/drl-loading/drl-loading');
 require('../components/drl-page-404/drl-page-404');
 require('../components/drl-page-505/drl-page-505');
