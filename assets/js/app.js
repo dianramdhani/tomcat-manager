@@ -1,5 +1,8 @@
 window.app = angular.module('TomcatManager', ['ui.router', 'ngCookies']);
 
+// CONFIG
+require('./config');
+
 // RUN
 (function () {
     'use strict';
@@ -7,12 +10,15 @@ window.app = angular.module('TomcatManager', ['ui.router', 'ngCookies']);
     window.app
         .run(Run);
 
-    Run.$inject = ['$rootScope', '$cookies', '$state'];
-    function Run($rootScope, $cookies, $state) {
+    Run.$inject = ['$rootScope', '$cookies', '$state', '$http'];
+    function Run($rootScope, $cookies, $state, $http) {
         $rootScope.globals = angular.fromJson($cookies.get('globals')) || {};
         if (typeof $rootScope.globals.currentUser === 'undefined') {
             $state.go('login');
         } else {
+            $http.defaults.headers.common = {
+                Authorization: $rootScope.globals.currentUser.object[0]
+            };
             $state.go('admin');
         }
     }

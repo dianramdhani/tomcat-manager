@@ -4,8 +4,10 @@
     window.app
         .service('UserService', UserService);
 
-    UserService.$inject = [];
-    function UserService() {
+    UserService.$inject = ['CONFIG'];
+    function UserService(CONFIG) {
+        const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
+
         // /manager/user/register/{rolename}
         function userRegister(rolename) {
 

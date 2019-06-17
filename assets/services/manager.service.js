@@ -4,8 +4,14 @@
     window.app
         .service('ManagerService', ManagerService);
 
-    ManagerService.$inject = [];
-    function ManagerService() {
+    ManagerService.$inject = ['$http', 'CONFIG', 'UtilService'];
+    function ManagerService($http, CONFIG, UtilService) {
+        this.listAgent = listAgent;
+        this.listGroupInstance = listGroupInstance;
+        this.checkAgentHealth = checkAgentHealth;
+
+        const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
+
         // /manager/agent/add/
         function createAgent() {
 
@@ -18,12 +24,12 @@
 
         // /manager/agent/{agentId}/health
         function checkAgentHealth(agentId) {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/agent/${agentId}/health`));
         }
 
         // /manager/agent/list/{offset}/{limit}
         function listAgent(offset, limit) {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/agent/list/${offset}/${limit}`));
         }
 
         // /manager/agent/{agentId}/delete
@@ -138,7 +144,7 @@
 
         // /manager/agent/group/list/{page}/{size}
         function listGroupInstance(page, size) {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/agent/group/list/${page}/${size}`));
         }
 
         // /manager/agent/group/show/{groupId}

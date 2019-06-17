@@ -4,12 +4,12 @@
     window.app
         .service('AuthService', AuthService);
 
-    AuthService.$inject = ['$http', '$q', '$rootScope', '$cookies', '$state'];
-    function AuthService($http, $q, $rootScope, $cookies, $state) {
+    AuthService.$inject = ['$http', '$q', '$rootScope', '$cookies', '$state', 'CONFIG'];
+    function AuthService($http, $q, $rootScope, $cookies, $state, CONFIG) {
         this.login = login;
         this.logout = logout;
 
-        const url = 'http://192.168.9.19:8081';
+        const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
         /**
          * Login.

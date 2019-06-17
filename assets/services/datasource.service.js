@@ -4,8 +4,10 @@
     window.app
         .service('DatasourceService', DatasourceService);
 
-    DatasourceService.$inject = [];
-    function DatasourceService() {
+    DatasourceService.$inject = ['CONFIG'];
+    function DatasourceService(CONFIG) {
+        const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
+
         // /manager/datasource/list/{offset}/{limit}
         function listDatasource(offset, limit) {
 
