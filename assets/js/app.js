@@ -24,6 +24,10 @@ require('../routes/app.route');
 // SERVICES
 require('../services/util.service');
 require('../services/auth.service');
+require('../services/AMQ-manager.service');
+require('../services/datasource.service');
+require('../services/manager.service');
+require('../services/user.service');
 
 // COMPONENTS
 require('../components/drl-header/drl-header');
