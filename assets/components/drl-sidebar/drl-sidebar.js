@@ -16,21 +16,23 @@
             },
         });
 
-    drl.$inject = ['$scope', '$state', '$timeout'];
-    function drl($scope, $state, $timeout) {
+    drl.$inject = ['$scope', '$timeout', '$state'];
+    function drl($scope, $timeout, $state) {
         let $ctrl = this;
         $ctrl.$onInit = () => {
             const checkActive = () => {
                 $ctrl.menu.forEach(menu => {
                     if (menu.hasOwnProperty('active')) {
                         if (menu.active) {
-                            $scope.active(menu, menu.href);
+                            $scope.active(menu);
+                            $state.go(menu.href);
                         }
                     }
                     if (menu.hasOwnProperty('menu')) {
                         menu.menu.forEach(_menu => {
                             if (_menu.hasOwnProperty('active')) {
-                                $scope.active(_menu, _menu.href, menu);
+                                $scope.active(_menu, menu);
+                                $state.go(_menu.href);
                             }
                         });
                     }
@@ -59,11 +61,10 @@
             $ctrl.menuActiveNow = [];
         };
 
-        $scope.active = (element, href, elementParent = null) => {
+        $scope.active = (element, elementParent = null) => {
             if (!element.hasOwnProperty('menu')) {
                 clearActive();
                 element['active'] = true;
-                $state.go(href);
                 $ctrl.menuActiveNow.push(element);
             }
             if (elementParent !== null) {

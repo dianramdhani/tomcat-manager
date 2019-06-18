@@ -9,6 +9,10 @@
         this.listAgent = listAgent;
         this.listGroupInstance = listGroupInstance;
         this.checkAgentHealth = checkAgentHealth;
+        this.showInstanceByAgentId = showInstanceByAgentId;
+        this.instanceCpuLineChart = instanceCpuLineChart;
+        this.instancePhysicalMemoryChart = instancePhysicalMemoryChart;
+        this.instanceHeapMemoryChart = instanceHeapMemoryChart;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -99,7 +103,7 @@
 
         // /manager/instance/{agentId}/show/
         function showInstanceByAgentId(agentId) {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/instance/${agentId}/show/`));
         }
 
         // /manager/instance/{agentId}/log/show
@@ -109,17 +113,17 @@
 
         // /manager/instance/{agentId}/chart/cpuline/show
         function instanceCpuLineChart(agentId) {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/instance/${agentId}/chart/cpuline/show`));
         }
 
         // /manager/instance/{agentId}/charts/physicalmem/show
         function instancePhysicalMemoryChart(agentId) {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/instance/${agentId}/charts/physicalmem/show`));
         }
 
         // /manager/instance/{agentId}/charts/heapmemory/show
         function instanceHeapMemoryChart(agentId) {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/instance/${agentId}/charts/heapmemory/show`));
         }
 
         // /manager/deployment/{deploymentId}/charts/heapmemory/show

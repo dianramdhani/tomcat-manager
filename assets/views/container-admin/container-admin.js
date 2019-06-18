@@ -55,7 +55,7 @@
                 listAgent.forEach(agent => {
                     $scope.menu.sidebar.find(({ title }) => title === 'Tomcat Instance').menu.push({
                         title: agent.agentName,
-                        href: 'admin.tomcatInstance'
+                        href: `admin.tomcatInstance({agentId:${agent.agentId}})`
                     });
                 });
             });
