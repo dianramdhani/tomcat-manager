@@ -1,5 +1,5 @@
-<div class="card-columns column-count-4">
-    <drl-widget2 ng-repeat="amq in listAmq" img="amq.jpg" text1="{{amq.instanceAmqAddress}}"
+<div class="row row-sm">
+    <drl-widget2 class="col-lg-4 pb-3" ng-repeat="amq in listAmq" img="amq.jpg" text1="{{amq.instanceAmqAddress}}"
         text2="{{amq.instanceAmqName}}"
         text3="Connection Status: {{amq.health.jmxConnected === 'true'? 'Ok': 'Not Ok'}}">
         <p class="tx-12 btn-group" role="group">
@@ -7,8 +7,9 @@
                 ng-repeat="menu in amq.menu">{{menu.title}}</button>
         </p>
     </drl-widget2>
-    <drl-widget2 ng-repeat="agent in listAgent track by $index" img="tomcat.png" text1="{{agent.agentIpAddress}}"
-        text2="{{agent.agentName}}" text3="Agent Status: {{agent.health.agentStatus === 'true'? 'running': 'stop'}}"
+    <drl-widget2 class="col-lg-4 pb-3" ng-repeat="agent in listAgent track by $index" img="tomcat.png"
+        text1="{{agent.agentIpAddress}}" text2="{{agent.agentName}}"
+        text3="Agent Status: {{agent.health.agentStatus === 'true'? 'running': 'stop'}}"
         text4="Server Status: {{agent.health.tomcatStatus === 'true'? 'active': 'inactive'}}">
         <p class="tx-12 btn-group" role="group">
             <button type="button" class="btn btn-sm btn-oblong btn-outline-purple" ng-repeat="menu in agent.menu"
