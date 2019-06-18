@@ -10,8 +10,8 @@
             controller: _
         });
 
-    _.$inject = ['$stateParams', '$scope', 'ManagerService'];
-    function _($stateParams, $scope, ManagerService) {
+    _.$inject = ['$stateParams', '$scope', '$timeout', 'ManagerService', 'UtilService'];
+    function _($stateParams, $scope, $timeout, ManagerService, UtilService) {
         let $ctrl = this;
         $ctrl.$onInit = () => {
             /**
@@ -22,6 +22,7 @@
                     instanceCpuLineChart = await ManagerService.instanceCpuLineChart($stateParams.agentId).then(_ => _.data.object),
                     instancePhysicalMemoryChart = await ManagerService.instancePhysicalMemoryChart($stateParams.agentId).then(_ => _.data.object),
                     instanceHeapMemoryChart = await ManagerService.instanceHeapMemoryChart($stateParams.agentId).then(_ => _.data.object);
+                instance['health'] = await ManagerService.checkAgentHealth($stateParams.agentId).then(_ => _.data.object);
                 return {
                     instance,
                     instanceCpuLineChart,
@@ -30,8 +31,13 @@
                 };
             };
 
-            getInitialData().then(res => {
-                console.log(res);
+            UtilService.drlLoading(true);
+            getInitialData().then(({ instance, instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart }) => {
+                $timeout(() => {
+                    $scope.instance = instance;
+                    UtilService.drlLoading(false);
+                });
+                console.log({ instance, instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart });
             });
         };
     }

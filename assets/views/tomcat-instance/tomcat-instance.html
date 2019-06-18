@@ -1,1 +1,47 @@
-tomcat-instance terbuka
+<div class="row row-sm">
+    <div class="col-lg-6 pb-3">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="slim-card-title">Instance Detail</h6>
+                <p>
+                    Agent Status: {{instance.health.agentStatus === 'true'? 'active': 'inactive'}}
+                    <br>
+                    Server Status: {{instance.health.tomcatStatus === 'true'? 'active': 'inactive'}}
+                </p>
+
+                <p class="invoice-info-row">
+                    <span>Agent Name</span>
+                    <span>{{instance.instanceAgentId.agentName}}</span>
+                </p>
+                <p class="invoice-info-row">
+                    <span>JVM Arguments</span>
+                    <span>{{instance.instanceJVMArgs}}</span>
+                </p>
+                <p class="invoice-info-row">
+                    <span>Instance Port</span>
+                    <span>{{instance.instanceAgentId.agentIpAddress}}</span>
+                </p>
+                <p class="invoice-info-row">
+                    <span>Instance Tomcat Port</span>
+                    <span>{{instance.instanceAgentId.agentPort}}</span>
+                </p>
+                <p class="invoice-info-row">
+                    <span>Tomcat Directory</span>
+                    <span>{{instance.instanceAgentId.agentRemoteTomcatDir}}</span>
+                </p>
+                <p class="invoice-info-row">
+                    <span>Installation Destination</span>
+                    <span>{{instance.instanceAgentId.agentInstallationDestDir}}</span>
+                </p>
+                <p class="invoice-info-row">
+                    <span>Last Deploy</span>
+                    <span>{{instance.instanceLastDeploy}}</span>
+                </p>
+                <p class="invoice-info-row">
+                    <span>Date Created</span>
+                    <span>{{instance.instanceDateCreated}}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
