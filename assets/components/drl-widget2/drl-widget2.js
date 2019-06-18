@@ -3,10 +3,13 @@
 
     // Usage:
     // Widget container.
+    // Creates:
+    // Transclude menu section.
 
     window.app
         .component('drlWidget2', {
             template: require('./drl-widget2.html'),
+            transclude: true,
             bindings: {
                 img: '@',   // Required. Type string. Img src.
                 text1: '@', // Required. Type string.
