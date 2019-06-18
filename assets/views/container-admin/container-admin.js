@@ -21,6 +21,20 @@
                         icon: 'icon ion-ios-keypad',
                         href: 'admin.dashboard',
                         active: true
+                    },
+                    {
+                        title: 'Tomcat Instance',
+                        icon: 'icon ion-cube',
+                        menu: [
+                            {
+                                title: 'Tomcat 1',
+                                href: 'admin.tomcatInstance'
+                            },
+                            {
+                                title: 'Tomcat 2',
+                                href: 'admin.tomcatInstance'
+                            },
+                        ]
                     }
                 ],
                 dropdownC: [
