@@ -44,16 +44,21 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-6 pb-3">
+    <div class="col-lg-6 pb-3" ng-if="instance.health.agentStatus === 'true'">
         <div class="card card-customer-overview">
             <div class="card-header">
                 <h6 class="slim-card-title">Usage Status</h6>
                 <nav class="nav">
                     <a id="firstChart" href="" class="nav-link"
-                        ng-click="chart.instanceCpuLineChart.plotChart('chart')">CPU</a>
-                    <a href="" class="nav-link" ng-click="chart.instancePhysicalMemoryChart.plotChart('chart')">Physical
+                        ng-click="chart.instanceCpuLineChart.plotChart('chart'); chartActiveNow='cpu';"
+                        ng-class="{'active': chartActiveNow === 'cpu'}">CPU</a>
+                    <a href="" class="nav-link"
+                        ng-click="chart.instancePhysicalMemoryChart.plotChart('chart'); chartActiveNow='physical';"
+                        ng-class="{'active': chartActiveNow === 'physical'}">Physical
                         Memory</a>
-                    <a href="" class="nav-link" ng-click="chart.instanceHeapMemoryChart.plotChart('chart')">Heap
+                    <a href="" class="nav-link"
+                        ng-click="chart.instanceHeapMemoryChart.plotChart('chart'); chartActiveNow='heap';"
+                        ng-class="{'active': chartActiveNow === 'heap'}">Heap
                         Memory</a>
                 </nav>
             </div>
