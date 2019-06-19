@@ -1,0 +1,45 @@
+<div class="card card-customer-overview">
+    <div class="card-header">
+        <h6 class="slim-card-title">Instance Detail</h6>
+        <nav class="nav">
+            <div class="nav-link">Agent Status:
+                {{$ctrl.instance.health.agentStatus === 'true'? 'active': 'inactive'}}</div>
+            <div class="nav-link">Server Status:
+                {{$ctrl.instance.health.tomcatStatus === 'true'? 'active': 'inactive'}}</div>
+        </nav>
+    </div>
+    <div class="card-body">
+        <p class="invoice-info-row">
+            <span>Agent Name</span>
+            <span>{{$ctrl.instance.instanceAgentId.agentName}}</span>
+        </p>
+        <p class="invoice-info-row">
+            <span>JVM Arguments</span>
+            <span>{{$ctrl.instance.instanceJVMArgs}}</span>
+        </p>
+        <p class="invoice-info-row">
+            <span>Instance Port</span>
+            <span>{{$ctrl.instance.instanceAgentId.agentIpAddress}}</span>
+        </p>
+        <p class="invoice-info-row">
+            <span>Instance Tomcat Port</span>
+            <span>{{$ctrl.instance.instanceAgentId.agentPort}}</span>
+        </p>
+        <p class="invoice-info-row">
+            <span>Tomcat Directory</span>
+            <span>{{$ctrl.instance.instanceAgentId.agentRemoteTomcatDir}}</span>
+        </p>
+        <p class="invoice-info-row">
+            <span>Installation Destination</span>
+            <span>{{$ctrl.instance.instanceAgentId.agentInstallationDestDir}}</span>
+        </p>
+        <p class="invoice-info-row">
+            <span>Last Deploy</span>
+            <span>{{$ctrl.instance.instanceLastDeploy}}</span>
+        </p>
+        <p class="invoice-info-row">
+            <span>Date Created</span>
+            <span>{{$ctrl.instance.instanceDateCreated}}</span>
+        </p>
+    </div>
+</div>

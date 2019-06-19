@@ -56,3 +56,4 @@ require('../views/container-admin/container-admin');
 require('../views/user-setting/user-setting');
 require('../views/dashboard/dashboard');
 require('../views/tomcat-instance/tomcat-instance');
+require('../views/instance-detail/instance-detail');
