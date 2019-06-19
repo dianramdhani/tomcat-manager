@@ -19,14 +19,17 @@
              */
             const getInitialData = async () => {
                 let instance = await ManagerService.showInstanceByAgentId($stateParams.agentId).then(_ => _.data.object),
-                    instanceCpuLineChart = await ManagerService.instanceCpuLineChart($stateParams.agentId).then(_ => _.data.object),
-                    instancePhysicalMemoryChart = await ManagerService.instancePhysicalMemoryChart($stateParams.agentId).then(_ => _.data.object),
-                    instanceHeapMemoryChart = await ManagerService.instanceHeapMemoryChart($stateParams.agentId).then(_ => _.data.object);
+                    instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart, instanceLog, tailLog;
 
                 instance['health'] = await ManagerService.checkAgentHealth($stateParams.agentId).then(_ => _.data.object);
+                if (instance.health.agentStatus === 'true') {
+                    instanceCpuLineChart = await ManagerService.instanceCpuLineChart($stateParams.agentId).then(_ => _.data.object);
+                    instancePhysicalMemoryChart = await ManagerService.instancePhysicalMemoryChart($stateParams.agentId).then(_ => _.data.object);
+                    instanceHeapMemoryChart = await ManagerService.instanceHeapMemoryChart($stateParams.agentId).then(_ => _.data.object);
+                    instanceLog = await ManagerService.datatableInstanceLog(30).then(_ => _.data);
+                    tailLog = await ManagerService.tailLogAgent($stateParams.agentId, 1).then(_ => _.data.object);
 
-                // set all plotting chart function
-                if (instanceCpuLineChart.lineSeries !== null) {
+                    // set plotting chart function for instanceCpuLineChart, instancePhysicalMemoryChart, andinstanceHeapMemoryChart  
                     instanceCpuLineChart = Object.assign(instanceCpuLineChart, {
                         plotChart: (id) => {
                             let properties = {
@@ -57,8 +60,6 @@
                             Highcharts.chart(id, properties);
                         }
                     });
-                }
-                if (instancePhysicalMemoryChart !== null) {
                     instancePhysicalMemoryChart = Object.assign(instancePhysicalMemoryChart, {
                         plotChart: (id) => {
                             let properties = {
@@ -97,8 +98,6 @@
                             Highcharts.chart(id, properties);
                         }
                     });
-                }
-                if (instanceHeapMemoryChart !== null) {
                     instanceHeapMemoryChart = Object.assign(instanceHeapMemoryChart, {
                         plotChart: (id) => {
                             let properties = {
@@ -139,18 +138,21 @@
                     instance,
                     instanceCpuLineChart,
                     instancePhysicalMemoryChart,
-                    instanceHeapMemoryChart
+                    instanceHeapMemoryChart,
+                    instanceLog,
+                    tailLog
                 };
             };
 
             UtilService.drlLoading(true);
-            getInitialData().then(({ instance, instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart }) => {
+            getInitialData().then(({ instance, instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart, instanceLog }) => {
                 $timeout(() => {
                     $scope.instance = instance;
                     $scope.chart = { instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart };
+                    $scope.instanceLog = instanceLog;
                     UtilService.drlLoading(false);
                 });
-                console.log({ instance, instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart });
+                console.log({ instance, instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart, instanceLog });
             });
         };
     }

@@ -13,6 +13,8 @@
         this.instanceCpuLineChart = instanceCpuLineChart;
         this.instancePhysicalMemoryChart = instancePhysicalMemoryChart;
         this.instanceHeapMemoryChart = instanceHeapMemoryChart;
+        this.tailLogAgent = tailLogAgent;
+        this.datatableInstanceLog = datatableInstanceLog;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -108,7 +110,7 @@
 
         // /manager/instance/{agentId}/log/show
         function datatableInstanceLog(agentId) {
-
+            return $http.get(`${url}/manager/instance/${agentId}/log/show`);
         }
 
         // /manager/instance/{agentId}/chart/cpuline/show
@@ -168,7 +170,7 @@
 
         // /manager/agent/{agentId}/tail-log/{logIdx}
         function tailLogAgent(agentId, logIdx) {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/agent/${agentId}/tail-log/${logIdx}`));
         }
     }
 })();
