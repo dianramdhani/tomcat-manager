@@ -149,9 +149,6 @@
                     $scope.instance = instance;
                     $scope.chart = { instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart };
                     UtilService.drlLoading(false);
-                    $timeout(() => {
-                        angular.element('#firstChart').click();
-                    });
                 });
                 console.log({ instance, instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart });
             });
