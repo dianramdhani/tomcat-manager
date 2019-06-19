@@ -10,8 +10,8 @@
             controller: _
         });
 
-    _.$inject = ['$stateParams', '$scope', '$timeout', 'ManagerService', 'UtilService'];
-    function _($stateParams, $scope, $timeout, ManagerService, UtilService) {
+    _.$inject = ['$stateParams', '$scope', '$timeout', '$q', 'ManagerService', 'UtilService'];
+    function _($stateParams, $scope, $timeout, $q, ManagerService, UtilService) {
         let $ctrl = this;
         $ctrl.$onInit = () => {
             /**
@@ -23,11 +23,13 @@
 
                 instance['health'] = await ManagerService.checkAgentHealth($stateParams.agentId).then(_ => _.data.object);
                 if (instance.health.agentStatus === 'true') {
-                    instanceCpuLineChart = await ManagerService.instanceCpuLineChart($stateParams.agentId).then(_ => _.data.object);
-                    instancePhysicalMemoryChart = await ManagerService.instancePhysicalMemoryChart($stateParams.agentId).then(_ => _.data.object);
-                    instanceHeapMemoryChart = await ManagerService.instanceHeapMemoryChart($stateParams.agentId).then(_ => _.data.object);
-                    instanceLog = await ManagerService.datatableInstanceLog(30).then(_ => _.data);
-                    tailLog = await ManagerService.tailLogAgent($stateParams.agentId, 1).then(_ => _.data.object);
+                    [instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart, instanceLog, tailLog] = await $q.all([
+                        ManagerService.instanceCpuLineChart($stateParams.agentId).then(_ => _.data.object),
+                        ManagerService.instancePhysicalMemoryChart($stateParams.agentId).then(_ => _.data.object),
+                        ManagerService.instanceHeapMemoryChart($stateParams.agentId).then(_ => _.data.object),
+                        ManagerService.datatableInstanceLog(30).then(_ => _.data),
+                        ManagerService.tailLogAgent($stateParams.agentId, 1).then(_ => _.data.object)
+                    ]);
 
                     // set plotting chart function for instanceCpuLineChart, instancePhysicalMemoryChart, andinstanceHeapMemoryChart  
                     instanceCpuLineChart = Object.assign(instanceCpuLineChart, {
