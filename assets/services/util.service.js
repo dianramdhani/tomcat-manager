@@ -9,6 +9,7 @@
         this.drlAlert = drlAlert;
         this.drlLoading = drlLoading;
         this.showAlertWhenError = showAlertWhenError;
+        this.saveAsJson = saveAsJson;
 
         /**
         * Alert with modal mode. Before call it, please create div id="drl-alert-container".
@@ -62,6 +63,19 @@
                 }
             });
             return q.promise;
+        }
+
+        /**
+         * Create JSON file from data for testing.
+         * @param {Object} data Required. The data will be a JSON.
+         * @param {String} fileName Required. Name file. 
+         */
+        function saveAsJson(data, fileName) {
+            let json = JSON.stringify(data),
+                blob = new Blob([json], {
+                    type: "application/json"
+                });
+            saveAs(blob, fileName);
         }
     }
 })();

@@ -49,9 +49,12 @@
             <div class="card-header">
                 <h6 class="slim-card-title">Usage Status</h6>
                 <nav class="nav">
-                    <a href="" class="nav-link active">CPU</a>
-                    <a href="" class="nav-link">Physical Memory</a>
-                    <a href="" class="nav-link">Heap</a>
+                    <a id="firstChart" href="" class="nav-link"
+                        ng-click="chart.instanceCpuLineChart.plotChart('chart')">CPU</a>
+                    <a href="" class="nav-link" ng-click="chart.instancePhysicalMemoryChart.plotChart('chart')">Physical
+                        Memory</a>
+                    <a href="" class="nav-link" ng-click="chart.instanceHeapMemoryChart.plotChart('chart')">Heap
+                        Memory</a>
                 </nav>
             </div>
             <div class="card-body">
