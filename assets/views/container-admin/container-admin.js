@@ -72,7 +72,7 @@
                 listAmq.forEach(amq => {
                     $scope.menu.sidebar.find(({ title }) => title === 'AMQ Instance').menu.push({
                         title: amq.instanceAmqName,
-                        href: `admin.amqInstance({instanceAmqId:${amq.instanceAmqId}})`
+                        href: `admin.amqInstance({amqId:${amq.instanceAmqId}})`
                     });
                 });
             });

@@ -8,6 +8,8 @@
     function AMQManagerService($http, CONFIG, UtilService) {
         this.listAmq = listAmq;
         this.checkAgentHealth = checkAgentHealth;
+        this.showAmq = showAmq;
+        this.amqQueueShow = amqQueueShow;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -18,7 +20,7 @@
 
         // /manager/amq/{amqId}/show
         function showAmq(amqId) {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/amq/${amqId}/show`));
         }
 
         // /manager/amq/update/
@@ -33,7 +35,7 @@
 
         // /manager/amq/{amqId}/queue/show
         function amqQueueShow(amqId) {
-
+            return $http.get(`${url}/manager/amq/${amqId}/queue/show`);
         }
 
         // /manager/amq/{amqId}/queue/purge
