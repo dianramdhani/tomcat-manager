@@ -2,13 +2,13 @@
     'use strict';
 
     // Usage:
-    // Instance detail container
+    // Tomcat detail container
     // Creates:
     // Call by tomcat-instance component.
 
     window.app
-        .component('instanceDetail', {
-            template: require('./instance-detail.html'),
+        .component('tomcatDetail', {
+            template: require('./tomcat-detail.html'),
             bindings: {
                 instance: '=',
             },
