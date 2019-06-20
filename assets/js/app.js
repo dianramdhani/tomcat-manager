@@ -60,3 +60,4 @@ require('../views/instance-detail/instance-detail');
 require('../views/usage-status/usage-status');
 require('../views/instance-log/instance-log');
 require('../views/catalina-out/catalina-out');
+require('../views/amq-instance/amq-instance');

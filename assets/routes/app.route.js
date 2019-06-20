@@ -12,6 +12,7 @@
             { name: 'admin', component: 'containerAdmin' },
             { name: 'admin.dashboard', url: '/dashboard', component: 'dashboard' },
             { name: 'admin.tomcatInstance', url: '/tomcat-instance/{agentId}', component: 'tomcatInstance' },
+            { name: 'admin.amqInstance', url: '/amq-instance/{instanceAmqId}', component: 'amqInstance' },
             { name: 'admin.userSetting', url: '/user-setting', component: 'userSetting' },
         ]
             .forEach(state => $stateProvider.state(state));
