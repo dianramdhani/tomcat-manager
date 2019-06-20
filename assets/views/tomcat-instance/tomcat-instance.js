@@ -147,11 +147,12 @@
             };
 
             UtilService.drlLoading(true);
-            getInitialData().then(({ instance, instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart, instanceLog }) => {
+            getInitialData().then(({ instance, instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart, instanceLog, tailLog }) => {
                 $timeout(() => {
                     $scope.instance = instance;
                     $scope.chart = { instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart };
                     $scope.instanceLog = instanceLog;
+                    $scope.tailLog = tailLog;
                     UtilService.drlLoading(false);
                 });
                 console.log({ instance, instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart, instanceLog });

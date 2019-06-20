@@ -59,3 +59,4 @@ require('../views/tomcat-instance/tomcat-instance');
 require('../views/instance-detail/instance-detail');
 require('../views/usage-status/usage-status');
 require('../views/instance-log/instance-log');
+require('../views/catalina-out/catalina-out');
