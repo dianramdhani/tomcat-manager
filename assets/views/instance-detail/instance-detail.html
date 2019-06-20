@@ -2,13 +2,21 @@
     <div class="card-header">
         <h6 class="slim-card-title">Instance Detail</h6>
         <nav class="nav">
-            <div class="nav-link">Agent Status:
-                {{$ctrl.instance.health.agentStatus === 'true'? 'active': 'inactive'}}</div>
-            <div class="nav-link">Server Status:
-                {{$ctrl.instance.health.tomcatStatus === 'true'? 'active': 'inactive'}}</div>
+            <a href="" class="nav-link">Start</a>
+            <a href="" class="nav-link">Stop</a>
+            <a href="" class="nav-link">Edit</a>
+            <a href="" class="nav-link">Delete</a>
         </nav>
     </div>
     <div class="card-body">
+        <p class="invoice-info-row">
+            <span>Agent Status</span>
+            <span>{{$ctrl.instance.health.agentStatus === 'true'? 'Active': 'Inactive'}}</span>
+        </p>
+        <p class="invoice-info-row">
+            <span>Server Status</span>
+            <span>{{$ctrl.instance.health.tomcatStatus === 'true'? 'Active': 'Inactive'}}</span>
+        </p>
         <p class="invoice-info-row">
             <span>Agent Name</span>
             <span>{{$ctrl.instance.instanceAgentId.agentName}}</span>
