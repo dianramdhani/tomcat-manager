@@ -2,13 +2,13 @@
     'use strict';
 
     // Usage:
-    // Instance log table.
+    // Tomcat log table.
     // Creates:
     // Call by tomcat-instance component.
 
     window.app
-        .component('instanceLog', {
-            template: require('./instance-log.html'),
+        .component('tomcatLog', {
+            template: require('./tomcat-log.html'),
             controller: _,
             bindings: {
                 log: '=',

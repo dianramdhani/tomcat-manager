@@ -6,7 +6,7 @@
         <usage-status chart="chart"></usage-status>
     </div>
     <div class="col-12 pb-3" ng-if="instance.health.agentStatus === 'true'">
-        <instance-log log="instanceLog"></instance-log>
+        <tomcat-log log="instanceLog"></tomcat-log>
     </div>
     <div class="col-12" ng-if="instance.health.agentStatus === 'true'">
         <catalina-out log="tailLog"></catalina-out>
