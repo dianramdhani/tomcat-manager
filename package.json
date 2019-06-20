@@ -28,6 +28,7 @@
     "angular": "^1.7.8",
     "angular-cookies": "^1.7.8",
     "angular-ui-router": "^1.0.22",
+    "datatables.net": "^1.10.19",
     "file-saver": "^2.0.2",
     "highcharts": "^7.1.2"
   }

@@ -1,26 +1,25 @@
-<div class="card card-table">
+<div class="card card-customer-overview">
     <div class="card-header">
         <h6 class="slim-card-title">Log</h6>
     </div>
-    <div class="table-responsive">
-        <table class="table mg-b-0 tx-13">
-            <thead>
-                <tr class="tx-10">
-                    <th class="pd-y-5">Log Activity</th>
-                    <th class="pd-y-5">Log Message</th>
-                    <th class="pd-y-5">Log Time</th>
-                    <th class="pd-y-5">Instance</th>
-                    <th class="pd-y-5">User</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="tr in $ctrl.log.data">
-                    <td ng-repeat="td in tr">{{td}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="card-footer tx-12 pd-y-15 bg-transparent">
-        <a href=""><i class="fa fa-angle-down mg-r-5"></i>View All Transaction History</a>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="log" class="table mg-b-0 tx-13">
+                <thead>
+                    <tr class="tx-10">
+                        <th class="pd-y-5">Log Activity</th>
+                        <th class="pd-y-5">Log Message</th>
+                        <th class="pd-y-5">Log Time</th>
+                        <th class="pd-y-5">Instance</th>
+                        <th class="pd-y-5">User</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="tr in $ctrl.log.data">
+                        <td ng-repeat="td in tr">{{td}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
