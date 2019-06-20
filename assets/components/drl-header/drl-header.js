@@ -14,8 +14,8 @@
             }
         });
 
-    drl.$inject = ['$scope', '$state', '$timeout', 'AuthService'];
-    function drl($scope, $state, $timeout, AuthService) {
+    drl.$inject = ['$scope', '$state', '$timeout', '$rootScope', 'AuthService'];
+    function drl($scope, $state, $timeout, $rootScope, AuthService) {
         let $ctrl = this;
         $ctrl.$onInit = () => {
             const checkActive = () => {
@@ -27,6 +27,8 @@
                     }
                 });
             };
+
+            $scope.username = $rootScope.globals.currentUser.object[1];
 
             $timeout(() => {
                 $ctrl.menuActiveNow = [];
