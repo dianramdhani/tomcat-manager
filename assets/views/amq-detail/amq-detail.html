@@ -1,0 +1,33 @@
+<div class="card card-customer-overview">
+    <div class="card-header">
+        <h6 class="slim-card-title">Instance Detail</h6>
+        <nav class="nav">
+            <a href="" class="nav-link">Start</a>
+            <a href="" class="nav-link">Stop</a>
+            <a href="" class="nav-link">Edit</a>
+            <a href="" class="nav-link">Delete</a>
+        </nav>
+    </div>
+    <div class="card-body">
+        <p class="invoice-info-row">
+            <span>Connection Status</span>
+            <span>{{$ctrl.amq.health.jmxConnected === 'true'? 'Ok': 'Not Ok'}}</span>
+        </p>
+        <p class="invoice-info-row">
+            <span>AMQ Instance Name</span>
+            <span>{{$ctrl.amq.instanceAmqName}}</span>
+        </p>
+        <p class="invoice-info-row">
+            <span>IP Address</span>
+            <span>{{$ctrl.amq.instanceAmqAddress}}</span>
+        </p>
+        <p class="invoice-info-row">
+            <span>AMQ JMX Port</span>
+            <span>{{$ctrl.amq.instanceAmqAddress}}</span>
+        </p>
+        <p class="invoice-info-row">
+            <span>Date Created</span>
+            <span>{{$ctrl.amq.instanceAmqDateInstalled}}</span>
+        </p>
+    </div>
+</div>

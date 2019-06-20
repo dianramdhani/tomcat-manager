@@ -61,3 +61,4 @@ require('../views/usage-status/usage-status');
 require('../views/tomcat-log/tomcat-log');
 require('../views/catalina-out/catalina-out');
 require('../views/amq-instance/amq-instance');
+require('../views/amq-detail/amq-detail');
