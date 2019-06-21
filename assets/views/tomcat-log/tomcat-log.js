@@ -20,7 +20,7 @@
         let $ctrl = this;
         $ctrl.$onInit = () => {
             $timeout(() => {
-                $('#log').DataTable({
+                angular.element('#log').DataTable({
                     lengthMenu: [5, 10, 25, 50, 75, 100],
                     language: {
                         paginate: {

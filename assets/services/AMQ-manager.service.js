@@ -35,7 +35,13 @@
 
         // /manager/amq/{amqId}/queue/show
         function amqQueueShow(amqId) {
-            return $http.get(`${url}/manager/amq/${amqId}/queue/show`);
+            return {
+                url: `${url}/manager/amq/${amqId}/queue/show`,
+                beforeSend: (xhr) => {
+                    xhr.setRequestHeader('Authorization', $http.defaults.headers.common.Authorization);
+                },
+                cache: false
+            }
         }
 
         // /manager/amq/{amqId}/queue/purge

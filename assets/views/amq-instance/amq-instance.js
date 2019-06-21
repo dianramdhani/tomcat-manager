@@ -10,34 +10,24 @@
             controller: _
         });
 
-    _.$inject = ['$stateParams', '$timeout', '$scope', 'AMQManagerService'];
-    function _($stateParams, $timeout, $scope, AMQManagerService) {
+    _.$inject = ['$stateParams', '$timeout', '$scope', '$log', 'AMQManagerService'];
+    function _($stateParams, $timeout, $scope, $log, AMQManagerService) {
         var $ctrl = this;
+        $scope.$log = $log;
         $ctrl.$onInit = () => {
             /**
              * Get initial data.
              */
             const getInitialData = async () => {
-                let amq = await AMQManagerService.showAmq($stateParams.amqId).then(_ => _.data.object),
-                    amqQueue;
-
+                let amq = await AMQManagerService.showAmq($stateParams.amqId).then(_ => _.data.object);
                 amq['health'] = await AMQManagerService.checkAgentHealth($stateParams.amqId).then(_ => _.data.object);
-                if (amq.health.jmxConnected === 'true') {
-                    amqQueue = await AMQManagerService.amqQueueShow($stateParams.amqId).then(_ => _.data);
-                }
-
-                return {
-                    amq,
-                    amqQueue
-                };
+                return { amq };
             }
 
-            getInitialData().then(({ amq, amqQueue }) => {
+            getInitialData().then(({ amq }) => {
                 $timeout(() => {
                     $scope.amq = amq;
-                    $scope.amqQueue = amqQueue;
                 });
-                console.log({ amq, amqQueue });
             });
         };
     }
