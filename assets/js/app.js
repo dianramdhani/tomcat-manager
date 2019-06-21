@@ -1,4 +1,4 @@
-window.app = angular.module('TomcatManager', ['ui.router', 'ngCookies']);
+window.app = angular.module('TomcatManager', ['ui.router', 'ngCookies', 'datatables']);
 
 // CONFIG
 require('./config');

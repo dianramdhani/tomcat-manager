@@ -50,7 +50,7 @@ div.dataTables_wrapper div.dataTables_paginate {
   margin: 0;
   white-space: nowrap;
   text-align: right;
-  padding-bottom: 2px;
+  padding: 4px;
 }
 div.dataTables_wrapper div.dataTables_paginate ul.pagination {
   margin: 2px 0;

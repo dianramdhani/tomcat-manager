@@ -26,6 +26,7 @@
 
             getInitialData().then(({ amq }) => {
                 $timeout(() => {
+                    console.log({ amq });
                     $scope.amq = amq;
                 });
             });
