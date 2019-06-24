@@ -56,6 +56,7 @@ require('../views/container-admin/container-admin');
 require('../views/user-setting/user-setting');
 require('../views/dashboard/dashboard');
 require('../views/tomcat-instance/tomcat-instance');
+require('../views/add-tomcat/add-tomcat');
 require('../views/tomcat-detail/tomcat-detail');
 require('../views/usage-status/usage-status');
 require('../views/tomcat-log/tomcat-log');
