@@ -4,22 +4,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table id="log" class="table mg-b-0 tx-13">
-                <thead>
-                    <tr class="tx-10">
-                        <th class="pd-y-5">Log Activity</th>
-                        <th class="pd-y-5">Log Message</th>
-                        <th class="pd-y-5">Log Time</th>
-                        <th class="pd-y-5">Instance</th>
-                        <th class="pd-y-5">User</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="tr in $ctrl.log.data">
-                        <td ng-repeat="td in tr">{{td}}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <table class="table mg-b-0 tx-13" datatable="" dt-options="dtOptions" dt-columns="dtColumns"></table>
         </div>
     </div>
 </div>

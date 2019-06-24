@@ -110,7 +110,13 @@
 
         // /manager/instance/{agentId}/log/show
         function datatableInstanceLog(agentId) {
-            return $http.get(`${url}/manager/instance/${agentId}/log/show`);
+            return {
+                url: `${url}/manager/instance/${agentId}/log/show`,
+                beforeSend: (xhr) => {
+                    xhr.setRequestHeader('Authorization', $http.defaults.headers.common.Authorization);
+                },
+                cache: false
+            }
         }
 
         // /manager/instance/{agentId}/chart/cpuline/show

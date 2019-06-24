@@ -12,27 +12,11 @@
             controller: _
         });
 
-    _.$inject = ['$stateParams', '$timeout', '$scope', '$compile', 'AMQManagerService', 'DTOptionsBuilder', 'DTColumnBuilder'];
-    function _($stateParams, $timeout, $scope, $compile, AMQManagerService, DTOptionsBuilder, DTColumnBuilder) {
+    _.$inject = ['$stateParams', '$scope', 'AMQManagerService', 'UtilService', 'DTColumnBuilder'];
+    function _($stateParams, $scope, AMQManagerService, UtilService, DTColumnBuilder) {
         let $ctrl = this;
         $ctrl.$onInit = () => {
-            $scope.dtOptions = DTOptionsBuilder
-                .newOptions()
-                .withOption('ajax', AMQManagerService.amqQueueShow($stateParams.amqId))
-                .withDataProp('data')
-                .withOption('processing', true)
-                .withOption('serverSide', true)
-                .withOption('createdRow', (row, data, dataIndex) => {
-                    $compile(angular.element(row).contents())($scope);
-                })
-                .withOption('lengthMenu', [5, 10, 20])
-                .withPaginationType('simple_numbers')
-                .withLanguage({
-                    oPaginate: {
-                        sNext: '<i class="fa fa-angle-right"></i>',
-                        sPrevious: '<i class="fa fa-angle-left"></i>'
-                    }
-                });
+            $scope.dtOptions = UtilService.DTOptionsCreator(AMQManagerService.amqQueueShow($stateParams.amqId), $scope);
             $scope.dtColumns = [
                 DTColumnBuilder.newColumn(0).withTitle('Name'),
                 DTColumnBuilder.newColumn(1).withTitle('Queue'),

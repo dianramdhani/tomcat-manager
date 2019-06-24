@@ -4,12 +4,13 @@
     window.app
         .service('UtilService', UtilService);
 
-    UtilService.$inject = ['$compile', '$rootScope', '$document', '$q'];
-    function UtilService($compile, $rootScope, $document, $q) {
+    UtilService.$inject = ['$compile', '$rootScope', '$document', '$q', 'DTOptionsBuilder'];
+    function UtilService($compile, $rootScope, $document, $q, DTOptionsBuilder) {
         this.drlAlert = drlAlert;
         this.drlLoading = drlLoading;
         this.showAlertWhenError = showAlertWhenError;
         this.saveAsJson = saveAsJson;
+        this.DTOptionsCreator = DTOptionsCreator;
 
         /**
         * Alert with modal mode. Before call it, please create div id="drl-alert-container".
@@ -76,6 +77,33 @@
                     type: "application/json"
                 });
             saveAs(blob, fileName);
+        }
+
+        /**
+         * Create all options for attribute datatable required. 
+         * @param {Object} ajax Required. Ajax options required for request datatable data.
+         * @param {Object} scope Optional. Scope of components who call it if you want to pass some scope element inside column.
+         */
+        function DTOptionsCreator(ajax, scope = null) {
+            scope = scope || $rootScope.$new();
+            let dtOptions = DTOptionsBuilder
+                .newOptions()
+                .withOption('ajax', ajax)
+                .withDataProp('data')
+                .withOption('processing', true)
+                .withOption('serverSide', true)
+                .withOption('createdRow', (row, data, dataIndex) => {
+                    $compile(angular.element(row).contents())(scope);
+                })
+                .withOption('lengthMenu', [5, 10, 20])
+                .withPaginationType('simple_numbers')
+                .withLanguage({
+                    oPaginate: {
+                        sNext: '<i class="fa fa-angle-right"></i>',
+                        sPrevious: '<i class="fa fa-angle-left"></i>'
+                    }
+                });
+            return dtOptions;
         }
     }
 })();

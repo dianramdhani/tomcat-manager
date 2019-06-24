@@ -9,27 +9,21 @@
     window.app
         .component('tomcatLog', {
             template: require('./tomcat-log.html'),
-            controller: _,
-            bindings: {
-                log: '=',
-            }
+            controller: _
         });
 
-    _.$inject = ['$timeout'];
-    function _($timeout) {
+    _.$inject = ['$scope', '$stateParams', 'UtilService', 'DTColumnBuilder', 'ManagerService'];
+    function _($scope, $stateParams, UtilService, DTColumnBuilder, ManagerService) {
         let $ctrl = this;
         $ctrl.$onInit = () => {
-            $timeout(() => {
-                angular.element('#log').DataTable({
-                    lengthMenu: [5, 10, 25, 50, 75, 100],
-                    language: {
-                        paginate: {
-                            previous: `<i class="fa fa-angle-left"></i>`,
-                            next: `<i class="fa fa-angle-right"></i>`
-                        }
-                    }
-                });
-            });
+            $scope.dtOptions = UtilService.DTOptionsCreator(ManagerService.datatableInstanceLog($stateParams.agentId));
+            $scope.dtColumns = [
+                DTColumnBuilder.newColumn(0).withTitle('Log Activity'),
+                DTColumnBuilder.newColumn(1).withTitle('Log Message'),
+                DTColumnBuilder.newColumn(2).withTitle('Log Time'),
+                DTColumnBuilder.newColumn(3).withTitle('Instance'),
+                DTColumnBuilder.newColumn(4).withTitle('User')
+            ];
         };
     }
 })();

@@ -23,11 +23,10 @@
 
                 instance['health'] = await ManagerService.checkAgentHealth($stateParams.agentId).then(_ => _.data.object);
                 if (instance.health.agentStatus === 'true') {
-                    [instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart, instanceLog, tailLog] = await $q.all([
+                    [instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart, tailLog] = await $q.all([
                         ManagerService.instanceCpuLineChart($stateParams.agentId).then(_ => _.data.object),
                         ManagerService.instancePhysicalMemoryChart($stateParams.agentId).then(_ => _.data.object),
                         ManagerService.instanceHeapMemoryChart($stateParams.agentId).then(_ => _.data.object),
-                        ManagerService.datatableInstanceLog(30).then(_ => _.data),
                         ManagerService.tailLogAgent($stateParams.agentId, 1).then(_ => _.data.object)
                     ]);
 
@@ -141,21 +140,19 @@
                     instanceCpuLineChart,
                     instancePhysicalMemoryChart,
                     instanceHeapMemoryChart,
-                    instanceLog,
                     tailLog
                 };
             };
 
             UtilService.drlLoading(true);
-            getInitialData().then(({ instance, instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart, instanceLog, tailLog }) => {
+            getInitialData().then(({ instance, instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart, tailLog }) => {
                 $timeout(() => {
                     $scope.instance = instance;
                     $scope.chart = { instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart };
-                    $scope.instanceLog = instanceLog;
                     $scope.tailLog = tailLog;
                     UtilService.drlLoading(false);
                 });
-                console.log({ instance, instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart, instanceLog });
+                console.log({ instance, instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart });
             });
         };
     }
