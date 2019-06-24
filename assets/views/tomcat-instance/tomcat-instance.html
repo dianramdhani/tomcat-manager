@@ -3,7 +3,7 @@
         <tomcat-detail instance="instance"></tomcat-detail>
     </div>
     <div class="col-lg-6 pb-3" ng-if="instance.health.agentStatus === 'true'">
-        <usage-status chart="chart"></usage-status>
+        <usage-status></usage-status>
     </div>
     <div class="col-12 pb-3" ng-if="instance.health.agentStatus === 'true'">
         <tomcat-log></tomcat-log>
