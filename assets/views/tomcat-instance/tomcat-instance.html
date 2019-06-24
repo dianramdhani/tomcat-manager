@@ -8,7 +8,10 @@
     <div class="col-12 pb-3" ng-if="instance.health.agentStatus === 'true'">
         <tomcat-log></tomcat-log>
     </div>
-    <div class="col-12" ng-if="instance.health.agentStatus === 'true'">
+    <div class="col-12 pb-3" ng-if="instance.health.agentStatus === 'true'">
         <catalina-out></catalina-out>
+    </div>
+    <div class="col-12" ng-if="instance.health.agentStatus === 'true'">
+        <deployment-list></deployment-list>
     </div>
 </div>

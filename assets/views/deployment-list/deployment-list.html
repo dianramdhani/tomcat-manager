@@ -1,0 +1,38 @@
+<div class="card card-customer-overview">
+    <div class="card-header">
+        <h6 class="slim-card-title">Deployment List</h6>
+        <nav class="nav">
+            <a href="" class="nav-link">Add Deployment</a>
+        </nav>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="log" class="table mg-b-0 tx-13">
+                <thead>
+                    <tr class="tx-10">
+                        <th class="pd-y-5">Deployment Name</th>
+                        <th class="pd-y-5">Location</th>
+                        <th class="pd-y-5">Date Added</th>
+                        <th class="pd-y-5">Path Group</th>
+                        <th class="pd-y-5">Status</th>
+                        <th class="pd-y-5">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="deployment in deploymentList">
+                        <td>{{deployment.deployerDeployments[0].deploymentContextName}}</td>
+                        <td>{{deployment.deployerDeployments[0].deploymentContextLocation}}</td>
+                        <td>{{deployment.deployerDeployments[0].deploymentDateCreated}}</td>
+                        <td>{{deployment.deployerDeployments[0].deploymentPathGroup}}</td>
+                        <td>{{deployment.deployerDeployments[0].deploymentStatus === true? 'Running': 'Stop'}}</td>
+                        <td>
+                            <button>1</button>
+                            <button>2</button>
+                            <button>3</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

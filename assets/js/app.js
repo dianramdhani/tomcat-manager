@@ -60,6 +60,7 @@ require('../views/tomcat-detail/tomcat-detail');
 require('../views/usage-status/usage-status');
 require('../views/tomcat-log/tomcat-log');
 require('../views/catalina-out/catalina-out');
+require('../views/deployment-list/deployment-list');
 require('../views/amq-instance/amq-instance');
 require('../views/amq-detail/amq-detail');
 require('../views/queue-detail/queue-detail');

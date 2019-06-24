@@ -83,8 +83,8 @@
 
 
                 // check all health
-                checkHealth(listAmq, 'instanceAmqId', AMQManagerService.checkAgentHealth);
-                checkHealth(listAgent, 'agentId', ManagerService.checkAgentHealth);
+                await checkHealth(listAmq, 'instanceAmqId', AMQManagerService.checkAgentHealth);
+                await checkHealth(listAgent, 'agentId', ManagerService.checkAgentHealth);
 
                 // setMenu
                 setMenu();

@@ -15,6 +15,7 @@
         this.instanceHeapMemoryChart = instanceHeapMemoryChart;
         this.tailLogAgent = tailLogAgent;
         this.datatableInstanceLog = datatableInstanceLog;
+        this.showMapDeployment = showMapDeployment;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -60,7 +61,7 @@
 
         // /manager/instance/{instanceId}/deployments/showMap/{offset}/{limit}
         function showMapDeployment(instanceId, offset, limit) {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/instance/${instanceId}/deployments/showMap/${offset}/${limit}`));
         }
 
         // /manager/agent/{agentId}/action/restartWar/{contextName}
