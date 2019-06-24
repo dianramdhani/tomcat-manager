@@ -14,22 +14,18 @@
     function _($stateParams, $timeout, $scope, $log, AMQManagerService) {
         var $ctrl = this;
         $scope.$log = $log;
-        $ctrl.$onInit = () => {
+        $ctrl.$onInit = async () => {
             /**
              * Get initial data.
              */
             const getInitialData = async () => {
                 let amq = await AMQManagerService.showAmq($stateParams.amqId).then(_ => _.data.object);
                 amq['health'] = await AMQManagerService.checkAgentHealth($stateParams.amqId).then(_ => _.data.object);
-                return { amq };
+                return [amq];
             }
 
-            getInitialData().then(({ amq }) => {
-                $timeout(() => {
-                    console.log({ amq });
-                    $scope.amq = amq;
-                });
-            });
+            [$scope.amq] = await getInitialData();
+            $scope.$apply();
         };
     }
 })();
