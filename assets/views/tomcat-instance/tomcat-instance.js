@@ -19,15 +19,14 @@
              */
             const getInitialData = async () => {
                 let instance = await ManagerService.showInstanceByAgentId($stateParams.agentId).then(_ => _.data.object),
-                    instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart, instanceLog, tailLog;
+                    instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart;
 
                 instance['health'] = await ManagerService.checkAgentHealth($stateParams.agentId).then(_ => _.data.object);
                 if (instance.health.agentStatus === 'true') {
-                    [instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart, tailLog] = await $q.all([
+                    [instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart] = await $q.all([
                         ManagerService.instanceCpuLineChart($stateParams.agentId).then(_ => _.data.object),
                         ManagerService.instancePhysicalMemoryChart($stateParams.agentId).then(_ => _.data.object),
                         ManagerService.instanceHeapMemoryChart($stateParams.agentId).then(_ => _.data.object),
-                        ManagerService.tailLogAgent($stateParams.agentId, 1).then(_ => _.data.object)
                     ]);
 
                     // set plotting chart function for instanceCpuLineChart, instancePhysicalMemoryChart, andinstanceHeapMemoryChart  
@@ -140,16 +139,14 @@
                     instanceCpuLineChart,
                     instancePhysicalMemoryChart,
                     instanceHeapMemoryChart,
-                    tailLog
                 };
             };
 
             UtilService.drlLoading(true);
-            getInitialData().then(({ instance, instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart, tailLog }) => {
+            getInitialData().then(({ instance, instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart }) => {
                 $timeout(() => {
                     $scope.instance = instance;
                     $scope.chart = { instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart };
-                    $scope.tailLog = tailLog;
                     UtilService.drlLoading(false);
                 });
                 console.log({ instance, instanceCpuLineChart, instancePhysicalMemoryChart, instanceHeapMemoryChart });

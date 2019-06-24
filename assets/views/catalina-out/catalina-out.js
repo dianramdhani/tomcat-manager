@@ -9,19 +9,19 @@
     window.app
         .component('catalinaOut', {
             template: require('./catalina-out.html'),
-            controller: _,
-            bindings: {
-                log: '<',
-            },
+            controller: _
         });
 
-    _.$inject = ['$scope'];
-    function _($scope) {
+    _.$inject = ['$scope', '$stateParams', 'ManagerService'];
+    function _($scope, $stateParams, ManagerService) {
         let $ctrl = this;
         $ctrl.$onInit = () => {
-            $scope.log = '';
-            angular.forEach($ctrl.log.reverse(), (log) => {
-                $scope.log = `${$scope.log}${log.line}\n`;
+            ManagerService.tailLogAgent($stateParams.agentId, 1).then(res => {
+                let log = res.data.object;
+                $scope.log = '';
+                angular.forEach(log.reverse(), (_log) => {
+                    $scope.log = `${$scope.log}${_log.line}\n`;
+                });
             });
         };
     }
