@@ -4,8 +4,11 @@
     window.app
         .service('DatasourceService', DatasourceService);
 
-    DatasourceService.$inject = ['CONFIG'];
-    function DatasourceService(CONFIG) {
+    DatasourceService.$inject = ['$http', 'CONFIG', 'UtilService'];
+    function DatasourceService($http, CONFIG, UtilService) {
+        this.getDatasourceByDatasourceId = getDatasourceByDatasourceId;
+        this.getDatasourceInstanceByDatasourceId = getDatasourceInstanceByDatasourceId;
+
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
         // /manager/datasource/list/{offset}/{limit}
@@ -20,12 +23,17 @@
 
         // /manager/datasource/listAll
         function getDatasourceByDatasourceId() {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/datasource/listAll`));
         }
 
         // /manager/datasource/add
         function addDatasource() {
 
+        }
+
+        // /manager/datasource/getDatasourceInstanceByDatasourceId/{datasourceId}
+        function getDatasourceInstanceByDatasourceId(datasourceId) {
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/datasource/getDatasourceInstanceByDatasourceId/${datasourceId}`));
         }
 
         // /manager/datasource/update/

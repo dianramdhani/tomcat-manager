@@ -16,6 +16,7 @@
         this.tailLogAgent = tailLogAgent;
         this.datatableInstanceLog = datatableInstanceLog;
         this.showMapDeployment = showMapDeployment;
+        this.listAllInstances = listAllInstances;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -47,6 +48,11 @@
         // /manager/instance/list/{offset}/{limit}
         function listInstance(offset, limit) {
 
+        }
+
+        // /manager/instance/listAll/{offset}/{limit}
+        function listAllInstances(offset, limit) {
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/instance/listAll/${offset}/${limit}`));
         }
 
         // /manager/agent/update/

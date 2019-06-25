@@ -18,10 +18,11 @@
              * Get initial data.
              */
             const getInitialData = async () => {
-                return await $q.all([
+                let [listAgent, listAmq] = await $q.all([
                     ManagerService.listAgent(0, 12).then(_ => _.data.iteratorObject),
                     AMQManagerService.listAmq(0, 12).then(_ => _.data.iteratorObject)
                 ]);
+                return [listAgent, listAmq];
             };
 
             $scope.menu = {
@@ -53,7 +54,7 @@
                         ]
                     },
                     {
-                        title: 'Data Source',
+                        title: 'DataSource',
                         icon: 'icon ion-filing',
                         href: 'admin.dataSource'
                     }

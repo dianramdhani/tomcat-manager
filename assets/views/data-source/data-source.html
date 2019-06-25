@@ -1,1 +1,50 @@
-hallo data-source
+<div class="card">
+    <div class="card-header">
+        <h6 class="slim-card-title">DataSource Table</h6>
+        <nav class="nav">
+            <a href="" class="nav-link" data-toggle="modal" data-target="#addDeployment">Add DataSource</a>
+        </nav>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="log" class="table mg-b-0 tx-13">
+                <thead>
+                    <tr class="tx-10">
+                        <th class="pd-y-5">DataSource Name</th>
+                        <th class="pd-y-5">JNDI</th>
+                        <th class="pd-y-5">Type</th>
+                        <th class="pd-y-5">Target</th>
+                        <th class="pd-y-5">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="_datasource in datasource track by _datasource.dataSourceId">
+                        <td>{{_datasource.name}}</td>
+                        <td>{{_datasource.jndi}}</td>
+                        <td>{{_datasource.type}}</td>
+                        <td>
+                            <select class="form-control select2" data-placeholder="Choose Browser" multiple>
+                                <option value="Firefox">Firefox</option>
+                                <option value="Chrome selected">Chrome</option>
+                                <option value="Safari">Safari</option>
+                                <option value="Opera" selected>Opera</option>
+                                <option value="Internet Explorer">Internet Explorer</option>
+                            </select>
+                            <!-- <select class="form-control form-control-sm select2" data-placeholder="Choose one">
+                                <option label="Choose one"></option>
+                                <option ng-repeat="instance in instances track by instance.instanceId"
+                                    ng-value="instance">
+                                    {{instance.instanceAgentId.agentName}}
+                                </option>
+                            </select> -->
+                        </td>
+                        <td>
+                            <a href="">Edit</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="./assets/lib/select2/js/select2.full.min.js"></script>
