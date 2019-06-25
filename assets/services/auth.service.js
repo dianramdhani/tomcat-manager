@@ -27,6 +27,9 @@
                         $rootScope['globals'] = { currentUser };
                         cookieExp.setDate(cookieExp.getDate() + 7);
                         $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
+                        $http.defaults.headers.common = {
+                            Authorization: $rootScope.globals.currentUser.object[0]
+                        };
                         q.resolve(res);
                     } else if (res.data.status === 500) {
                         q.reject(res);
@@ -40,6 +43,7 @@
          * Logout.
          */
         function logout() {
+            $http.defaults.headers.common = {};
             $rootScope.globals = {};
             $cookies.remove('globals');
             $state.go('login');

@@ -13,7 +13,7 @@
     _.$inject = ['$scope', '$timeout', '$q', 'AMQManagerService', 'ManagerService', 'UtilService'];
     function _($scope, $timeout, $q, AMQManagerService, ManagerService, UtilService) {
         let $ctrl = this;
-        $ctrl.$onInit = async () => {
+        $ctrl.$onInit = () => {
             /**
              * Get initial data.
              */
@@ -73,9 +73,6 @@
                 };
 
                 // get all list
-                // let listAmq = await AMQManagerService.listAmq(0, 12).then(_ => _.data.iteratorObject),
-                //     listAgent = await ManagerService.listAgent(0, 12).then(_ => _.data.iteratorObject),
-                //     listGroupInstance = await ManagerService.listGroupInstance(0, 10).then(_ => _.data.iteratorObject);
                 let [listAmq, listAgent] = await $q.all([
                     AMQManagerService.listAmq(0, 12).then(_ => _.data.iteratorObject),
                     ManagerService.listAgent(0, 12).then(_ => _.data.iteratorObject)
@@ -92,10 +89,12 @@
                 return [listAmq, listAgent];
             };
 
-            UtilService.drlLoading(true);
-            [$scope.listAmq, $scope.listAgent] = await getInitialData();
-            $scope.$apply();
-            UtilService.drlLoading(false);
+            $timeout(async () => {
+                UtilService.drlLoading(true);
+                [$scope.listAmq, $scope.listAgent] = await getInitialData();
+                $scope.$apply();
+                UtilService.drlLoading(false);
+            });
         };
     }
 })();

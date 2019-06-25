@@ -10,18 +10,19 @@
             controller: _
         });
 
-    _.$inject = ['$scope', 'ManagerService', 'AMQManagerService'];
-    function _($scope, ManagerService, AMQManagerService) {
+    _.$inject = ['$scope', '$timeout', '$q', 'ManagerService', 'AMQManagerService'];
+    function _($scope, $timeout, $q, ManagerService, AMQManagerService) {
         let $ctrl = this;
-        $ctrl.$onInit = async () => {
+        $ctrl.$onInit = () => {
             /**
              * Get initial data.
              */
             const getInitialData = async () => {
-                let listAgent = await ManagerService.listAgent(0, 12).then(_ => _.data.iteratorObject),
-                    listAmq = await AMQManagerService.listAmq(0, 12).then(_ => _.data.iteratorObject);
-                return [listAgent, listAmq];
-            }
+                return await $q.all([
+                    ManagerService.listAgent(0, 12).then(_ => _.data.iteratorObject),
+                    AMQManagerService.listAmq(0, 12).then(_ => _.data.iteratorObject)
+                ]);
+            };
 
             $scope.menu = {
                 sidebar: [
@@ -60,23 +61,26 @@
                     }
                 ]
             };
-            let [listAgent, listAmq] = await getInitialData();
 
-            // add menu Tomcat Instance
-            listAgent.forEach(agent => {
-                $scope.menu.sidebar.find(({ title }) => title === 'Tomcat Instance').menu.push({
-                    title: agent.agentName,
-                    href: `admin.tomcatInstance({agentId:${agent.agentId}})`
-                });
-            });
-            listAmq.forEach(amq => {
-                $scope.menu.sidebar.find(({ title }) => title === 'AMQ Instance').menu.push({
-                    title: amq.instanceAmqName,
-                    href: `admin.amqInstance({amqId:${amq.instanceAmqId}})`
-                });
-            });
+            $timeout(async () => {
+                let [listAgent, listAmq] = await getInitialData();
 
-            $scope.$apply();
+                // add menu Tomcat Instance
+                listAgent.forEach(agent => {
+                    $scope.menu.sidebar.find(({ title }) => title === 'Tomcat Instance').menu.push({
+                        title: agent.agentName,
+                        href: `admin.tomcatInstance({agentId:${agent.agentId}})`
+                    });
+                });
+                listAmq.forEach(amq => {
+                    $scope.menu.sidebar.find(({ title }) => title === 'AMQ Instance').menu.push({
+                        title: amq.instanceAmqName,
+                        href: `admin.amqInstance({amqId:${amq.instanceAmqId}})`
+                    });
+                });
+
+                $scope.$apply();
+            });
         };
     }
 })();
