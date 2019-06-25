@@ -51,6 +51,11 @@
                                 href: ''
                             }
                         ]
+                    },
+                    {
+                        title: 'Data Source',
+                        icon: 'icon ion-filing',
+                        href: 'admin.dataSource'
                     }
                 ],
                 dropdownC: [
