@@ -67,3 +67,4 @@ require('../views/amq-instance/amq-instance');
 require('../views/amq-detail/amq-detail');
 require('../views/queue-detail/queue-detail');
 require('../views/datasource/datasource');
+require('../views/datasource-form/datasource-form');
