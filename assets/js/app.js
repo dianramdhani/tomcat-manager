@@ -66,4 +66,4 @@ require('../views/add-deployment/add-deployment');
 require('../views/amq-instance/amq-instance');
 require('../views/amq-detail/amq-detail');
 require('../views/queue-detail/queue-detail');
-require('../views/data-source/data-source');
+require('../views/datasource/datasource');

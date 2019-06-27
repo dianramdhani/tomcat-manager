@@ -5,8 +5,8 @@
     // Data source container.
 
     window.app
-        .component('dataSource', {
-            template: require('./data-source.html'),
+        .component('datasource', {
+            template: require('./datasource.html'),
             controller: _,
         });
 

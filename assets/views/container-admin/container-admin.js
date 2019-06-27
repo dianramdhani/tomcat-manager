@@ -56,7 +56,7 @@
                     {
                         title: 'DataSource',
                         icon: 'icon ion-filing',
-                        href: 'admin.dataSource'
+                        href: 'admin.datasource'
                     }
                 ],
                 dropdownC: [
