@@ -3,45 +3,57 @@
         <h6 class="slim-card-title">New DataSource Information</h6>
     </div>
     <div class="card-body">
-        <div class="form-layout form-layout-6">
-            <div class="row no-gutters">
+        <form name="datasourceForm" class="form-layout form-layout-6" ng-submit="save()">
+            <div class="row no-gutters" ng-show="canUpdate">
+                <div class="col-5 col-sm-4">DataSource Id</div>
+                <div class="col-7 col-sm-8" style="background-color: #e9ecef;">
+                    <input class="form-control" type="text" name="dataSourceId" placeholder="DataSource Id" disabled
+                        ng-model="datasourceInstance.dataSourceId">
+                </div>
+            </div>
+            <div class="row no-gutters" ng-style="{'border-top': canUpdate? '': '1px solid #ced4da'}">
                 <div class="col-5 col-sm-4">DataSource Name</div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="fullname" placeholder="Enter your fullname">
+                    <input class="form-control" type="text" name="name" placeholder="DataSource Name" required
+                        ng-model="datasourceInstance.name">
                 </div>
             </div>
             <div class="row no-gutters">
                 <div class="col-5 col-sm-4">JNDI</div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="Enter your email address">
+                    <input class="form-control" type="text" name="jndi" placeholder="JNDI Address" required
+                        ng-model="datasourceInstance.jndi">
                 </div>
             </div>
             <div class="row no-gutters">
                 <div class="col-5 col-sm-4">Select DataBase Type</div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="Enter your email address">
-                    <span class="tx-11 d-block">
-                        Please select an available port. This port is used by this application to interact with your
-                        instance
-                    </span>
+                    <select class="form-control" name="type" required ng-model="datasourceInstance.type">
+                        <option value="">Select Database Type</option>
+                        <option value="MySQL">MySQL</option>
+                        <option value="Oracle">Oracle</option>
+                    </select>
                 </div>
             </div>
             <div class="row no-gutters">
-                <div class="col-5 col-sm-4">Url</div>
+                <div class="col-5 col-sm-4">URL</div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="Enter your email address">
+                    <input class="form-control" type="text" name="url" placeholder="Database URL" required
+                        ng-model="datasourceInstance.url">
                 </div>
             </div>
             <div class="row no-gutters">
                 <div class="col-5 col-sm-4">Username</div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="Enter your email address">
+                    <input class="form-control" type="text" name="username" placeholder="Username" required
+                        ng-model="datasourceInstance.username">
                 </div>
             </div>
             <div class="row no-gutters">
                 <div class="col-5 col-sm-4">Password</div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="Enter your email address">
+                    <input class="form-control" type="text" name="password" placeholder="Password"
+                        ng-model="datasourceInstance.password">
                 </div>
             </div>
             <p>
@@ -50,43 +62,44 @@
             <div class="row no-gutters">
                 <div class="col-5 col-sm-4">Initial Size</div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="Enter your email address">
+                    <input class="form-control" type="text" name="initialSize" placeholder="Initial Size" required
+                        ng-model="datasourceInstance.initialSize">
                 </div>
             </div>
             <div class="row no-gutters">
                 <div class="col-5 col-sm-4">Max Total</div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="Enter your email address">
+                    <input class="form-control" type="text" name="maxTotal" placeholder="Max Total" required
+                        ng-model="datasourceInstance.maxTotal">
                 </div>
             </div>
             <div class="row no-gutters">
                 <div class="col-5 col-sm-4">Max Idle</div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="Enter your email address">
+                    <input class="form-control" type="text" name="maxIdle" placeholder="Max Idle" required
+                        ng-model="datasourceInstance.maxIdle">
                 </div>
             </div>
             <div class="row no-gutters">
                 <div class="col-5 col-sm-4">Min Idle</div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="Enter your email address">
-                    <span class="tx-11 d-block">
-                        Please end path location with '/'. Example : /Users/example/Desktop/
-                    </span>
+                    <input class="form-control" type="text" name="minIdle" placeholder="Min Idle" required
+                        ng-model="datasourceInstance.minIdle">
                 </div>
             </div>
             <div class="row no-gutters">
                 <div class="col-5 col-sm-4">Max Wait</div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="Enter your email address">
-                    <span class="tx-11 d-block">
-                        Please end path location with '/'. Example : /Users/example/Desktop/
-                    </span>
+                    <input class="form-control" type="text" name="maxWait" placeholder="Max Wait" required
+                        ng-model="datasourceInstance.maxWait">
                 </div>
             </div>
             <div class="form-layout-footer mg-t-30">
-                <button class="btn btn-primary">Add DataSource</button>
+                <button type="submit" class="btn btn-primary">
+                    <span ng-show="canUpdate">Update</span><span ng-hide="canUpdate">Add DataSource</span>
+                </button>
                 <button class="btn btn-secondary">Cancel</button>
             </div>
-        </div>
+        </form>
     </div>
 </div>

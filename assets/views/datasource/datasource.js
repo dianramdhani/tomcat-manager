@@ -18,7 +18,7 @@
              * Get initial data.
              */
             const getInitialData = async () => {
-                let datasources = await DatasourceService.getDatasourceByDatasourceId().then(_ => _.data.object),
+                let datasources = await DatasourceService.listAllDatasource().then(_ => _.data.object),
                     instancesTarget = await $q.all(datasources.map(datasource => DatasourceService.getDatasourceInstanceByDatasourceId(datasource.dataSourceId).then(_ => _.data.object))),
                     instances = await ManagerService.listAllInstances(0, 12).then(_ => _.data.object);
                 datasources.forEach((datasource, i) => {

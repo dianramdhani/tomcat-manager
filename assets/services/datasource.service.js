@@ -7,6 +7,7 @@
     DatasourceService.$inject = ['$http', 'CONFIG', 'UtilService'];
     function DatasourceService($http, CONFIG, UtilService) {
         this.getDatasourceByDatasourceId = getDatasourceByDatasourceId;
+        this.listAllDatasource = listAllDatasource;
         this.getDatasourceInstanceByDatasourceId = getDatasourceInstanceByDatasourceId;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
@@ -16,14 +17,14 @@
 
         }
 
-        // /manager/datasource/{datasourceId}/list
-        function listAllDatasource(datasourceId) {
-
+        // /manager/datasource/listAll
+        function listAllDatasource() {
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/datasource/listAll`));
         }
 
-        // /manager/datasource/listAll
-        function getDatasourceByDatasourceId() {
-            return UtilService.showAlertWhenError($http.get(`${url}/manager/datasource/listAll`));
+        // /manager/datasource/{datasourceId}/list
+        function getDatasourceByDatasourceId(datasourceId) {
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/datasource/${datasourceId}/list`));
         }
 
         // /manager/datasource/add

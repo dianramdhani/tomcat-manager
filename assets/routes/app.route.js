@@ -16,7 +16,7 @@
             { name: 'admin.amqInstance', url: '/amq-instance/{amqId}', component: 'amqInstance' },
             { name: 'admin.userSetting', url: '/user-setting', component: 'userSetting' },
             { name: 'admin.datasource', url: '/datasource', component: 'datasource' },
-            { name: 'admin.datasourceForm', component: 'datasourceForm' },
+            { name: 'admin.datasourceForm', component: 'datasourceForm', params: { datasourceId: { value: null } } },
         ]
             .forEach(state => $stateProvider.state(state));
     }
