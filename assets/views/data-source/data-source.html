@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card card-customer-overview">
     <div class="card-header">
         <h6 class="slim-card-title">DataSource Table</h6>
         <nav class="nav">
@@ -18,33 +18,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="_datasource in datasource track by _datasource.dataSourceId">
-                        <td>{{_datasource.name}}</td>
-                        <td>{{_datasource.jndi}}</td>
-                        <td>{{_datasource.type}}</td>
-                        <td>
-                            <select class="form-control select2" data-placeholder="Choose Browser" multiple>
-                                <option value="Firefox">Firefox</option>
-                                <option value="Chrome selected">Chrome</option>
-                                <option value="Safari">Safari</option>
-                                <option value="Opera" selected>Opera</option>
-                                <option value="Internet Explorer">Internet Explorer</option>
-                            </select>
-                            <!-- <select class="form-control form-control-sm select2" data-placeholder="Choose one">
-                                <option label="Choose one"></option>
-                                <option ng-repeat="instance in instances track by instance.instanceId"
-                                    ng-value="instance">
+                    <tr ng-repeat="datasource in datasources track by datasource.dataSourceId">
+                        <td>{{datasource.name}}</td>
+                        <td>{{datasource.jndi}}</td>
+                        <td>{{datasource.type}}</td>
+                        <td class="d-flex flex-sm-row flex-column">
+                            <select class="form-control select2" data-placeholder="Choose Browser" multiple
+                                ng-attr-id="{{'instances-target-'+$index}}"
+                                ng-init="instancesTarget = datasource.instancesTarget" ng-model="instancesTarget">
+                                <option ng-repeat="instance in instances track by $index"
+                                    ng-value="instance.instanceId">
                                     {{instance.instanceAgentId.agentName}}
                                 </option>
-                            </select> -->
+                            </select>
+                            <button class="btn btn-primary btn-sm mg-3"
+                                ng-show="differ(instancesTarget, datasource.instancesTarget)"
+                                ng-click="instancesTargetChanges(datasource, instancesTarget)">
+                                Accept changes
+                            </button>
                         </td>
-                        <td>
-                            <a href="">Edit</a>
-                        </td>
+                        <td><a href="">Edit</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-<script src="./assets/lib/select2/js/select2.full.min.js"></script>
