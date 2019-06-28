@@ -29,6 +29,7 @@
                     }
                 });
             alertContainer.prepend($compile(alertComponent)(alertScope));
+            angular.element('html').animate({ scrollTop: alertContainer.offset().top }, 350);
         }
 
         const loadingContainer = angular.element($document[0].body),

@@ -9,6 +9,8 @@
         this.getDatasourceByDatasourceId = getDatasourceByDatasourceId;
         this.listAllDatasource = listAllDatasource;
         this.getDatasourceInstanceByDatasourceId = getDatasourceInstanceByDatasourceId;
+        this.updateDatasource = updateDatasource;
+        this.addDatasource = addDatasource;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -28,8 +30,8 @@
         }
 
         // /manager/datasource/add
-        function addDatasource() {
-
+        function addDatasource(datasourceInstance) {
+            return UtilService.showAlertWhenError($http.post(`${url}/manager/datasource/add`, datasourceInstance))
         }
 
         // /manager/datasource/getDatasourceInstanceByDatasourceId/{datasourceId}
@@ -38,8 +40,8 @@
         }
 
         // /manager/datasource/update/
-        function updateDatasource() {
-
+        function updateDatasource(datasourceInstance) {
+            return UtilService.showAlertWhenError($http.post(`${url}/manager/datasource/update/${datasourceInstance.dataSourceId}`, datasourceInstance));
         }
 
         // /manager/datasource/{datasourceId}/delete

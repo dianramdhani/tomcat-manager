@@ -21,7 +21,10 @@
                     <tr ng-repeat="datasource in datasources track by datasource.dataSourceId">
                         <td>{{datasource.name}}</td>
                         <td>{{datasource.jndi}}</td>
-                        <td>{{datasource.type}}</td>
+                        <td>
+                            <span ng-if="datasource.driverClassName === 'com.mysql.jdbc.Driver'">MySQL</span>
+                            <span ng-if="datasource.driverClassName === 'oracle.jdbc.OracleDriver'">Oracle</span>
+                        </td>
                         <td class="d-flex flex-sm-row flex-column">
                             <select class="form-control select2" data-placeholder="Choose Browser" multiple
                                 ng-attr-id="{{'instances-target-'+$index}}"

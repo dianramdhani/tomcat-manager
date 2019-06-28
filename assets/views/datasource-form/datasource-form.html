@@ -26,12 +26,20 @@
                 </div>
             </div>
             <div class="row no-gutters">
-                <div class="col-5 col-sm-4">Select DataBase Type</div>
+                <div class="col-5 col-sm-4">Database Type</div>
                 <div class="col-7 col-sm-8">
-                    <select class="form-control" name="type" required ng-model="datasourceInstance.type">
-                        <option value="">Select Database Type</option>
-                        <option value="MySQL">MySQL</option>
-                        <option value="Oracle">Oracle</option>
+                    <input class="form-control" type="text" name="type" placeholder="Database Type" required
+                        ng-model="datasourceInstance.type">
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-5 col-sm-4">Select Database Name</div>
+                <div class="col-7 col-sm-8">
+                    <select class="form-control" name="driverClassName" required
+                        ng-model="datasourceInstance.driverClassName">
+                        <option value="">Select Database Name</option>
+                        <option value="com.mysql.jdbc.Driver">MySQL</option>
+                        <option value="oracle.jdbc.OracleDriver">Oracle</option>
                     </select>
                 </div>
             </div>
@@ -98,7 +106,7 @@
                 <button type="submit" class="btn btn-primary">
                     <span ng-show="canUpdate">Update</span><span ng-hide="canUpdate">Add DataSource</span>
                 </button>
-                <button class="btn btn-secondary">Cancel</button>
+                <button class="btn btn-secondary" ui-sref="admin.datasource">Cancel</button>
             </div>
         </form>
     </div>
