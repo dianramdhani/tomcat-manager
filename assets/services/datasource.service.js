@@ -11,6 +11,7 @@
         this.getDatasourceInstanceByDatasourceId = getDatasourceInstanceByDatasourceId;
         this.updateDatasource = updateDatasource;
         this.addDatasource = addDatasource;
+        this.deleteDatasource = deleteDatasource;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -46,7 +47,7 @@
 
         // /manager/datasource/{datasourceId}/delete
         function deleteDatasource(datasourceId) {
-
+            return UtilService.showAlertWhenError($http.delete(`${url}/manager/datasource/${datasourceId}/delete`));
         }
     }
 })();

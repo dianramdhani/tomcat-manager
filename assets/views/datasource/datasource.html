@@ -40,10 +40,13 @@
                                 Accept changes
                             </button>
                         </td>
-                        <td>
-                            <button class="btn btn-primary btn-sm"
-                                ui-sref="admin.datasourceForm({datasourceId: datasource.dataSourceId})">Edit</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
+                        <td class="wd-220">
+                            <div class="d-flex flex-row justify-content-between">
+                                <button class="btn btn-primary btn-sm pd-x-30"
+                                    ui-sref="admin.datasourceForm({datasourceId: datasource.dataSourceId})">Edit</button>
+                                <button class="btn btn-danger btn-sm pd-x-30"
+                                    ng-click="delete(datasource.dataSourceId)">Delete</button>
+                            </div>
                         </td>
                     </tr>
                 </tbody>

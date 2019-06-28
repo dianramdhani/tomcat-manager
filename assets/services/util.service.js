@@ -8,6 +8,7 @@
     function UtilService($compile, $rootScope, $document, $q, DTOptionsBuilder) {
         this.drlAlert = drlAlert;
         this.drlLoading = drlLoading;
+        this.drlConfirm = drlConfirm;
         this.showAlertWhenError = showAlertWhenError;
         this.saveAsJson = saveAsJson;
         this.DTOptionsCreator = DTOptionsCreator;
@@ -48,6 +49,28 @@
                 loadingScope.$destroy();
                 loadingCompile.remove();
             }
+        }
+
+        /**
+        * Confirm modal.
+        * @param {String} body Required. String body.
+        * @param {Function} yesFn Required. Call when yes button click.
+        * @param {Function} noFn Optional. Call when no or close button click.
+        */
+        function drlConfirm(body, yesFn, noFn = angular.noop) {
+            let confirmContainer = angular.element('body'),
+                confirmComponent = `<drl-confirm yes-fn="yesFn()" no-fn="noFn()">${body}</drl-confirm>`,
+                confirmScope = Object.assign($rootScope.$new(), {
+                    yesFn: () => {
+                        yesFn();
+                        confirmScope.$destroy();
+                    },
+                    noFn: () => {
+                        noFn();
+                        confirmScope.$destroy();
+                    }
+                });
+            confirmContainer.append($compile(confirmComponent)(confirmScope));
         }
 
         /**

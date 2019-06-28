@@ -49,6 +49,7 @@ require('../components/drl-page-404/drl-page-404');
 require('../components/drl-page-505/drl-page-505');
 require('../components/drl-page-500/drl-page-500');
 require('../components/drl-page-503/drl-page-503');
+require('../components/drl-confirm/drl-confirm');
 
 // VIEWS
 require('../views/login/login');
