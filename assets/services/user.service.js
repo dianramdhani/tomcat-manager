@@ -4,13 +4,21 @@
     window.app
         .service('UserService', UserService);
 
-    UserService.$inject = ['CONFIG'];
-    function UserService(CONFIG) {
+    UserService.$inject = ['$http', 'CONFIG', 'UtilService'];
+    function UserService($http, CONFIG, UtilService) {
+        this.listUserRoleById = listUserRoleById;
+        this.checkUserRole = checkUserRole;
+        this.userRegister = userRegister;
+
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
         // /manager/user/register/{rolename}
-        function userRegister(rolename) {
-
+        function userRegister(dataUser) {
+            return UtilService.showAlertWhenError($http.post(`${url}/manager/user/register/${dataUser.userRoleName}`, {
+                credentialEmail: dataUser.credentialEmail,
+                credentialPassword: dataUser.credentialPassword,
+                credentialUsername: dataUser.credentialUsername
+            }));
         }
 
         // /manager/user/delete
@@ -30,7 +38,7 @@
 
         // /manager/user/role/listbyname
         function listUserRoleById() {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/user/role/listbyname`));
         }
 
         // /manager/user/role/create/{roleName}
@@ -45,7 +53,7 @@
 
         // /manager/user/{userId}/checkRole
         function checkUserRole(userId) {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/user/${userId}/checkRole`));
         }
     }
 })();

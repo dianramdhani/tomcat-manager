@@ -10,8 +10,8 @@
             controller: _,
         });
 
-    _.$inject = ['$scope', 'ManagerService'];
-    function _($scope, ManagerService) {
+    _.$inject = ['$scope', '$state', 'ManagerService'];
+    function _($scope, $state, ManagerService) {
         let $ctrl = this;
         $ctrl.$onInit = async () => {
             $scope.users = await ManagerService.listCredential().then(_ => _.data.iteratorObject);
@@ -40,7 +40,7 @@
         };
 
         $scope.edit = () => {
-
+            $state.go('admin.userForm', { credentialId: $scope.getSelected()[0].credentialId });
         };
 
         $scope.delete = () => {
