@@ -31,7 +31,7 @@
                         title: 'Dashboard',
                         icon: 'icon ion-ios-keypad',
                         href: 'admin.dashboard',
-                        active: true
+                        // active: true
                     },
                     {
                         title: 'Tomcat Instance',
@@ -61,7 +61,8 @@
                     {
                         title: 'User Management',
                         icon: 'icon ion-ios-contacts',
-                        href: 'admin.userManagement'
+                        href: 'admin.userManagement',
+                        active: true
                     }
                 ],
                 dropdownC: [
