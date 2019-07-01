@@ -70,3 +70,4 @@ require('../views/queue-detail/queue-detail');
 require('../views/datasource/datasource');
 require('../views/datasource-form/datasource-form');
 require('../views/user-management/user-management');
+require('../views/register-user/register-user');
