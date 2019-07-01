@@ -17,6 +17,7 @@
             { name: 'admin.userSetting', url: '/user-setting', component: 'userSetting' },
             { name: 'admin.datasource', url: '/datasource', component: 'datasource' },
             { name: 'admin.datasourceForm', component: 'datasourceForm', params: { datasourceId: { value: null } } },
+            { name: 'admin.userManagement', url: '/user-management', component: 'userManagement' },
         ]
             .forEach(state => $stateProvider.state(state));
     }

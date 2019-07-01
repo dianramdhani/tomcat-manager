@@ -35,7 +35,7 @@
                     },
                     {
                         title: 'Tomcat Instance',
-                        icon: 'icon ion-cube',
+                        icon: 'icon ion-ios-cube',
                         menu: [
                             {
                                 title: 'Add Instance',
@@ -45,7 +45,7 @@
                     },
                     {
                         title: 'AMQ Instance',
-                        icon: 'icon ion-cube',
+                        icon: 'icon ion-ios-cube',
                         menu: [
                             {
                                 title: 'Add Instance',
@@ -55,14 +55,19 @@
                     },
                     {
                         title: 'DataSource',
-                        icon: 'icon ion-filing',
+                        icon: 'icon ion-ios-albums',
                         href: 'admin.datasource'
+                    },
+                    {
+                        title: 'User Management',
+                        icon: 'icon ion-ios-contacts',
+                        href: 'admin.userManagement'
                     }
                 ],
                 dropdownC: [
                     {
                         title: 'Account Settings',
-                        icon: 'icon ion-ios-gear',
+                        icon: 'icon ion-ios-settings',
                         href: 'admin.userSetting'
                     }
                 ]
