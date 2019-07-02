@@ -10,8 +10,8 @@
             controller: _,
         });
 
-    _.$inject = ['$scope', '$state', '$timeout', 'ManagerService', 'UtilService', 'UserService'];
-    function _($scope, $state, $timeout, ManagerService, UtilService, UserService) {
+    _.$inject = ['$scope', '$state', 'ManagerService', 'UtilService', 'UserService'];
+    function _($scope, $state, ManagerService, UtilService, UserService) {
         /**
          * Refresh all data in table.
          */
@@ -23,21 +23,12 @@
         let $ctrl = this;
         $ctrl.$onInit = async () => {
             await refreshData();
-            $timeout(() => {
-                angular.element('#table-user-management').DataTable({
-                    lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'All']],
-                    language: {
-                        paginate: {
-                            next: '<i class="fa fa-angle-right"></i>',
-                            previous: '<i class="fa fa-angle-left"></i>'
-                        }
-                    },
-                    columnDefs: [{
-                        targets: 0,
-                        orderable: false
-                    }],
-                    order: [[1, 'asc']]
-                });
+            UtilService.DTZeroConfig('#table-user-management', {
+                columnDefs: [{
+                    targets: 0,
+                    orderable: false
+                }],
+                order: [[1, 'asc']]
             });
         };
 

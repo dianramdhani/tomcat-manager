@@ -11,6 +11,7 @@
         this.userRegister = userRegister;
         this.userUpdate = userUpdate;
         this.deleteUser = deleteUser;
+        this.listUserRole = listUserRole;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -41,7 +42,7 @@
 
         // /manager/user/role/list
         function listUserRole() {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/user/role/list`));
         }
 
         // /manager/user/role/listbyname

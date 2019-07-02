@@ -4,14 +4,15 @@
     window.app
         .service('UtilService', UtilService);
 
-    UtilService.$inject = ['$compile', '$rootScope', '$document', '$q', 'DTOptionsBuilder'];
-    function UtilService($compile, $rootScope, $document, $q, DTOptionsBuilder) {
+    UtilService.$inject = ['$compile', '$rootScope', '$document', '$q', '$timeout', 'DTOptionsBuilder'];
+    function UtilService($compile, $rootScope, $document, $q, $timeout, DTOptionsBuilder) {
         this.drlAlert = drlAlert;
         this.drlLoading = drlLoading;
         this.drlConfirm = drlConfirm;
         this.showAlertWhenError = showAlertWhenError;
         this.saveAsJson = saveAsJson;
         this.DTOptionsCreator = DTOptionsCreator;
+        this.DTZeroConfig = DTZeroConfig;
 
         /**
         * Alert with modal mode. Before call it, please create div id="drl-alert-container".
@@ -128,6 +129,25 @@
                     }
                 });
             return dtOptions;
+        }
+
+        /**
+         * Datatable zero configuration.
+         * @param {String} selector Required. Selector of id or class of table element.
+         * @param {Object} additionalConfig Optional. Additional config of datatable.
+         */
+        function DTZeroConfig(selector, additionalConfig = {}) {
+            $timeout(() => {
+                angular.element(selector).DataTable(Object.assign({
+                    lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'All']],
+                    language: {
+                        paginate: {
+                            next: '<i class="fa fa-angle-right"></i>',
+                            previous: '<i class="fa fa-angle-left"></i>'
+                        }
+                    }
+                }, additionalConfig));
+            });
         }
     }
 })();

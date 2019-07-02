@@ -12,9 +12,34 @@
             controller: _
         });
 
-    _.$inject = [];
-    function _() {
+    _.$inject = ['$scope', 'UserService', 'UtilService'];
+    function _($scope, UserService, UtilService) {
+        /**
+         * Refresh all data in table.
+         */
+        const refreshData = async () => {
+            $scope.roles = await UserService.listUserRole().then(_ => _.data.iteratorObject);
+            $scope.$apply();
+        };
+
         let $ctrl = this;
-        $ctrl.$onInit = () => { };
+        $ctrl.$onInit = async () => {
+            await refreshData();
+            UtilService.DTZeroConfig('#table-role-management', {
+                columnDefs: [{
+                    targets: 0,
+                    orderable: false
+                }],
+                order: [[1, 'asc']]
+            });
+        };
+
+        $scope.update = () => {
+            console.log('update');
+        };
+
+        $scope.delete = () => {
+            console.log('delete');
+        };
     }
 })();
