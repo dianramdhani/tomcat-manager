@@ -10,8 +10,8 @@
             controller: _,
         });
 
-    _.$inject = ['$scope', '$state', 'ManagerService', 'UtilService', 'UserService'];
-    function _($scope, $state, ManagerService, UtilService, UserService) {
+    _.$inject = ['$scope', '$state', '$timeout', 'ManagerService', 'UtilService', 'UserService'];
+    function _($scope, $state, $timeout, ManagerService, UtilService, UserService) {
         /**
          * Refresh all data in table.
          */
@@ -21,8 +21,19 @@
         };
 
         let $ctrl = this;
-        $ctrl.$onInit = () => {
-            refreshData();
+        $ctrl.$onInit = async () => {
+            await refreshData();
+            $timeout(() => {
+                angular.element('#table-user-management').DataTable({
+                    lengthMenu: [5, 10, 20],
+                    language: {
+                        paginate: {
+                            next: '<i class="fa fa-angle-right"></i>',
+                            previous: '<i class="fa fa-angle-left"></i>'
+                        }
+                    }
+                });
+            });
         };
 
         $scope.getSelected = () => {
