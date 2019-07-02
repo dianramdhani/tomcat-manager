@@ -21,12 +21,12 @@
              */
             const getInitialData = async () => {
                 let roles = await UserService.listUserRoleById().then(_ => _.data.object),
-                    canUpdate = $stateParams.credentialId !== null,
+                    canUpdate = $stateParams.dataUser !== null,
                     dataUser;
                 if (canUpdate) {
-                    dataUser = await UserService.checkUserRole($stateParams.credentialId).then(_ => _.data.object);
+                    dataUser = Object.assign($stateParams.dataUser, await UserService.checkUserRole($stateParams.dataUser.credentialId).then(_ => _.data.object));
                 }
-                console.log({ roles, dataUser, canUpdate });
+                console.log({ roles, dataUser, canUpdate }, $stateParams.dataUser);
                 return [roles, dataUser, canUpdate];
             };
 
@@ -36,11 +36,14 @@
 
         $scope.save = async () => {
             let res;
+
             if ($scope.canUpdate) {
-                // update user
+                res = await UserService.userUpdate($scope.dataUser);
             } else {
-                // register user
                 res = await UserService.userRegister($scope.dataUser);
+            }
+
+            if (res.status === 200) {
                 UtilService.drlAlert('success', res.data.message);
                 $state.go('admin.userManagement');
             }

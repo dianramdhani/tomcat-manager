@@ -18,7 +18,7 @@
             { name: 'admin.datasource', url: '/datasource', component: 'datasource' },
             { name: 'admin.datasourceForm', component: 'datasourceForm', params: { datasourceId: { value: null } } },
             { name: 'admin.userManagement', url: '/user-management', component: 'userManagement' },
-            { name: 'admin.userForm', component: 'userForm', params: { credentialId: { value: null } } },
+            { name: 'admin.userForm', component: 'userForm', params: { dataUser: { value: null } } },
         ]
             .forEach(state => $stateProvider.state(state));
     }

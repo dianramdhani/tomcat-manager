@@ -9,6 +9,7 @@
         this.listUserRoleById = listUserRoleById;
         this.checkUserRole = checkUserRole;
         this.userRegister = userRegister;
+        this.userUpdate = userUpdate;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -27,8 +28,14 @@
         }
 
         // /manager/user/update/{rolename}
-        function userUpdate(rolename) {
-
+        function userUpdate(dataUser) {
+            return UtilService.showAlertWhenError($http.put(`${url}/manager/user/update/${dataUser.userRoleName}`, {
+                credentialActive: dataUser.credentialActive,
+                credentialDateCreated: dataUser.credentialDateCreated,
+                credentialEmail: dataUser.credentialEmail,
+                credentialId: dataUser.credentialId,
+                credentialUsername: dataUser.credentialUsername
+            }));
         }
 
         // /manager/user/role/list

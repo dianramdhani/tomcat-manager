@@ -40,7 +40,7 @@
         };
 
         $scope.edit = () => {
-            $state.go('admin.userForm', { credentialId: $scope.getSelected()[0].credentialId });
+            $state.go('admin.userForm', { dataUser: $scope.getSelected()[0] });
         };
 
         $scope.delete = () => {
