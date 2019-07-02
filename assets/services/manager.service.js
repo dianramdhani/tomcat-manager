@@ -17,6 +17,7 @@
         this.datatableInstanceLog = datatableInstanceLog;
         this.showMapDeployment = showMapDeployment;
         this.listAllInstances = listAllInstances;
+        this.listCredential = listCredential;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -102,7 +103,7 @@
 
         // /manager/agent/credential/list/
         function listCredential() {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/agent/credential/list/`));
         }
 
         // /manager/instance/action/list/{serverStatus}/{offset}/{limit}

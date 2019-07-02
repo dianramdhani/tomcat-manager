@@ -9453,9 +9453,9 @@ textarea.parsley-error:active {
   color: #343a40;
   font-weight: 500; }
 
-.table .ckbox span::before,
+/* .table .ckbox span::before,
 .table .rdiobox span::before {
-  border-color: transparent; }
+  border-color: transparent; } */
 
 .table.table-primary {
   background-color: #ebf4fd; }

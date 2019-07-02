@@ -1,0 +1,40 @@
+<div class="card card-customer-overview">
+    <div class="card-header">
+        <h6 class="slim-card-title">List User</h6>
+        <nav class="nav">
+            <a href="" class="nav-link" ui-sref="admin.roleManagement">Role Management</a>
+            <a href="" class="nav-link" ui-sref="admin.userForm">Register New User</a>
+            <a href="" class="nav-link" ng-show="getSelected().length === 1" ng-click="edit()">Edit User</a>
+            <a href="" class="nav-link" ng-show="getSelected().length > 0" ng-click="delete()">Delete Users</a>
+        </nav>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover mg-b-0 tx-13" id="table-user-management">
+                <thead>
+                    <tr>
+                        <th style="width: 10px;">
+                            <label class="ckbox"><input type="checkbox" ng-model="selectAll"
+                                    ng-click="changeAll()"><span></span></label>
+                        </th>
+                        <th>Username</th>
+                        <th>Email Address</th>
+                        <th>Date Created</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="user in users track by $index">
+                        <td>
+                            <label class="ckbox"><input type="checkbox" ng-model="user.select"><span></span></label>
+                        </td>
+                        <td ng-click="user.select = !user.select">{{user.credentialUsername}}</td>
+                        <td ng-click="user.select = !user.select">{{user.credentialEmail}}</td>
+                        <td ng-click="user.select = !user.select">{{user.credentialDateCreated}}</td>
+                        <td ng-click="user.select = !user.select">{{user.credentialActive? 'Active': 'Inactive'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

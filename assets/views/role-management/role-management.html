@@ -1,0 +1,37 @@
+<div class="card card-customer-overview">
+    <div class="card-header">
+        <h6 class="slim-card-title">List of Roles</h6>
+        <nav class="nav">
+            <a href="" class="nav-link">Register New Role</a>
+            <a href="" class="nav-link" ng-show="getSelected().length === 1" ng-click="edit()">Edit Role</a>
+            <a href="" class="nav-link" ng-show="getSelected().length > 0" ng-click="delete()">Delete Roles</a>
+        </nav>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover mg-b-0 tx-13" id="table-role-management">
+                <thead>
+                    <tr>
+                        <th style="width: 10px;">
+                            <label class="ckbox"><input type="checkbox" ng-model="selectAll"
+                                    ng-click="changeAll()"><span></span></label>
+                        </th>
+                        <th>Role Name</th>
+                        <th>Privilege</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="role in roles track by role.userRoleId">
+                        <td>
+                            <label class="ckbox"><input type="checkbox"><span></span></label>
+                        </td>
+                        <td>{{role.userRoleName}}</td>
+                        <td>{{role.userRolePrivilege}}</td>
+                        <td>{{role.userRoleDescription}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -17,7 +17,8 @@ require('./config');
             $state.go('login');
         } else {
             $http.defaults.headers.common = {
-                Authorization: $rootScope.globals.currentUser.object[0]
+                Authorization: $rootScope.globals.currentUser.object[0],
+                'Content-Type': 'application/json'
             };
             $state.go('admin');
         }
@@ -69,3 +70,7 @@ require('../views/amq-detail/amq-detail');
 require('../views/queue-detail/queue-detail');
 require('../views/datasource/datasource');
 require('../views/datasource-form/datasource-form');
+require('../views/user-management/user-management');
+require('../views/user-form/user-form');
+require('../views/role-management/role-management');
+require('../views/role-form/role-form');
