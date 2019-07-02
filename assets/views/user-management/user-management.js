@@ -25,13 +25,18 @@
             await refreshData();
             $timeout(() => {
                 angular.element('#table-user-management').DataTable({
-                    lengthMenu: [5, 10, 20],
+                    lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'All']],
                     language: {
                         paginate: {
                             next: '<i class="fa fa-angle-right"></i>',
                             previous: '<i class="fa fa-angle-left"></i>'
                         }
-                    }
+                    },
+                    columnDefs: [{
+                        targets: 0,
+                        orderable: false
+                    }],
+                    order: [[1, 'asc']]
                 });
             });
         };
