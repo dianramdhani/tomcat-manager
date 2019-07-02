@@ -10,6 +10,7 @@
         this.checkUserRole = checkUserRole;
         this.userRegister = userRegister;
         this.userUpdate = userUpdate;
+        this.deleteUser = deleteUser;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -23,8 +24,8 @@
         }
 
         // /manager/user/delete
-        function deleteUser() {
-
+        function deleteUser(dataUser) {
+            return UtilService.showAlertWhenError($http.delete(`${url}/manager/user/delete`, { data: dataUser }));
         }
 
         // /manager/user/update/{rolename}

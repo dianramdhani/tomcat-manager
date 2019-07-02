@@ -17,7 +17,8 @@ require('./config');
             $state.go('login');
         } else {
             $http.defaults.headers.common = {
-                Authorization: $rootScope.globals.currentUser.object[0]
+                Authorization: $rootScope.globals.currentUser.object[0],
+                'Content-Type': 'application/json'
             };
             $state.go('admin');
         }

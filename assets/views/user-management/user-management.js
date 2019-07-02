@@ -10,12 +10,19 @@
             controller: _,
         });
 
-    _.$inject = ['$scope', '$state', 'ManagerService'];
-    function _($scope, $state, ManagerService) {
-        let $ctrl = this;
-        $ctrl.$onInit = async () => {
+    _.$inject = ['$scope', '$state', 'ManagerService', 'UtilService', 'UserService'];
+    function _($scope, $state, ManagerService, UtilService, UserService) {
+        /**
+         * Refresh all data in table.
+         */
+        const refreshData = async () => {
             $scope.users = await ManagerService.listCredential().then(_ => _.data.iteratorObject);
             $scope.$apply();
+        };
+
+        let $ctrl = this;
+        $ctrl.$onInit = () => {
+            refreshData();
         };
 
         $scope.getSelected = () => {
@@ -44,7 +51,18 @@
         };
 
         $scope.delete = () => {
+            UtilService.drlConfirm('Are you sure want to delete these records?', async () => {
+                // remove attribut select
+                let dataUser = $scope.getSelected().map(user => {
+                    let { select, ...res } = user;
+                    return res;
+                }), res = await UserService.deleteUser(dataUser);
 
+                if (res.data.status === 200) {
+                    UtilService.drlAlert('success', res.data.message);
+                    refreshData();
+                }
+            });
         };
     }
 })();
