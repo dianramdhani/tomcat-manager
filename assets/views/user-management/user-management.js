@@ -58,10 +58,6 @@
             }
         };
 
-        $scope.newRole = () => {
-
-        };
-
         $scope.edit = () => {
             $state.go('admin.userForm', { dataUser: $scope.getSelected()[0] });
         };
