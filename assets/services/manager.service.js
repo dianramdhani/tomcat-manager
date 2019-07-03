@@ -18,6 +18,7 @@
         this.showMapDeployment = showMapDeployment;
         this.listAllInstances = listAllInstances;
         this.listCredential = listCredential;
+        this.actionDeploy = actionDeploy;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -87,8 +88,11 @@
         }
 
         // /manager/agent/{agentId}/action/deploy
-        function actionDeploy(agentId) {
-
+        function actionDeploy(agentId, deployment) {
+            return $http.post(`${url}/manager/agent/${agentId}/action/deploy`, UtilService.objectToFormData(deployment), {
+                transformResponse: angular.identity,
+                headers: { 'Content-Type': undefined }
+            });
         }
 
         // /manager/agent/{agentId}/action/undeploy/{contextName}

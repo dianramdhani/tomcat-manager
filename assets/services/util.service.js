@@ -13,6 +13,7 @@
         this.saveAsJson = saveAsJson;
         this.DTOptionsCreator = DTOptionsCreator;
         this.DTZeroConfig = DTZeroConfig;
+        this.objectToFormData = objectToFormData;
 
         /**
         * Alert with modal mode. Before call it, please create div id="drl-alert-container".
@@ -149,5 +150,15 @@
                 }, additionalConfig));
             });
         }
+
+        /**
+         * Change object to form data.
+         * @param {Object} obj Required. Object will convert.
+         */
+        function objectToFormData(obj) {
+            let fd = new FormData();
+            Object.keys(obj).forEach(key => fd.append(key, obj[key]));
+            return fd;
+        };
     }
 })();
