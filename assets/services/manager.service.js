@@ -19,6 +19,9 @@
         this.listAllInstances = listAllInstances;
         this.listCredential = listCredential;
         this.actionDeploy = actionDeploy;
+        this.actionStopDeployment = actionStopDeployment;
+        this.actionStartDeployment = actionStartDeployment;
+        this.actionUndeploy = actionUndeploy;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -79,12 +82,12 @@
 
         // /manager/agent/{agentId}/action/stopWar/{contextName}
         function actionStopDeployment(agentId, contextName) {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/agent/${agentId}/action/stopWar/${contextName}`));
         }
 
         // /manager/agent/{agentId}/action/startWar/{contextName}
         function actionStartDeployment(agentId, contextName) {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/agent/${agentId}/action/startWar/${contextName}`));
         }
 
         // /manager/agent/{agentId}/action/deploy
@@ -97,7 +100,7 @@
 
         // /manager/agent/{agentId}/action/undeploy/{contextName}
         function actionUndeploy(agentId, contextName) {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/agent/${agentId}/action/undeploy/${contextName}`));
         }
 
         // /manager/agent/{agentId}/action/{instanceAction}
