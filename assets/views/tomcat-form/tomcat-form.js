@@ -10,8 +10,8 @@
             controller: _
         });
 
-    _.$inject = ['$scope'];
-    function _($scope) {
+    _.$inject = ['$scope', 'ManagerService'];
+    function _($scope, ManagerService) {
         let $ctrl = this;
         $ctrl.$onInit = () => {
             // if new
@@ -24,8 +24,9 @@
             };
         };
 
-        $scope.save = () => {
-            console.log($scope.agent);
+        $scope.save = async () => {
+            let res = await ManagerService.createAgent($scope.agent);
+            console.log($scope.agent, res);
         };
     }
 })();

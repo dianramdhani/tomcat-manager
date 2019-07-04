@@ -23,12 +23,13 @@
         this.actionStartDeployment = actionStartDeployment;
         this.actionUndeploy = actionUndeploy;
         this.actionRestartDeployment = actionRestartDeployment;
+        this.createAgent = createAgent;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
         // /manager/agent/add/
-        function createAgent() {
-
+        function createAgent(agent) {
+            return UtilService.showAlertWhenError($http.post(`${url}/manager/agent/add/`, agent));
         }
 
         // /manager/agent/{agentId}/show
