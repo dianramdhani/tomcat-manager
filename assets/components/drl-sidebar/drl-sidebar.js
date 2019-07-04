@@ -16,8 +16,8 @@
             },
         });
 
-    drl.$inject = ['$scope', '$timeout', '$state'];
-    function drl($scope, $timeout, $state) {
+    drl.$inject = ['$scope', '$timeout', '$state', '$stateParams'];
+    function drl($scope, $timeout, $state, $stateParams) {
         let $ctrl = this;
         $ctrl.$onInit = () => {
             const checkActive = () => {
@@ -44,16 +44,22 @@
                 checkActive();
             });
 
-            $scope.$watch(() => $state.$current.name, val => {
+            $scope.$watch(() => $state.$current.name, href => {
+                // set params into href
+                let paramsKeys = Object.keys($stateParams);
+                if (paramsKeys.length > 1) {
+                    href = `${href}({${paramsKeys[1]}:${$stateParams[paramsKeys[1]]}})`;
+                }
+
                 $ctrl.menu.forEach(menu => {
                     if (menu.hasOwnProperty('menu')) {
                         menu.menu.forEach(_menu => {
-                            if (_menu.href === val) {
+                            if (_menu.href === href) {
                                 $scope.active(_menu, menu);
                             }
                         });
                     } else {
-                        if (menu.href === val) {
+                        if (menu.href === href) {
                             $scope.active(menu);
                         }
                     }
