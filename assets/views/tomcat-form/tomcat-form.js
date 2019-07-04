@@ -10,9 +10,22 @@
             controller: _
         });
 
-    _.$inject = [];
-    function _() {
+    _.$inject = ['$scope'];
+    function _($scope) {
         let $ctrl = this;
-        $ctrl.$onInit = () => { };
+        $ctrl.$onInit = () => {
+            // if new
+            $scope.agent = {
+                agentPort: 8080,
+                instanceShutdownPort: 8085,
+                instanceAJPPort: 8009,
+                instanceRedirectPort: 8443,
+                instanceJVMArgs: '-Xmx512m'
+            };
+        };
+
+        $scope.save = () => {
+            console.log($scope.agent);
+        };
     }
 })();
