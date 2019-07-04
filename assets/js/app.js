@@ -1,4 +1,4 @@
-window.app = angular.module('TomcatManager', ['ui.router', 'ngCookies', 'datatables']);
+window.app = angular.module('TomcatManager', ['ui.router', 'ngCookies', 'datatables', 'ngMessages']);
 
 // CONFIG
 require('./config');
@@ -35,6 +35,9 @@ require('../services/AMQ-manager.service');
 require('../services/datasource.service');
 require('../services/manager.service');
 require('../services/user.service');
+
+// DIRECTIVES
+require('../directives/drl-file.directive');
 
 // COMPONENTS
 require('../components/drl-header/drl-header');

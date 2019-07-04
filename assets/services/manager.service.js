@@ -18,6 +18,11 @@
         this.showMapDeployment = showMapDeployment;
         this.listAllInstances = listAllInstances;
         this.listCredential = listCredential;
+        this.actionDeploy = actionDeploy;
+        this.actionStopDeployment = actionStopDeployment;
+        this.actionStartDeployment = actionStartDeployment;
+        this.actionUndeploy = actionUndeploy;
+        this.actionRestartDeployment = actionRestartDeployment;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -73,27 +78,30 @@
 
         // /manager/agent/{agentId}/action/restartWar/{contextName}
         function actionRestartDeployment(agentId, contextName) {
-
+            return $http.get(`${url}/manager/agent/${agentId}/action/restartWar/${contextName}`);
         }
 
         // /manager/agent/{agentId}/action/stopWar/{contextName}
         function actionStopDeployment(agentId, contextName) {
-
+            return $http.get(`${url}/manager/agent/${agentId}/action/stopWar/${contextName}`);
         }
 
         // /manager/agent/{agentId}/action/startWar/{contextName}
         function actionStartDeployment(agentId, contextName) {
-
+            return $http.get(`${url}/manager/agent/${agentId}/action/startWar/${contextName}`);
         }
 
         // /manager/agent/{agentId}/action/deploy
-        function actionDeploy(agentId) {
-
+        function actionDeploy(agentId, deployment) {
+            return $http.post(`${url}/manager/agent/${agentId}/action/deploy`, UtilService.objectToFormData(deployment), {
+                transformResponse: angular.identity,
+                headers: { 'Content-Type': undefined }
+            });
         }
 
         // /manager/agent/{agentId}/action/undeploy/{contextName}
         function actionUndeploy(agentId, contextName) {
-
+            return $http.get(`${url}/manager/agent/${agentId}/action/undeploy/${contextName}`);
         }
 
         // /manager/agent/{agentId}/action/{instanceAction}

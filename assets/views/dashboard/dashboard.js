@@ -42,7 +42,7 @@
                             },
                             {
                                 title: 'Detail',
-                                href: 'detail'
+                                href: `admin.amqInstance({amqId:${amq.instanceAmqId}})`
                             }
                         ];
                     });
@@ -66,7 +66,7 @@
                             },
                             {
                                 title: 'Detail',
-                                href: 'detail'
+                                href: `admin.tomcatInstance({agentId:${agent.agentId}})`
                             }
                         ]
                     });

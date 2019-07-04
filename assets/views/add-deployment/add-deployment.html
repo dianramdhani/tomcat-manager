@@ -1,26 +1,40 @@
-<div id="addDeployment" class="modal fade">
-    <div class="modal-dialog modal-dialog-vertical-center" role="document">
-        <div class="modal-content bd-0 tx-14">
-            <div class="modal-header">
-                <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add Deployment</h6>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body pd-25">
-                <label class="form-control-label">Deployment name: <span class="tx-danger">*</span></label>
-                <input class="form-control" type="text" name="deploymentName" placeholder="Enter deployment name">
-                <label class="form-control-label">Deployment file: <span class="tx-danger">*</span></label>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="deploymentFile" name="deploymentFile"
-                        accept=".war,.ear">
-                    <label class="custom-file-label" for="deploymentFile">Choose file</label>
+<form name="formAddDeployment" ng-submit="upload()">
+    <div id="addDeployment" class="modal fade">
+        <div class="modal-dialog modal-dialog-vertical-center" role="document">
+            <div class="modal-content bd-0 tx-14">
+                <div class="modal-header">
+                    <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add Deployment</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Upload</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <div class="modal-body pd-25">
+                    <label class="form-control-label">Deployment name:</label>
+                    <input class="form-control" type="text" name="fileContext" placeholder="Enter deployment name"
+                        required ng-pattern="/^[a-zA-Z0-9]*$/" ng-minlength="3" ng-trim="false"
+                        ng-model="deployment.fileContext">
+                    <div class="text-danger" ng-messages="formAddDeployment.fileContext.$error">
+                        <small ng-message="pattern">
+                            Deployment name must not contains special characters or whitespace.
+                        </small>
+                        <small ng-message="minlength">
+                            Deployment name must be longer than 3 characters.
+                        </small>
+                    </div>
+                    <label class="form-control-label">Deployment file:</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="file" name="file" accept=".war, .ear" required
+                            drl-file ng-model="deployment.file">
+                        <label class="custom-file-label" for="file">Choose file</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-sm pd-x-25"
+                        ng-disabled="formAddDeployment.$invalid"
+                        ng-class="{'btn-secondary': formAddDeployment.$invalid}">Upload</button>
+                    <button type="button" class="btn btn-secondary btn-sm pd-x-25" data-dismiss="modal">Cancel</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>

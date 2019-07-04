@@ -1,3 +1,4 @@
+<div id="deployment-list-alert"></div>
 <div class="card card-customer-overview">
     <div class="card-header">
         <h6 class="slim-card-title">Deployment List</h6>
@@ -7,10 +8,10 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table id="log" class="table mg-b-0 tx-13">
+            <table id="deployment-list-table" class="table mg-b-0 tx-13">
                 <thead>
                     <tr class="tx-10">
-                        <th class="pd-y-5">Deployment Name</th>
+                        <th class="pd-y-5">Name</th>
                         <th class="pd-y-5">Location</th>
                         <th class="pd-y-5">Date Added</th>
                         <th class="pd-y-5">Path Group</th>
@@ -19,16 +20,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="deployment in deploymentList">
+                    <tr ng-repeat="deployment in deploymentList track by $index">
                         <td>{{deployment.deployerDeployments[0].deploymentContextName}}</td>
                         <td>{{deployment.deployerDeployments[0].deploymentContextLocation}}</td>
                         <td>{{deployment.deployerDeployments[0].deploymentDateCreated}}</td>
                         <td>{{deployment.deployerDeployments[0].deploymentPathGroup}}</td>
                         <td>{{deployment.deployerDeployments[0].deploymentStatus === true? 'Running': 'Stop'}}</td>
                         <td>
-                            <button>1</button>
-                            <button>2</button>
-                            <button>3</button>
+                            <div class="d-flex flex-row justify-content-between">
+                                <button class="btn btn-sm btn-primary pd-x-15"
+                                    ng-hide="deployment.deployerDeployments[0].deploymentStatus"
+                                    ng-click="start($index)">Start</button>
+                                <button class="btn btn-sm btn-primary pd-x-15"
+                                    ng-show="deployment.deployerDeployments[0].deploymentStatus"
+                                    ng-click="stop($index)">Stop</button>
+                                <button class="btn btn-sm btn-primary pd-x-15"
+                                    ng-click="restart($index)">Restart</button>
+                                <button class="btn btn-sm btn-danger pd-x-15" ng-click="delete($index)">Delete</button>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -36,4 +45,4 @@
         </div>
     </div>
 </div>
-<add-deployment></add-deployment>
+<add-deployment refresh-deployment-list="refreshDeploymentList()"></add-deployment>
