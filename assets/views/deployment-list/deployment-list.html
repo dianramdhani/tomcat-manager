@@ -1,3 +1,4 @@
+<div id="deployment-list-alert"></div>
 <div class="card card-customer-overview">
     <div class="card-header">
         <h6 class="slim-card-title">Deployment List</h6>
@@ -33,7 +34,8 @@
                                 <button class="btn btn-sm btn-primary pd-x-15"
                                     ng-show="deployment.deployerDeployments[0].deploymentStatus"
                                     ng-click="stop($index)">Stop</button>
-                                <button class="btn btn-sm btn-primary pd-x-15">Restart</button>
+                                <button class="btn btn-sm btn-primary pd-x-15"
+                                    ng-click="restart($index)">Restart</button>
                                 <button class="btn btn-sm btn-danger pd-x-15" ng-click="delete($index)">Delete</button>
                             </div>
                         </td>

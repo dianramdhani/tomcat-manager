@@ -27,9 +27,9 @@
             res.data = angular.fromJson(res.data);
             UtilService.drlLoading(false);
             if (res.data.status === 200) {
-                UtilService.drlAlert('success', res.data.message);
+                UtilService.drlAlert('success', res.data.message, '', angular.noop, '#deployment-list-alert');
             } else {
-                UtilService.drlAlert('danger', res.data.message);
+                UtilService.drlAlert('danger', res.data.message, '', angular.noop, '#deployment-list-alert');
             }
             $ctrl.refreshDeploymentList();
         };

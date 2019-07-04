@@ -21,9 +21,10 @@
         * @param {String} title Required. Type string. Title of alert.
         * @param {String} body Optional. Type string. Content of alert.
         * @param {Function} onClose Optional. Type function. Will be call when alert was closed.
+        * @param {String} idContainer Optional. Add div with id=idContainer to add custom position alert.
         */
-        function drlAlert(type, title, body = '', onClose = angular.noop) {
-            let alertContainer = angular.element('#drl-alert-container'),
+        function drlAlert(type, title, body = '', onClose = angular.noop, idContainer = null) {
+            let alertContainer = angular.element(idContainer || '#drl-alert-container'),
                 alertComponent = `<drl-alert type="${type}" title="${title}" body="${body}" on-close="onClose()"></drl-alert>`,
                 alertScope = Object.assign($rootScope.$new(), {
                     onClose: () => {
