@@ -43,6 +43,22 @@
                 $ctrl.menuActiveNow = [];
                 checkActive();
             });
+
+            $scope.$watch(() => $state.$current.name, val => {
+                $ctrl.menu.forEach(menu => {
+                    if (menu.hasOwnProperty('menu')) {
+                        menu.menu.forEach(_menu => {
+                            if (_menu.href === val) {
+                                $scope.active(_menu, menu);
+                            }
+                        });
+                    } else {
+                        if (menu.href === val) {
+                            $scope.active(menu);
+                        }
+                    }
+                });
+            });
         };
 
         const clearActive = () => {
