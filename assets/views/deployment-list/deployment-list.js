@@ -12,17 +12,19 @@
             controller: _
         });
 
-    _.$inject = ['$scope', '$stateParams', 'ManagerService', 'UtilService'];
-    function _($scope, $stateParams, ManagerService, UtilService) {
+    _.$inject = ['$scope', '$stateParams', '$timeout', 'ManagerService', 'UtilService'];
+    function _($scope, $stateParams, $timeout, ManagerService, UtilService) {
         let $ctrl = this;
-        $ctrl.$onInit = async () => {
-            await $scope.refreshDeploymentList();
-            UtilService.DTZeroConfig('#deployment-list-table', {
-                columnDefs: [{
-                    targets: -1,
-                    orderable: false
-                }],
-                order: [[0, 'asc']]
+        $ctrl.$onInit = () => {
+            $timeout(async () => {
+                await $scope.refreshDeploymentList();
+                UtilService.DTZeroConfig('#deployment-list-table', {
+                    columnDefs: [{
+                        targets: -1,
+                        orderable: false
+                    }],
+                    order: [[0, 'asc']]
+                });
             });
         };
 

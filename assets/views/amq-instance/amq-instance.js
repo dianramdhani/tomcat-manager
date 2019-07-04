@@ -14,7 +14,7 @@
     function _($stateParams, $timeout, $scope, $log, AMQManagerService) {
         var $ctrl = this;
         $scope.$log = $log;
-        $ctrl.$onInit = async () => {
+        $ctrl.$onInit = () => {
             /**
              * Get initial data.
              */
@@ -24,8 +24,10 @@
                 return [amq];
             }
 
-            [$scope.amq] = await getInitialData();
-            $scope.$apply();
+            $timeout(async () => {
+                [$scope.amq] = await getInitialData();
+                $scope.$apply();
+            });
         };
     }
 })();

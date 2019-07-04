@@ -12,10 +12,10 @@
             controller: _,
         });
 
-    _.$inject = ['$stateParams', '$scope', '$state', 'UserService', 'UtilService'];
-    function _($stateParams, $scope, $state, UserService, UtilService) {
+    _.$inject = ['$stateParams', '$scope', '$state', '$timeout', 'UserService', 'UtilService'];
+    function _($stateParams, $scope, $state, $timeout, UserService, UtilService) {
         var $ctrl = this;
-        $ctrl.$onInit = async () => {
+        $ctrl.$onInit = () => {
             /**
              * Get initial data.
              */
@@ -26,12 +26,13 @@
                 if (canUpdate) {
                     dataUser = Object.assign($stateParams.dataUser, await UserService.checkUserRole($stateParams.dataUser.credentialId).then(_ => _.data.object));
                 }
-                console.log({ roles, dataUser, canUpdate }, $stateParams.dataUser);
                 return [roles, dataUser, canUpdate];
             };
 
-            [$scope.roles, $scope.dataUser, $scope.canUpdate] = await getInitialData();
-            $scope.$apply();
+            $timeout(async () => {
+                [$scope.roles, $scope.dataUser, $scope.canUpdate] = await getInitialData();
+                $scope.$apply();
+            });
         };
 
         $scope.save = async () => {

@@ -12,10 +12,10 @@
             controller: _
         });
 
-    _.$inject = ['$stateParams', '$scope', '$state', 'DatasourceService', 'UtilService'];
-    function _($stateParams, $scope, $state, DatasourceService, UtilService) {
+    _.$inject = ['$stateParams', '$scope', '$state', '$timeout', 'DatasourceService', 'UtilService'];
+    function _($stateParams, $scope, $state, $timeout, DatasourceService, UtilService) {
         let $ctrl = this;
-        $ctrl.$onInit = async () => {
+        $ctrl.$onInit = () => {
             /**
              * Get initial data.
              */
@@ -28,8 +28,10 @@
                 return [datasourceInstance, canUpdate];
             };
 
-            [$scope.datasourceInstance, $scope.canUpdate] = await getInitialData();
-            $scope.$apply();
+            $timeout(async () => {
+                [$scope.datasourceInstance, $scope.canUpdate] = await getInitialData();
+                $scope.$apply();
+            });
         };
 
         $scope.save = async () => {

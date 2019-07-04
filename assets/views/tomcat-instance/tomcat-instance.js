@@ -10,10 +10,10 @@
             controller: _
         });
 
-    _.$inject = ['$stateParams', '$scope', '$timeout', '$q', 'ManagerService', 'UtilService'];
-    function _($stateParams, $scope, $timeout, $q, ManagerService, UtilService) {
+    _.$inject = ['$stateParams', '$scope', '$timeout', 'ManagerService', 'UtilService'];
+    function _($stateParams, $scope, $timeout, ManagerService, UtilService) {
         let $ctrl = this;
-        $ctrl.$onInit = async () => {
+        $ctrl.$onInit = () => {
             /**
              * Get initial data.
              */
@@ -23,10 +23,12 @@
                 return [instance];
             };
 
-            UtilService.drlLoading(true);
-            [$scope.instance] = await getInitialData();
-            $scope.$apply();
-            UtilService.drlLoading(false);
+            $timeout(async () => {
+                UtilService.drlLoading(true);
+                [$scope.instance] = await getInitialData();
+                $scope.$apply();
+                UtilService.drlLoading(false);
+            });
         };
     }
 })();
