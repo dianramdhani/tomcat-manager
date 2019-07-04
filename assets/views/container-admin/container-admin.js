@@ -39,7 +39,7 @@
                         menu: [
                             {
                                 title: 'Add Instance',
-                                href: 'admin.addTomcat'
+                                href: 'admin.tomcatForm'
                             }
                         ]
                     },

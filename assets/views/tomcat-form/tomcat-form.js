@@ -5,8 +5,8 @@
     // Form for adding tomcat instance.
 
     window.app
-        .component('addTomcat', {
-            template: require('./add-tomcat.html'),
+        .component('tomcatForm', {
+            template: require('./tomcat-form.html'),
             controller: _
         });
 

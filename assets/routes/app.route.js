@@ -12,7 +12,7 @@
             { name: 'admin', component: 'containerAdmin' },
             { name: 'admin.dashboard', url: '/dashboard', component: 'dashboard' },
             { name: 'admin.tomcatInstance', url: '/tomcat-instance/{agentId}', component: 'tomcatInstance' },
-            { name: 'admin.addTomcat', url: '/tomcat-instance/add-tomcat-instance', component: 'addTomcat' },
+            { name: 'admin.tomcatForm', url: '/tomcat-instance', component: 'tomcatForm' },
             { name: 'admin.amqInstance', url: '/amq-instance/{amqId}', component: 'amqInstance' },
             { name: 'admin.userSetting', url: '/user-setting', component: 'userSetting' },
             { name: 'admin.datasource', url: '/datasource', component: 'datasource' },
