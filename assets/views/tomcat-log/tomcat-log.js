@@ -18,11 +18,11 @@
         $ctrl.$onInit = () => {
             $scope.dtOptions = UtilService.DTOptionsCreator(ManagerService.datatableInstanceLog($stateParams.agentId));
             $scope.dtColumns = [
-                DTColumnBuilder.newColumn(0).withTitle('Log Activity'),
-                DTColumnBuilder.newColumn(1).withTitle('Log Message'),
-                DTColumnBuilder.newColumn(2).withTitle('Log Time'),
-                DTColumnBuilder.newColumn(3).withTitle('Instance'),
-                DTColumnBuilder.newColumn(4).withTitle('User')
+                DTColumnBuilder.newColumn(0).withTitle('Log Activity').notSortable(),
+                DTColumnBuilder.newColumn(1).withTitle('Log Message').notSortable(),
+                DTColumnBuilder.newColumn(2).withTitle('Log Time').notSortable(),
+                DTColumnBuilder.newColumn(3).withTitle('Instance').notSortable(),
+                DTColumnBuilder.newColumn(4).withTitle('User').notSortable()
             ];
         };
     }
