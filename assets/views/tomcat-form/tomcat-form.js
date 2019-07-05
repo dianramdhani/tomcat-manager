@@ -10,8 +10,8 @@
             controller: _
         });
 
-    _.$inject = ['$scope', '$stateParams', '$timeout', '$state', 'ManagerService', 'UtilService'];
-    function _($scope, $stateParams, $timeout, $state, ManagerService, UtilService) {
+    _.$inject = ['$scope', '$stateParams', '$timeout', 'ManagerService', 'UtilService'];
+    function _($scope, $stateParams, $timeout, ManagerService, UtilService) {
         let $ctrl = this;
         $ctrl.$onInit = () => {
             /**
@@ -44,10 +44,10 @@
             let res;
             if ($scope.canUpdate) {
                 res = await ManagerService.updateAgent($scope.agent);
-                $state.reload();
+                window.location.href = '/';
             } else {
                 res = await ManagerService.createAgent($scope.agent);
-                $state.reload();
+                window.location.href = '/';
             }
             UtilService.drlLoading(false);
             console.log($scope.agent, { res });

@@ -15,8 +15,8 @@
             }
         });
 
-    _.$inject = ['$scope', '$stateParams', '$state', 'UtilService', 'ManagerService'];
-    function _($scope, $stateParams, $state, UtilService, ManagerService) {
+    _.$inject = ['$scope', '$stateParams', 'UtilService', 'ManagerService'];
+    function _($scope, $stateParams, UtilService, ManagerService) {
         let $ctrl = this;
 
         $scope.delete = () => {
@@ -24,7 +24,7 @@
                 UtilService.drlLoading(true);
                 let res = await ManagerService.deleteAgent($stateParams.agentId);
                 if (res.status === 200) {
-                    $state.reload();
+                    window.location.href = '/';
                 }
                 UtilService.drlLoading(false);
             });
