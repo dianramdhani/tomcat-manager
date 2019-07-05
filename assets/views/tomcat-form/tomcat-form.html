@@ -10,7 +10,7 @@
                     Instance Name
                 </div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="fullname" placeholder="Instance Name" required
+                    <input class="form-control" type="text" name="agentName" placeholder="Instance Name" required
                         ng-model="agent.agentName">
                 </div>
             </div>
@@ -19,16 +19,16 @@
                     Instance IP Address
                 </div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="Instance IP Address" required
-                        ng-model="agent.agentIpAddress">
+                    <input class="form-control" type="text" name="agentIpAddress" placeholder="Instance IP Address"
+                        required ng-model="agent.agentIpAddress">
                 </div>
             </div>
-            <div class="row no-gutters">
+            <div class="row no-gutters" ng-if="canUpdate === false">
                 <div class="col-5 col-sm-4">
-                    Instance Tomcat Port
+                    Instance Port
                 </div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="Instance Tomcat Port" required
+                    <input class="form-control" type="text" name="agentPort" placeholder="Instance Port" required
                         ng-model="agent.agentPort">
                     <span class="tx-11 d-block">
                         Please select an available port. This port is used by this application to interact with your
@@ -38,11 +38,20 @@
             </div>
             <div class="row no-gutters">
                 <div class="col-5 col-sm-4">
+                    Instance Tomcat Port
+                </div>
+                <div class="col-7 col-sm-8">
+                    <input class="form-control" type="text" name="instanceConnectorPort"
+                        placeholder="Instance Tomcat Port" required ng-model="agent.instanceConnectorPort">
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-5 col-sm-4">
                     Instance Tomcat Shutdown Port
                 </div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="Instance Tomcat Shutdown Port"
-                        required ng-model="agent.instanceShutdownPort">
+                    <input class="form-control" type="text" name="instanceShutdownPort"
+                        placeholder="Instance Tomcat Shutdown Port" required ng-model="agent.instanceShutdownPort">
                 </div>
             </div>
             <div class="row no-gutters">
@@ -50,8 +59,8 @@
                     Instance Tomcat AJP Port
                 </div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="Instance Tomcat AJP Port"
-                        required ng-model="agent.instanceAJPPort">
+                    <input class="form-control" type="text" name="instanceAJPPort"
+                        placeholder="Instance Tomcat AJP Port" required ng-model="agent.instanceAJPPort">
                 </div>
             </div>
             <div class="row no-gutters">
@@ -59,8 +68,8 @@
                     Instance Tomcat Redirect Port
                 </div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="Instance Tomcat Redirect Port"
-                        required ng-model="agent.instanceRedirectPort">
+                    <input class="form-control" type="text" name="instanceRedirectPort"
+                        placeholder="Instance Tomcat Redirect Port" required ng-model="agent.instanceRedirectPort">
                 </div>
             </div>
             <div class="row no-gutters" ng-if="canUpdate === false">
@@ -68,7 +77,7 @@
                     SSH Username
                 </div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="SSH Username" required
+                    <input class="form-control" type="text" name="agentUname" placeholder="SSH Username" required
                         ng-model="agent.agentUname">
                 </div>
             </div>
@@ -77,7 +86,7 @@
                     SSH Password
                 </div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="SSH Password" required
+                    <input class="form-control" type="text" name="agentPwd" placeholder="SSH Password" required
                         ng-model="agent.agentPwd">
                 </div>
             </div>
@@ -86,7 +95,7 @@
                     JVM Argument
                 </div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="JVM Argument" required
+                    <input class="form-control" type="text" name="instanceJVMArgs" placeholder="JVM Argument" required
                         ng-model="agent.instanceJVMArgs">
                 </div>
             </div>
@@ -95,8 +104,8 @@
                     Installation Destination
                 </div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="text" name="firstname" placeholder="Installation Destination"
-                        required ng-model="agent.agentInstallationDestDir">
+                    <input class="form-control" type="text" name="agentInstallationDestDir"
+                        placeholder="Installation Destination" required ng-model="agent.agentInstallationDestDir">
                     <span class="tx-11 d-block">
                         Please end path location with '/'. Example : /Users/example/Desktop/
                     </span>

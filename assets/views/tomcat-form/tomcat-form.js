@@ -19,7 +19,7 @@
             */
             const getInitialData = async () => {
                 let agent = {
-                    agentPort: 8080,
+                    instanceConnectorPort: 8080,
                     instanceShutdownPort: 8085,
                     instanceAJPPort: 8009,
                     instanceRedirectPort: 8443,
@@ -28,7 +28,6 @@
                 if (canUpdate) {
                     agent = await ManagerService.showInstanceByAgentId($stateParams.agentId).then(_ => _.data.object);
                     agent['agentName'] = agent.instanceAgentId.agentName;
-                    agent['agentPort'] = agent.instanceConnectorPort;
                     console.log({ agent, canUpdate });
                 }
                 return [agent, canUpdate];
