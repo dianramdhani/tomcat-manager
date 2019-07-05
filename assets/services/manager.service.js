@@ -25,6 +25,7 @@
         this.actionRestartDeployment = actionRestartDeployment;
         this.createAgent = createAgent;
         this.updateAgent = updateAgent;
+        this.deleteAgent = deleteAgent;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -50,7 +51,7 @@
 
         // /manager/agent/{agentId}/delete
         function deleteAgent(agentId) {
-
+            return UtilService.showAlertWhenError($http.delete(`${url}/manager/agent/${agentId}/delete`));
         }
 
         // /manager/instance/list/{offset}/{limit}
