@@ -131,6 +131,7 @@
                     $compile(angular.element(row).contents())(scope);
                 })
                 .withOption('lengthMenu', [5, 10, 20])
+                .withOption('order', [])
                 .withPaginationType('simple_numbers')
                 .withLanguage({
                     oPaginate: {

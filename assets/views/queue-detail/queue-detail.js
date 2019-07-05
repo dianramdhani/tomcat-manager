@@ -18,10 +18,10 @@
         $ctrl.$onInit = () => {
             $scope.dtOptions = UtilService.DTOptionsCreator(AMQManagerService.amqQueueShow($stateParams.amqId), $scope);
             $scope.dtColumns = [
-                DTColumnBuilder.newColumn(0).withTitle('Name'),
-                DTColumnBuilder.newColumn(1).withTitle('Queue'),
-                DTColumnBuilder.newColumn(2).withTitle('Consumer'),
-                DTColumnBuilder.newColumn(3).withTitle('Enqueue'),
+                DTColumnBuilder.newColumn(0).withTitle('Name').notSortable(),
+                DTColumnBuilder.newColumn(1).withTitle('Queue').notSortable(),
+                DTColumnBuilder.newColumn(2).withTitle('Consumer').notSortable(),
+                DTColumnBuilder.newColumn(3).withTitle('Enqueue').notSortable(),
                 DTColumnBuilder.newColumn(null).withTitle('Operation').notSortable().renderWith((data, type, full, meta) => {
                     return `
                         <button class="btn btn-sm btn-oblong btn-primary" ng-click="purge('${data[0]}')">Purge</button>

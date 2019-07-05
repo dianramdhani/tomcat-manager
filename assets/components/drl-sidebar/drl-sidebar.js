@@ -90,6 +90,7 @@
                 $ctrl.menuActiveNow.push(element);
             }
             if (elementParent !== null) {
+                clearActive();
                 elementParent['active'] = true;
                 $ctrl.menuActiveNow.push(elementParent);
             }
