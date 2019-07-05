@@ -9,8 +9,25 @@
     window.app
         .component('tomcatDetail', {
             template: require('./tomcat-detail.html'),
+            controller: _,
             bindings: {
-                instance: '=',
-            },
+                instance: '='
+            }
         });
+
+    _.$inject = ['$scope', '$stateParams', 'UtilService', 'ManagerService'];
+    function _($scope, $stateParams, UtilService, ManagerService) {
+        let $ctrl = this;
+
+        $scope.delete = () => {
+            UtilService.drlConfirm(`Are you sure want to delete ${$ctrl.instance.instanceAgentId.agentName}?`, async () => {
+                UtilService.drlLoading(true);
+                let res = await ManagerService.deleteAgent($stateParams.agentId);
+                if (res.status === 200) {
+                    window.location.href = '/';
+                }
+                UtilService.drlLoading(false);
+            });
+        };
+    }
 })();

@@ -23,12 +23,15 @@
         this.actionStartDeployment = actionStartDeployment;
         this.actionUndeploy = actionUndeploy;
         this.actionRestartDeployment = actionRestartDeployment;
+        this.createAgent = createAgent;
+        this.updateAgent = updateAgent;
+        this.deleteAgent = deleteAgent;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
         // /manager/agent/add/
-        function createAgent() {
-
+        function createAgent(agent) {
+            return UtilService.showAlertWhenError($http.post(`${url}/manager/agent/add/`, agent));
         }
 
         // /manager/agent/{agentId}/show
@@ -48,7 +51,7 @@
 
         // /manager/agent/{agentId}/delete
         function deleteAgent(agentId) {
-
+            return UtilService.showAlertWhenError($http.delete(`${url}/manager/agent/${agentId}/delete`));
         }
 
         // /manager/instance/list/{offset}/{limit}
@@ -62,8 +65,16 @@
         }
 
         // /manager/agent/update/
-        function updateAgent() {
-
+        function updateAgent(agent) {
+            return UtilService.showAlertWhenError($http.post(`${url}/manager/agent/update/`, {
+                agentId: agent.instanceId,
+                agentName: agent.agentName,
+                instanceJVMArgs: agent.instanceJVMArgs,
+                instanceConnectorPort: agent.instanceConnectorPort,
+                instanceShutdownPort: agent.instanceShutdownPort,
+                instanceAJPPort: agent.instanceAJPPort,
+                instanceRedirectPort: agent.instanceRedirectPort
+            }));
         }
 
         // /manager/instance/{instanceId}/deployments/show/{offset}/{limit}

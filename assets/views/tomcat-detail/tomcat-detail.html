@@ -4,8 +4,8 @@
         <nav class="nav">
             <a href="" class="nav-link">Start</a>
             <a href="" class="nav-link">Stop</a>
-            <a href="" class="nav-link">Edit</a>
-            <a href="" class="nav-link">Delete</a>
+            <a href="" class="nav-link" ui-sref="admin.tomcatForm({agentId:$ctrl.instance.instanceId})">Edit</a>
+            <a href="" class="nav-link" ng-click="delete()">Delete</a>
         </nav>
     </div>
     <div class="card-body">
@@ -26,12 +26,16 @@
             <span>{{$ctrl.instance.instanceJVMArgs}}</span>
         </p>
         <p class="invoice-info-row">
-            <span>Instance Port</span>
+            <span>IP Address</span>
             <span>{{$ctrl.instance.instanceAgentId.agentIpAddress}}</span>
         </p>
         <p class="invoice-info-row">
-            <span>Instance Tomcat Port</span>
+            <span>Instance Port</span>
             <span>{{$ctrl.instance.instanceAgentId.agentPort}}</span>
+        </p>
+        <p class="invoice-info-row">
+            <span>Instance Tomcat Port</span>
+            <span>{{$ctrl.instance.instanceConnectorPort}}</span>
         </p>
         <p class="invoice-info-row">
             <span>Tomcat Directory</span>

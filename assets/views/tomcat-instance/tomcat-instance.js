@@ -28,7 +28,7 @@
                 [$scope.instance] = await getInitialData();
                 $scope.$apply();
                 UtilService.drlLoading(false);
-            }, 100);
+            });
         };
     }
 })();

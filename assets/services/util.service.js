@@ -83,12 +83,20 @@
         function showAlertWhenError(request) {
             let q = $q.defer();
             request.then(res => {
-                if (res.data.status === 200) {
-                    q.resolve(res);
+                if (res.data !== null) {
+                    if (res.status === 200) {
+                        q.resolve(res);
+                    } else {
+                        drlAlert('danger', res.data.message);
+                        q.reject(res);
+                    }
                 } else {
-                    drlAlert('danger', res.data.message);
+                    drlAlert('danger', res.xhrStatus);
                     q.reject(res);
                 }
+            }).catch(err => {
+                drlAlert('danger', err.xhrStatus);
+                q.reject(err);
             });
             return q.promise;
         }
