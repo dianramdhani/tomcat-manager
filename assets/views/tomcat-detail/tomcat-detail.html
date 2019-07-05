@@ -26,12 +26,16 @@
             <span>{{$ctrl.instance.instanceJVMArgs}}</span>
         </p>
         <p class="invoice-info-row">
-            <span>Instance Port</span>
+            <span>IP Address</span>
             <span>{{$ctrl.instance.instanceAgentId.agentIpAddress}}</span>
         </p>
         <p class="invoice-info-row">
-            <span>Instance Tomcat Port</span>
+            <span>Instance Port</span>
             <span>{{$ctrl.instance.instanceAgentId.agentPort}}</span>
+        </p>
+        <p class="invoice-info-row">
+            <span>Instance Tomcat Port</span>
+            <span>{{$ctrl.instance.instanceConnectorPort}}</span>
         </p>
         <p class="invoice-info-row">
             <span>Tomcat Directory</span>
