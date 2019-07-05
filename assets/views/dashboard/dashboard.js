@@ -37,10 +37,6 @@
                     listAmq.forEach(amq => {
                         amq['menu'] = [
                             {
-                                title: 'Log',
-                                href: 'log'
-                            },
-                            {
                                 title: 'Detail',
                                 href: `admin.amqInstance({amqId:${amq.instanceAmqId}})`
                             }
@@ -59,10 +55,6 @@
                                 onClick: () => {
                                     console.log('stop', agent);
                                 }
-                            },
-                            {
-                                title: 'Log',
-                                href: 'log'
                             },
                             {
                                 title: 'Detail',

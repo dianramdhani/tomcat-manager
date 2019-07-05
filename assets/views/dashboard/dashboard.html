@@ -3,7 +3,7 @@
         text2="{{amq.instanceAmqName}}"
         text3="Connection Status: {{amq.health.jmxConnected === 'true'? 'Ok': 'Not Ok'}}">
         <p class="tx-12 btn-group" role="group">
-            <button type="button" class="btn btn-sm btn-oblong btn-primary" ng-repeat="menu in amq.menu"
+            <button type="button" class="btn btn-sm btn-oblong btn-primary pd-x-20" ng-repeat="menu in amq.menu"
                 ui-sref="{{menu.href}}">{{menu.title}}</button>
         </p>
     </drl-widget2>
@@ -12,7 +12,7 @@
         text3="Agent Status: {{agent.health.agentStatus === 'true'? 'Active': 'Inactive'}}"
         text4="Server Status: {{agent.health.tomcatStatus === 'true'? 'Active': 'Inactive'}}">
         <p class="tx-12 btn-group" role="group">
-            <button type="button" class="btn btn-sm btn-oblong btn-primary" ng-repeat="menu in agent.menu"
+            <button type="button" class="btn btn-sm btn-oblong btn-primary pd-x-15-force" ng-repeat="menu in agent.menu"
                 ng-click="menu.onClick()" ng-disabled="(agent.health.agentStatus === 'false') && menu.onClick"
                 ui-sref="{{menu.href}}">{{menu.title}}</button>
         </p>
