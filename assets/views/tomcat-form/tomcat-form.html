@@ -1,6 +1,7 @@
 <div class="card card-customer-overview">
     <div class="card-header">
-        <h6 class="slim-card-title">Agent Information</h6>
+        <h6 class="slim-card-title" ng-hide="canUpdate">Agent Information</h6>
+        <h6 class="slim-card-title" ng-show="canUpdate">Update {{agent.instanceAgentId.agentName}}</h6>
     </div>
     <div class="card-body">
         <form class="form-layout form-layout-6" name="formTomcat" ng-submit="save()">
@@ -13,7 +14,7 @@
                         ng-model="agent.agentName">
                 </div>
             </div>
-            <div class="row no-gutters">
+            <div class="row no-gutters" ng-if="canUpdate === false">
                 <div class="col-5 col-sm-4">
                     Instance IP Address
                 </div>
@@ -27,8 +28,8 @@
                     Instance Tomcat Port
                 </div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="number" name="firstname" placeholder="Instance Tomcat Port"
-                        required ng-model="agent.agentPort">
+                    <input class="form-control" type="text" name="firstname" placeholder="Instance Tomcat Port" required
+                        ng-model="agent.agentPort">
                     <span class="tx-11 d-block">
                         Please select an available port. This port is used by this application to interact with your
                         instance
@@ -40,8 +41,8 @@
                     Instance Tomcat Shutdown Port
                 </div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="number" name="firstname"
-                        placeholder="Instance Tomcat Shutdown Port" required ng-model="agent.instanceShutdownPort">
+                    <input class="form-control" type="text" name="firstname" placeholder="Instance Tomcat Shutdown Port"
+                        required ng-model="agent.instanceShutdownPort">
                 </div>
             </div>
             <div class="row no-gutters">
@@ -49,7 +50,7 @@
                     Instance Tomcat AJP Port
                 </div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="number" name="firstname" placeholder="Instance Tomcat AJP Port"
+                    <input class="form-control" type="text" name="firstname" placeholder="Instance Tomcat AJP Port"
                         required ng-model="agent.instanceAJPPort">
                 </div>
             </div>
@@ -58,11 +59,11 @@
                     Instance Tomcat Redirect Port
                 </div>
                 <div class="col-7 col-sm-8">
-                    <input class="form-control" type="number" name="firstname"
-                        placeholder="Instance Tomcat Redirect Port" required ng-model="agent.instanceRedirectPort">
+                    <input class="form-control" type="text" name="firstname" placeholder="Instance Tomcat Redirect Port"
+                        required ng-model="agent.instanceRedirectPort">
                 </div>
             </div>
-            <div class="row no-gutters">
+            <div class="row no-gutters" ng-if="canUpdate === false">
                 <div class="col-5 col-sm-4">
                     SSH Username
                 </div>
@@ -71,7 +72,7 @@
                         ng-model="agent.agentUname">
                 </div>
             </div>
-            <div class="row no-gutters">
+            <div class="row no-gutters" ng-if="canUpdate === false">
                 <div class="col-5 col-sm-4">
                     SSH Password
                 </div>
@@ -89,7 +90,7 @@
                         ng-model="agent.instanceJVMArgs">
                 </div>
             </div>
-            <div class="row no-gutters">
+            <div class="row no-gutters" ng-if="canUpdate === false">
                 <div class="col-5 col-sm-4">
                     Installation Destination
                 </div>
@@ -102,8 +103,12 @@
                 </div>
             </div>
             <div class="form-layout-footer mg-t-30">
-                <button type="submit" class="btn btn-primary">Add Instance</button>
-                <button class="btn btn-secondary" ui-sref="admin.dashboard">Cancel</button>
+                <button type="submit" class="btn btn-primary">
+                    <span ng-hide="canUpdate">Add Instance</span><span ng-show="canUpdate">Update Instance</span>
+                </button>
+                <button class="btn btn-secondary" ui-sref="admin.dashboard" ng-hide="canUpdate">Cancel</button>
+                <button class="btn btn-secondary" ui-sref="admin.tomcatInstance({agentId:agent.instanceId})"
+                    ng-show="canUpdate">Cancel</button>
             </div>
         </form>
     </div>

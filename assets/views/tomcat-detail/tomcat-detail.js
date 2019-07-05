@@ -10,7 +10,7 @@
         .component('tomcatDetail', {
             template: require('./tomcat-detail.html'),
             bindings: {
-                instance: '=',
-            },
+                instance: '='
+            }
         });
 })();

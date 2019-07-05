@@ -24,6 +24,7 @@
         this.actionUndeploy = actionUndeploy;
         this.actionRestartDeployment = actionRestartDeployment;
         this.createAgent = createAgent;
+        this.updateAgent = updateAgent;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -63,8 +64,16 @@
         }
 
         // /manager/agent/update/
-        function updateAgent() {
-
+        function updateAgent(agent) {
+            return UtilService.showAlertWhenError($http.post(`${url}/manager/agent/update/`, {
+                agentId: agent.instanceId,
+                agentName: agent.agentName,
+                instanceJVMArgs: agent.instanceJVMArgs,
+                instanceConnectorPort: agent.instanceConnectorPort,
+                instanceShutdownPort: agent.instanceShutdownPort,
+                instanceAJPPort: agent.instanceAJPPort,
+                instanceRedirectPort: agent.instanceRedirectPort
+            }));
         }
 
         // /manager/instance/{instanceId}/deployments/show/{offset}/{limit}
