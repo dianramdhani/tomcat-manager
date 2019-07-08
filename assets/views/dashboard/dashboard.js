@@ -10,8 +10,8 @@
             controller: _
         });
 
-    _.$inject = ['$scope', '$timeout', '$q', 'AMQManagerService', 'ManagerService', 'UtilService'];
-    function _($scope, $timeout, $q, AMQManagerService, ManagerService, UtilService) {
+    _.$inject = ['$scope', '$timeout', '$q', '$state', 'AMQManagerService', 'ManagerService', 'UtilService'];
+    function _($scope, $timeout, $q, $state, AMQManagerService, ManagerService, UtilService) {
         let $ctrl = this;
         $ctrl.$onInit = () => {
             /**
@@ -47,13 +47,29 @@
                             {
                                 title: 'Start',
                                 onClick: () => {
-                                    console.log('starting', agent);
+                                    UtilService.drlConfirm(`Are you sure want to start ${agent.agentName}?`, async () => {
+                                        UtilService.drlLoading(true);
+                                        let res = await ManagerService.startAgent(agent.agentId);
+                                        if (res.status === 200) {
+                                            UtilService.drlAlert('success', res.data.message);
+                                            await refreshData();
+                                        }
+                                        UtilService.drlLoading(false);
+                                    });
                                 }
                             },
                             {
                                 title: 'Stop',
                                 onClick: () => {
-                                    console.log('stop', agent);
+                                    UtilService.drlConfirm(`Are you sure want to stop ${agent.agentName}?`, async () => {
+                                        UtilService.drlLoading(true);
+                                        let res = await ManagerService.stopAgent(agent.agentId);
+                                        if (res.status === 200) {
+                                            UtilService.drlAlert('success', res.data.message);
+                                            await refreshData();
+                                        }
+                                        UtilService.drlLoading(false);
+                                    });
                                 }
                             },
                             {
@@ -81,10 +97,14 @@
                 return [listAmq, listAgent];
             };
 
-            $timeout(async () => {
-                UtilService.drlLoading(true);
+            const refreshData = async () => {
                 [$scope.listAmq, $scope.listAgent] = await getInitialData();
                 $scope.$apply();
+            };
+
+            $timeout(async () => {
+                UtilService.drlLoading(true);
+                await refreshData();
                 UtilService.drlLoading(false);
             });
         };

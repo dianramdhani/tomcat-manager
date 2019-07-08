@@ -15,7 +15,6 @@
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
-        // /manager/user/register/{rolename}
         function userRegister(dataUser) {
             return UtilService.showAlertWhenError($http.post(`${url}/manager/user/register/${dataUser.userRoleName}`, {
                 credentialEmail: dataUser.credentialEmail,
@@ -24,12 +23,10 @@
             }));
         }
 
-        // /manager/user/delete
         function deleteUser(dataUser) {
             return UtilService.showAlertWhenError($http.delete(`${url}/manager/user/delete`, { data: dataUser }));
         }
 
-        // /manager/user/update/{rolename}
         function userUpdate(dataUser) {
             return UtilService.showAlertWhenError($http.put(`${url}/manager/user/update/${dataUser.userRoleName}`, {
                 credentialActive: dataUser.credentialActive,
@@ -40,12 +37,10 @@
             }));
         }
 
-        // /manager/user/role/list
         function listUserRole() {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/user/role/list`));
         }
 
-        // /manager/user/role/listbyname
         function listUserRoleById() {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/user/role/listbyname`));
         }
@@ -60,7 +55,6 @@
 
         }
 
-        // /manager/user/{userId}/checkRole
         function checkUserRole(userId) {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/user/${userId}/checkRole`));
         }

@@ -13,12 +13,10 @@
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
-        // /manager/amq/list/{offset}/{limit}
         function listAmq(offset, limit) {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/amq/list/${offset}/${limit}`));
         }
 
-        // /manager/amq/{amqId}/show
         function showAmq(amqId) {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/amq/${amqId}/show`));
         }
@@ -33,7 +31,6 @@
 
         }
 
-        // /manager/amq/{amqId}/queue/show
         function amqQueueShow(amqId) {
             return {
                 url: `${url}/manager/amq/${amqId}/queue/show`,
@@ -59,7 +56,6 @@
 
         }
 
-        // /manager/amq/{amqId}/health
         function checkAgentHealth(amqId) {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/amq/${amqId}/health`));
         }

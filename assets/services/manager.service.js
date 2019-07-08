@@ -26,10 +26,11 @@
         this.createAgent = createAgent;
         this.updateAgent = updateAgent;
         this.deleteAgent = deleteAgent;
+        this.startAgent = startAgent;
+        this.stopAgent = stopAgent;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
-        // /manager/agent/add/
         function createAgent(agent) {
             return UtilService.showAlertWhenError($http.post(`${url}/manager/agent/add/`, agent));
         }
@@ -39,17 +40,14 @@
 
         }
 
-        // /manager/agent/{agentId}/health
         function checkAgentHealth(agentId) {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/agent/${agentId}/health`));
         }
 
-        // /manager/agent/list/{offset}/{limit}
         function listAgent(offset, limit) {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/agent/list/${offset}/${limit}`));
         }
 
-        // /manager/agent/{agentId}/delete
         function deleteAgent(agentId) {
             return UtilService.showAlertWhenError($http.delete(`${url}/manager/agent/${agentId}/delete`));
         }
@@ -59,12 +57,10 @@
 
         }
 
-        // /manager/instance/listAll/{offset}/{limit}
         function listAllInstances(offset, limit) {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/instance/listAll/${offset}/${limit}`));
         }
 
-        // /manager/agent/update/
         function updateAgent(agent) {
             return UtilService.showAlertWhenError($http.post(`${url}/manager/agent/update/`, {
                 agentId: agent.instanceId,
@@ -82,27 +78,22 @@
 
         }
 
-        // /manager/instance/{instanceId}/deployments/showMap/{offset}/{limit}
         function showMapDeployment(instanceId, offset, limit) {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/instance/${instanceId}/deployments/showMap/${offset}/${limit}`));
         }
 
-        // /manager/agent/{agentId}/action/restartWar/{contextName}
         function actionRestartDeployment(agentId, contextName) {
             return $http.get(`${url}/manager/agent/${agentId}/action/restartWar/${contextName}`);
         }
 
-        // /manager/agent/{agentId}/action/stopWar/{contextName}
         function actionStopDeployment(agentId, contextName) {
             return $http.get(`${url}/manager/agent/${agentId}/action/stopWar/${contextName}`);
         }
 
-        // /manager/agent/{agentId}/action/startWar/{contextName}
         function actionStartDeployment(agentId, contextName) {
             return $http.get(`${url}/manager/agent/${agentId}/action/startWar/${contextName}`);
         }
 
-        // /manager/agent/{agentId}/action/deploy
         function actionDeploy(agentId, deployment) {
             return $http.post(`${url}/manager/agent/${agentId}/action/deploy`, UtilService.objectToFormData(deployment), {
                 transformResponse: angular.identity,
@@ -110,7 +101,6 @@
             });
         }
 
-        // /manager/agent/{agentId}/action/undeploy/{contextName}
         function actionUndeploy(agentId, contextName) {
             return $http.get(`${url}/manager/agent/${agentId}/action/undeploy/${contextName}`);
         }
@@ -120,7 +110,6 @@
 
         }
 
-        // /manager/agent/credential/list/
         function listCredential() {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/agent/credential/list/`));
         }
@@ -130,12 +119,10 @@
 
         }
 
-        // /manager/instance/{agentId}/show/
         function showInstanceByAgentId(agentId) {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/instance/${agentId}/show/`));
         }
 
-        // /manager/instance/{agentId}/log/show
         function datatableInstanceLog(agentId) {
             return {
                 url: `${url}/manager/instance/${agentId}/log/show`,
@@ -146,17 +133,14 @@
             }
         }
 
-        // /manager/instance/{agentId}/chart/cpuline/show
         function instanceCpuLineChart(agentId) {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/instance/${agentId}/chart/cpuline/show`));
         }
 
-        // /manager/instance/{agentId}/charts/physicalmem/show
         function instancePhysicalMemoryChart(agentId) {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/instance/${agentId}/charts/physicalmem/show`));
         }
 
-        // /manager/instance/{agentId}/charts/heapmemory/show
         function instanceHeapMemoryChart(agentId) {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/instance/${agentId}/charts/heapmemory/show`));
         }
@@ -181,7 +165,6 @@
 
         }
 
-        // /manager/agent/group/list/{page}/{size}
         function listGroupInstance(page, size) {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/agent/group/list/${page}/${size}`));
         }
@@ -201,9 +184,16 @@
 
         }
 
-        // /manager/agent/{agentId}/tail-log/{logIdx}
         function tailLogAgent(agentId, logIdx) {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/agent/${agentId}/tail-log/${logIdx}`));
+        }
+
+        function startAgent(agentId) {
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/agent/${agentId}/action/start`));
+        }
+
+        function stopAgent(agentId) {
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/agent/${agentId}/action/stop`));
         }
     }
 })();
