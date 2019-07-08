@@ -27,6 +27,7 @@ require('./config');
 
 // ROUTES
 require('../routes/app.route');
+require('../routes/tomcat.route');
 
 // SERVICES
 require('../services/util.service');

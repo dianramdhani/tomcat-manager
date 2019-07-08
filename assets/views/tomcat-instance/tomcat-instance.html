@@ -5,13 +5,23 @@
     <div class="col-lg-6 pb-3" ng-if="instance.health.agentStatus === 'true'">
         <usage-status></usage-status>
     </div>
-    <div class="col-12 pb-3" ng-if="instance.health.agentStatus === 'true'">
-        <tomcat-log></tomcat-log>
-    </div>
-    <div class="col-12 pb-3" ng-if="instance.health.agentStatus === 'true'">
-        <catalina-out></catalina-out>
-    </div>
-    <div class="col-12" ng-if="instance.health.agentStatus === 'true'">
-        <deployment-list></deployment-list>
+    <div class="col-12 ht-100v" ng-if="instance.health.agentStatus === 'true'">
+        <div class="ht-40">
+            <ul class="nav nav-underline flex-row">
+                <li class="nav-item">
+                    <a href="" class="nav-link" ui-sref="admin.tomcatInstance.deploymentList"
+                        ng-class="{active: href === 'admin.tomcatInstance.deploymentList'}">Deployment List</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link" ui-sref="admin.tomcatInstance.tomcatLog"
+                        ng-class="{active: href === 'admin.tomcatInstance.tomcatLog'}">Log</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link" ui-sref="admin.tomcatInstance.catalinaOut"
+                        ng-class="{active: href === 'admin.tomcatInstance.catalinaOut'}">Catalina Out</a>
+                </li>
+            </ul>
+        </div>
+        <div ui-view></div>
     </div>
 </div>

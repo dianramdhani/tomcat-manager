@@ -10,8 +10,8 @@
             controller: _
         });
 
-    _.$inject = ['$stateParams', '$scope', '$timeout', 'ManagerService', 'UtilService'];
-    function _($stateParams, $scope, $timeout, ManagerService, UtilService) {
+    _.$inject = ['$stateParams', '$scope', '$timeout', '$state', 'ManagerService', 'UtilService'];
+    function _($stateParams, $scope, $timeout, $state, ManagerService, UtilService) {
         let $ctrl = this;
         $ctrl.$onInit = () => {
             /**
@@ -28,6 +28,10 @@
                 [$scope.instance] = await getInitialData();
                 $scope.$apply();
                 UtilService.drlLoading(false);
+                $state.go('admin.tomcatInstance.deploymentList');
+                $scope.$watch(() => $state.$current.name, href => {
+                    $scope.href = href;
+                });
             });
         };
     }
