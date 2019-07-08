@@ -1,1 +1,30 @@
-user setting terbuka
+<div class="card card-customer-overview">
+    <div class="card-header">
+        <h6 class="slim-card-title">Change Password</h6>
+    </div>
+    <div class="card-body">
+        <form class="form-layout form-layout-6" name="formChangePassword" ng-submit="update()">
+            <div class="row no-gutters">
+                <div class="col-5 col-sm-4">
+                    Old Password
+                </div>
+                <div class="col-7 col-sm-8">
+                    <input class="form-control" type="text" name="oldPassword" placeholder="Old Password" required
+                        ng-model="agent.agentName">
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-5 col-sm-4">
+                    New Password
+                </div>
+                <div class="col-7 col-sm-8">
+                    <input class="form-control" type="text" name="newPassword" placeholder="New Password" required
+                        ng-model="agent.agentIpAddress">
+                </div>
+            </div>
+            <div class="form-layout-footer mg-t-30">
+                <button type="submit" class="btn btn-primary">Update Password</button>
+            </div>
+        </form>
+    </div>
+</div>

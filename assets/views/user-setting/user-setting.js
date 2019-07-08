@@ -10,9 +10,13 @@
             controller: _
         });
 
-    _.$inject = [];
-    function _() {
+    _.$inject = ['$scope'];
+    function _($scope) {
         let $ctrl = this;
         $ctrl.$onInit = () => { };
+
+        $scope.update = () => {
+            console.log('update');
+        };
     }
 })();
