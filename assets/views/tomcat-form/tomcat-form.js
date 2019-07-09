@@ -42,12 +42,11 @@
             UtilService.drlLoading(true);
             if ($scope.canUpdate) {
                 await ManagerService.updateAgent($scope.agent);
-                window.location.href = '/';
             } else {
                 await ManagerService.createAgent($scope.agent);
-                window.location.href = '/';
             }
             UtilService.drlLoading(false);
+            window.location.href = '/';
         };
     }
 })();

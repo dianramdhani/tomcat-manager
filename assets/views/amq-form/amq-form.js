@@ -35,16 +35,13 @@
         };
 
         $scope.save = async () => {
-            let message;
             if ($scope.canUpdate) {
-                message = await AMQManagerService.updateAmq($scope.amq).then(_ => _.data.message);
-                UtilService.drlAlert('success', message);
-                $state.go('admin.amqInstance', { amqId: $scope.amq.instanceAmqId });
+                await AMQManagerService.updateAmq($scope.amq).then(_ => _.data.message);
+                window.location.href = '/';
             } else {
                 const saveAmq = async () => {
-                    message = await AMQManagerService.createAmq($scope.amq).then(_ => _.data.message);
-                    UtilService.drlAlert('success', message);
-                    $state.go('admin.dashboard');
+                    await AMQManagerService.createAmq($scope.amq).then(_ => _.data.message);
+                    window.location.href = '/';
                 };
 
                 let jmxConnected = await AMQManagerService.checkConnection($scope.amq).then(_ => _.data.object.jmxConnected);
