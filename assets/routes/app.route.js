@@ -14,7 +14,7 @@
             { name: 'admin.tomcatInstance', url: '/tomcat-instance/{agentId}', component: 'tomcatInstance' },
             { name: 'admin.tomcatForm', url: '/tomcat-instance', component: 'tomcatForm', params: { agentId: { value: null } } },
             { name: 'admin.amqInstance', url: '/amq-instance/{amqId}', component: 'amqInstance' },
-            { name: 'admin.amqForm', url: '/amq-instance', component: 'amqForm' },
+            { name: 'admin.amqForm', url: '/amq-instance', component: 'amqForm', params: { amqId: { value: null } } },
             { name: 'admin.userSetting', url: '/user-setting', component: 'userSetting' },
             { name: 'admin.datasource', url: '/datasource', component: 'datasource' },
             { name: 'admin.datasourceForm', component: 'datasourceForm', params: { datasourceId: { value: null } } },

@@ -10,6 +10,7 @@
         this.checkAgentHealth = checkAgentHealth;
         this.showAmq = showAmq;
         this.amqQueueShow = amqQueueShow;
+        this.updateAmq = updateAmq;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -22,8 +23,15 @@
         }
 
         // /manager/amq/update/
-        function updateAmq() {
-
+        function updateAmq(amq) {
+            return UtilService.showAlertWhenError($http.post(`${url}/manager/amq/update/`, {
+                instanceAmqId: amq.instanceAmqId,
+                instanceAmqName: amq.instanceAmqName,
+                instanceAmqAddress: amq.instanceAmqAddress,
+                instanceAmqJmxPort: amq.instanceAmqJmxPort,
+                instanceAmqJmxUname: amq.instanceAmqJmxUname,
+                instanceAmqJmxPwd: amq.instanceAmqJmxPwd
+            }));
         }
 
         // /manager/amq/{amqId}/delete
