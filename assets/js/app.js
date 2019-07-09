@@ -71,6 +71,7 @@ require('../views/deployment-list/deployment-list');
 require('../views/add-deployment/add-deployment');
 require('../views/amq-instance/amq-instance');
 require('../views/amq-detail/amq-detail');
+require('../views/amq-form/amq-form');
 require('../views/queue-detail/queue-detail');
 require('../views/datasource/datasource');
 require('../views/datasource-form/datasource-form');

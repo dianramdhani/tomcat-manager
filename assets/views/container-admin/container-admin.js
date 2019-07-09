@@ -49,7 +49,7 @@
                         menu: [
                             {
                                 title: 'Add Instance',
-                                href: ''
+                                href: 'admin.amqForm'
                             }
                         ]
                     },

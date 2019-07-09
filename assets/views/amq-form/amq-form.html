@@ -1,0 +1,66 @@
+<div class="card card-customer-overview">
+    <div class="card-header">
+        <h6 class="slim-card-title" ng-hide="canUpdate">ActiveMQ Information</h6>
+        <h6 class="slim-card-title" ng-show="canUpdate">Update {{agent.instanceAgentId.agentName}}</h6>
+    </div>
+    <div class="card-body">
+        <form class="form-layout form-layout-6" name="formAmq" ng-submit="save()">
+            <div class="row no-gutters">
+                <div class="col-5 col-sm-4">
+                    Instance AMQ Name
+                </div>
+                <div class="col-7 col-sm-8">
+                    <input class="form-control" type="text" name="agentName" placeholder="Instance AMQ Name" required
+                        ng-model="agent.agentName">
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-5 col-sm-4">
+                    AMQ IP Address
+                </div>
+                <div class="col-7 col-sm-8">
+                    <input class="form-control" type="text" name="agentIpAddress" placeholder="AMQ IP Address" required
+                        ng-model="agent.agentIpAddress">
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-5 col-sm-4">
+                    AMQ JMX Port
+                </div>
+                <div class="col-7 col-sm-8">
+                    <input class="form-control" type="text" name="agentPort" placeholder="AMQ JMX Port" required
+                        ng-model="agent.agentPort">
+                    <span class="tx-11 d-block">
+                        Please make sure, the AMQ's JMX Port has been exposed!
+                    </span>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-5 col-sm-4">
+                    JMX Username
+                </div>
+                <div class="col-7 col-sm-8">
+                    <input class="form-control" type="text" name="agentIpAddress" placeholder="JMX Username" required
+                        ng-model="agent.agentIpAddress">
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-5 col-sm-4">
+                    JMX Password
+                </div>
+                <div class="col-7 col-sm-8">
+                    <input class="form-control" type="text" name="agentIpAddress" placeholder="JMX Password" required
+                        ng-model="agent.agentIpAddress">
+                </div>
+            </div>
+            <div class="form-layout-footer mg-t-30">
+                <button type="submit" class="btn btn-primary">
+                    <span ng-hide="canUpdate">Add AMQ Instance</span><span ng-show="canUpdate">Update Instance</span>
+                </button>
+                <button class="btn btn-secondary" ui-sref="admin.dashboard" ng-hide="canUpdate">Cancel</button>
+                <button class="btn btn-secondary" ui-sref="admin.tomcatInstance({agentId:agent.instanceId})"
+                    ng-show="canUpdate">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
