@@ -49,11 +49,9 @@
                                 onClick: () => {
                                     UtilService.drlConfirm(`Are you sure want to start ${agent.agentName}?`, async () => {
                                         UtilService.drlLoading(true);
-                                        let res = await ManagerService.startAgent(agent.agentId);
-                                        if (res.status === 200) {
-                                            UtilService.drlAlert('success', res.data.message);
-                                            await refreshData();
-                                        }
+                                        let message = await ManagerService.startAgent(agent.agentId).then(_ => _.data.message);
+                                        UtilService.drlAlert('success', message);
+                                        await refreshData();
                                         UtilService.drlLoading(false);
                                     });
                                 }
@@ -63,11 +61,9 @@
                                 onClick: () => {
                                     UtilService.drlConfirm(`Are you sure want to stop ${agent.agentName}?`, async () => {
                                         UtilService.drlLoading(true);
-                                        let res = await ManagerService.stopAgent(agent.agentId);
-                                        if (res.status === 200) {
-                                            UtilService.drlAlert('success', res.data.message);
-                                            await refreshData();
-                                        }
+                                        let message = await ManagerService.stopAgent(agent.agentId).then(_ => _.data.message);
+                                        UtilService.drlAlert('success', message);
+                                        await refreshData();
                                         UtilService.drlLoading(false);
                                     });
                                 }

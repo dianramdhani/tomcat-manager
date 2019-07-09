@@ -40,12 +40,11 @@
 
         $scope.save = async () => {
             UtilService.drlLoading(true);
-            let res;
             if ($scope.canUpdate) {
-                res = await ManagerService.updateAgent($scope.agent);
+                await ManagerService.updateAgent($scope.agent);
                 window.location.href = '/';
             } else {
-                res = await ManagerService.createAgent($scope.agent);
+                await ManagerService.createAgent($scope.agent);
                 window.location.href = '/';
             }
             UtilService.drlLoading(false);

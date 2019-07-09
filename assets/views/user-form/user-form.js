@@ -36,18 +36,14 @@
         };
 
         $scope.save = async () => {
-            let res;
-
+            let message;
             if ($scope.canUpdate) {
-                res = await UserService.userUpdate($scope.dataUser);
+                message = await UserService.userUpdate($scope.dataUser).then(_ => _.data.message);
             } else {
-                res = await UserService.userRegister($scope.dataUser);
+                message = await UserService.userRegister($scope.dataUser).then(_ => _.data.message);
             }
-
-            if (res.status === 200) {
-                UtilService.drlAlert('success', res.data.message);
-                $state.go('admin.userManagement');
-            }
+            UtilService.drlAlert('success', message);
+            $state.go('admin.userManagement');
         };
     }
 })();

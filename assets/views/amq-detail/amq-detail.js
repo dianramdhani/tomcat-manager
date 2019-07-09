@@ -25,10 +25,8 @@
                 <br>
                 This action cannot be undone.
             `, async () => {
-                    let res = await AMQManagerService.deleteAmq($ctrl.amq.instanceAmqId);
-                    if (res.status === 200) {
-                        window.location.href = '/';
-                    }
+                    await AMQManagerService.deleteAmq($ctrl.amq.instanceAmqId);
+                    window.location.href = '/';
                 });
         };
     }

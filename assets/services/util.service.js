@@ -93,11 +93,12 @@
                     }
                 } else {
                     drlLoading(false);
-                    drlAlert('danger', res.xhrStatus);
+                    drlAlert('danger', res.statusText);
                     q.reject(res);
                 }
             }).catch(err => {
-                drlAlert('danger', err.xhrStatus);
+                drlLoading(false);
+                drlAlert('danger', err.statusText);
                 q.reject(err);
             });
             return q.promise;

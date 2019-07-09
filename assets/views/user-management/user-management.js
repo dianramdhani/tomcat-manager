@@ -59,12 +59,9 @@
                 let dataUser = $scope.getSelected().map(user => {
                     let { select, ...res } = user;
                     return res;
-                }), res = await UserService.deleteUser(dataUser);
-
-                if (res.data.status === 200) {
-                    UtilService.drlAlert('success', res.data.message);
-                    refreshData();
-                }
+                }), message = await UserService.deleteUser(dataUser).then(_ => _.data.message);
+                UtilService.drlAlert('success', message);
+                refreshData();
             });
         };
     }

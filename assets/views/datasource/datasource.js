@@ -57,11 +57,9 @@
 
         $scope.delete = (id) => {
             UtilService.drlConfirm('Are you sure want to delete this record?', async () => {
-                let res = await DatasourceService.deleteDatasource(id);
-                if (res.status === 200) {
-                    UtilService.drlAlert('success', res.data.message);
-                    refreshData();
-                }
+                let message = await DatasourceService.deleteDatasource(id).then(_ => _.data.message);
+                UtilService.drlAlert('success', message);
+                refreshData();
             });
         };
     }

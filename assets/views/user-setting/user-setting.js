@@ -19,11 +19,8 @@
 
         $scope.update = () => {
             UtilService.drlConfirm('Are you sure want to change your password?', async () => {
-                try {
-                    let message = await UserService.changeUSerPassword($scope.password).then(_ => _.data.message);
-                    UtilService.drlAlert('success', message);
-                } catch (error) {
-                }
+                let message = await UserService.changeUSerPassword($scope.password).then(_ => _.data.message);
+                UtilService.drlAlert('success', message);
             });
         };
     }

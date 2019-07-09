@@ -35,24 +35,20 @@
         };
 
         $scope.save = async () => {
-            let res;
+            let message;
             if ($scope.canUpdate) {
-                res = await AMQManagerService.updateAmq($scope.amq).then(_ => _.data);
-                if (res.status === 200) {
-                    UtilService.drlAlert('success', res.message);
-                    $state.go('admin.amqInstance', { amqId: $scope.amq.instanceAmqId });
-                }
+                message = await AMQManagerService.updateAmq($scope.amq).then(_ => _.data.message);
+                UtilService.drlAlert('success', message);
+                $state.go('admin.amqInstance', { amqId: $scope.amq.instanceAmqId });
             } else {
                 const saveAmq = async () => {
-                    res = await AMQManagerService.createAmq($scope.amq).then(_ => _.data);
-                    if (res.status === 200) {
-                        UtilService.drlAlert('success', res.message);
-                        $state.go('admin.dashboard');
-                    }
+                    message = await AMQManagerService.createAmq($scope.amq).then(_ => _.data.message);
+                    UtilService.drlAlert('success', message);
+                    $state.go('admin.dashboard');
                 };
 
-                let checkRes = await AMQManagerService.checkConnection($scope.amq).then(_ => _.data);
-                if (checkRes.object.jmxConnected === 'false') {
+                let jmxConnected = await AMQManagerService.checkConnection($scope.amq).then(_ => _.data.object.jmxConnected);
+                if (jmxConnected === 'false') {
                     UtilService.drlConfirm(`
                         Can't connect to AMQ Instance with this configuration! 
                         <br>

@@ -35,18 +35,14 @@
         };
 
         $scope.save = async () => {
-            const afterRequest = (res) => {
-                if (res.status === 200) {
-                    UtilService.drlAlert('success', res.data.message);
-                    $state.go('admin.datasource');
-                }
-            }
-
+            let message;
             if ($scope.canUpdate) {
-                afterRequest(await DatasourceService.updateDatasource($scope.datasourceInstance));
+                message = await DatasourceService.updateDatasource($scope.datasourceInstance).then(_ => _.data.message);
             } else {
-                afterRequest(await DatasourceService.addDatasource($scope.datasourceInstance));
+                message = await DatasourceService.addDatasource($scope.datasourceInstance).then(_ => _.data.message);
             }
+            UtilService.drlAlert('success', message);
+            $state.go('admin.datasource');
         };
     }
 })();

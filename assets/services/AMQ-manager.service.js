@@ -47,7 +47,7 @@
         }
 
         function deleteAmq(amqId) {
-            return $http.delete(`${url}/manager/amq/${amqId}/delete`);
+            return UtilService.showAlertWhenError($http.delete(`${url}/manager/amq/${amqId}/delete`));
         }
 
         function amqQueueShow(amqId) {
