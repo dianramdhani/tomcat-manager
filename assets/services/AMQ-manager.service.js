@@ -13,6 +13,7 @@
         this.updateAmq = updateAmq;
         this.checkConnection = checkConnection;
         this.createAmq = createAmq;
+        this.deleteAmq = deleteAmq;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -45,9 +46,8 @@
             }));
         }
 
-        // /manager/amq/{amqId}/delete
         function deleteAmq(amqId) {
-
+            return $http.delete(`${url}/manager/amq/${amqId}/delete`);
         }
 
         function amqQueueShow(amqId) {
