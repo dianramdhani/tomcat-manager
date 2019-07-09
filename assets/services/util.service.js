@@ -84,13 +84,15 @@
             let q = $q.defer();
             request.then(res => {
                 if (res.data !== null) {
-                    if (res.status === 200) {
+                    if (res.data.status === 200) {
                         q.resolve(res);
                     } else {
+                        drlLoading(false);
                         drlAlert('danger', res.data.message);
                         q.reject(res);
                     }
                 } else {
+                    drlLoading(false);
                     drlAlert('danger', res.xhrStatus);
                     q.reject(res);
                 }

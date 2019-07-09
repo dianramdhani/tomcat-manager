@@ -10,13 +10,21 @@
             controller: _
         });
 
-    _.$inject = ['$scope'];
-    function _($scope) {
+    _.$inject = ['$scope', 'UserService', 'UtilService'];
+    function _($scope, UserService, UtilService) {
         let $ctrl = this;
-        $ctrl.$onInit = () => { };
+        $ctrl.$onInit = () => {
+            $scope.password = [];
+        };
 
         $scope.update = () => {
-            console.log('update');
+            UtilService.drlConfirm('Are you sure want to change your password?', async () => {
+                try {
+                    let message = await UserService.changeUSerPassword($scope.password).then(_ => _.data.message);
+                    UtilService.drlAlert('success', message);
+                } catch (error) {
+                }
+            });
         };
     }
 })();

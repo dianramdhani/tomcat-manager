@@ -12,6 +12,7 @@
         this.userUpdate = userUpdate;
         this.deleteUser = deleteUser;
         this.listUserRole = listUserRole;
+        this.changeUSerPassword = changeUSerPassword;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -51,8 +52,8 @@
         }
 
         // /manager/user/update/password
-        function changeUSerPassword() {
-
+        function changeUSerPassword(password) {
+            return UtilService.showAlertWhenError($http.put(`${url}/manager/user/update/password`, password));
         }
 
         function checkUserRole(userId) {
