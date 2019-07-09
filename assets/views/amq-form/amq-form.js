@@ -25,7 +25,6 @@
                 if (canUpdate) {
                     amq = await AMQManagerService.showAmq($stateParams.amqId).then(_ => _.data.object);
                 }
-                console.log({ amq, canUpdate });
                 return [amq, canUpdate];
             };
 
@@ -44,9 +43,25 @@
                     $state.go('admin.amqInstance', { amqId: $scope.amq.instanceAmqId });
                 }
             } else {
+                const saveAmq = async () => {
+                    res = await AMQManagerService.createAmq($scope.amq).then(_ => _.data);
+                    if (res.status === 200) {
+                        UtilService.drlAlert('success', res.message);
+                        $state.go('admin.dashboard');
+                    }
+                };
 
+                let checkRes = await AMQManagerService.checkConnection($scope.amq).then(_ => _.data);
+                if (checkRes.object.jmxConnected === 'false') {
+                    UtilService.drlConfirm(`
+                        Can't connect to AMQ Instance with this configuration! 
+                        <br>
+                        Are you sure you wan't to save this configuration?
+                    `, saveAmq);
+                } else {
+                    saveAmq();
+                }
             }
-            console.log($scope.amq, { res });
         };
     }
 })();

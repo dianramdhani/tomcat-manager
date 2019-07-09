@@ -11,8 +11,20 @@
         this.showAmq = showAmq;
         this.amqQueueShow = amqQueueShow;
         this.updateAmq = updateAmq;
+        this.checkConnection = checkConnection;
+        this.createAmq = createAmq;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
+
+        function createAmq(amq) {
+            return UtilService.showAlertWhenError($http.post(`${url}/manager/amq/add/`, {
+                instanceAmqName: amq.instanceAmqName,
+                instanceAmqAddress: amq.instanceAmqAddress,
+                instanceAmqJmxPort: amq.instanceAmqJmxPort,
+                instanceAmqJmxUname: amq.instanceAmqJmxUname,
+                instanceAmqJmxPwd: amq.instanceAmqJmxPwd
+            }));
+        }
 
         function listAmq(offset, limit) {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/amq/list/${offset}/${limit}`));
@@ -22,7 +34,6 @@
             return UtilService.showAlertWhenError($http.get(`${url}/manager/amq/${amqId}/show`));
         }
 
-        // /manager/amq/update/
         function updateAmq(amq) {
             return UtilService.showAlertWhenError($http.post(`${url}/manager/amq/update/`, {
                 instanceAmqId: amq.instanceAmqId,
@@ -68,9 +79,14 @@
             return UtilService.showAlertWhenError($http.get(`${url}/manager/amq/${amqId}/health`));
         }
 
-        // /manager/amq/connection/check
-        function checkConnection() {
-
+        function checkConnection(amq) {
+            return UtilService.showAlertWhenError($http.post(`${url}/manager/amq/connection/check`, {
+                instanceAmqName: amq.instanceAmqName,
+                instanceAmqAddress: amq.instanceAmqAddress,
+                instanceAmqJmxPort: amq.instanceAmqJmxPort,
+                instanceAmqJmxUname: amq.instanceAmqJmxUname,
+                instanceAmqJmxPwd: amq.instanceAmqJmxPwd
+            }));
         }
     }
 })();
