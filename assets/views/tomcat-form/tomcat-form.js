@@ -28,7 +28,6 @@
                 if (canUpdate) {
                     agent = await ManagerService.showInstanceByAgentId($stateParams.agentId).then(_ => _.data.object);
                     agent['agentName'] = agent.instanceAgentId.agentName;
-                    console.log({ agent, canUpdate });
                 }
                 return [agent, canUpdate];
             };
@@ -50,7 +49,6 @@
                 window.location.href = '/';
             }
             UtilService.drlLoading(false);
-            console.log($scope.agent, { res });
         };
     }
 })();

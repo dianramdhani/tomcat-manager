@@ -22,7 +22,6 @@
             datasources.forEach((datasource, i) => {
                 datasource['instancesTarget'] = instancesTarget[i].map(_ => _.instanceId);
             });
-            console.log({ datasources, instances });
             return [datasources, instances];
         };
 
@@ -54,7 +53,6 @@
                 let instance = $scope.instances.filter(instance => instance.instanceId === instanceId)[0];
                 return instance;
             });
-            console.log({ datasource, instancesTarget });
         };
 
         $scope.delete = (id) => {
@@ -64,7 +62,6 @@
                     UtilService.drlAlert('success', res.data.message);
                     refreshData();
                 }
-                console.log(res);
             });
         };
     }
