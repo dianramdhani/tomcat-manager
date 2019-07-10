@@ -36,6 +36,7 @@ require('../services/AMQ-manager.service');
 require('../services/datasource.service');
 require('../services/manager.service');
 require('../services/user.service');
+require('../services/work-manager.service');
 
 // DIRECTIVES
 require('../directives/drl-file.directive');
