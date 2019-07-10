@@ -1,1 +1,30 @@
-work-manager terbuka
+<div class="card card-customer-overview">
+    <div class="card-header">
+        <h6 class="slim-card-title">Work Manager Table</h6>
+        <nav class="nav">
+            <a href="" class="nav-link">Add Work Manager</a>
+        </nav>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="log" class="table mg-b-0 tx-13">
+                <thead>
+                    <tr class="tx-10">
+                        <th class="pd-y-5">Work Manager Name</th>
+                        <th class="pd-y-5">Work Manager Name Prefix</th>
+                        <th class="pd-y-5">Target</th>
+                        <th class="pd-y-5">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="workManager in listWorkManager track by workManager.workManagerId">
+                        <td>{{workManager.name}}</td>
+                        <td>{{workManager.namePrefix}}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -6,6 +6,9 @@
 
     WorkManagerService.$inject = ['$http', 'CONFIG', 'UtilService'];
     function WorkManagerService($http, CONFIG, UtilService) {
+        this.listAllWorkManager = listAllWorkManager;
+        this.getWorkmanagerInstanceByWorkmanagerId = getWorkmanagerInstanceByWorkmanagerId;
+
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
         // /manager/workmanager/list/{offset}/{limit}
@@ -20,7 +23,7 @@
 
         // /manager/workmanager/listAll
         function listAllWorkManager() {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/workmanager/listAll`));
         }
 
         // /manager/workmanager/add
@@ -35,7 +38,7 @@
 
         // /manager/workmanager/getWorkmanagerInstanceByWorkmanagerId/{workManagerId}
         function getWorkmanagerInstanceByWorkmanagerId(workManagerId) {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/workmanager/getWorkmanagerInstanceByWorkmanagerId/${workManagerId}`));
         }
 
         // /manager/workmanager/listAllWorkmanagerInstance
