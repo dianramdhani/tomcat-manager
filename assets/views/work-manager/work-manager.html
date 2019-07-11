@@ -20,7 +20,21 @@
                     <tr ng-repeat="workManager in listWorkManager track by workManager.workManagerId">
                         <td>{{workManager.name}}</td>
                         <td>{{workManager.namePrefix}}</td>
-                        <td></td>
+                        <td class="d-flex flex-sm-row flex-column">
+                            <select class="form-control select2" data-placeholder="Choose Browser" multiple
+                                ng-attr-id="{{'instances-target-'+$index}}"
+                                ng-init="instancesTarget = workManager.instancesTarget" ng-model="instancesTarget">
+                                <option ng-repeat="instance in instances track by $index"
+                                    ng-value="instance.instanceId">
+                                    {{instance.instanceAgentId.agentName}}
+                                </option>
+                            </select>
+                            <button class="btn btn-primary btn-sm pd-y-5"
+                                ng-show="differ(instancesTarget, workManager.instancesTarget)"
+                                ng-click="instancesTargetChange(workManager, instancesTarget)">
+                                Accept change
+                            </button>
+                        </td>
                         <td></td>
                     </tr>
                 </tbody>

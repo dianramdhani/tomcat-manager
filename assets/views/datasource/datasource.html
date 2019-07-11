@@ -25,22 +25,24 @@
                             <span ng-if="datasource.driverClassName === 'com.mysql.jdbc.Driver'">MySQL</span>
                             <span ng-if="datasource.driverClassName === 'oracle.jdbc.OracleDriver'">Oracle</span>
                         </td>
-                        <td class="d-flex flex-sm-row flex-column">
-                            <select class="form-control select2" data-placeholder="Choose Browser" multiple
-                                ng-attr-id="{{'instances-target-'+$index}}"
-                                ng-init="instancesTarget = datasource.instancesTarget" ng-model="instancesTarget">
-                                <option ng-repeat="instance in instances track by $index"
-                                    ng-value="instance.instanceId">
-                                    {{instance.instanceAgentId.agentName}}
-                                </option>
-                            </select>
-                            <button class="btn btn-primary btn-sm mg-3"
-                                ng-show="differ(instancesTarget, datasource.instancesTarget)"
-                                ng-click="instancesTargetChanges(datasource, instancesTarget)">
-                                Accept changes
-                            </button>
+                        <td class="pd-y-4-force wd-400">
+                            <div class="d-flex flex-sm-row flex-column">
+                                <select class="form-control select2" data-placeholder="Choose Browser" multiple
+                                    ng-attr-id="{{'instances-target-'+$index}}"
+                                    ng-init="instancesTarget = datasource.instancesTarget" ng-model="instancesTarget">
+                                    <option ng-repeat="instance in instances track by $index"
+                                        ng-value="instance.instanceId">
+                                        {{instance.instanceAgentId.agentName}}
+                                    </option>
+                                </select>
+                                <button class="btn btn-primary btn-sm pd-y-5"
+                                    ng-show="differ(instancesTarget, datasource.instancesTarget)"
+                                    ng-click="instancesTargetChange(datasource, instancesTarget)">
+                                    Accept change
+                                </button>
+                            </div>
                         </td>
-                        <td class="wd-220">
+                        <td class="wd-220 pd-y-7-force">
                             <div class="d-flex flex-row justify-content-between">
                                 <button class="btn btn-primary btn-sm pd-x-30"
                                     ui-sref="admin.datasourceForm({datasourceId: datasource.dataSourceId})">Edit</button>
