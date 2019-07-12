@@ -36,6 +36,7 @@ require('../services/AMQ-manager.service');
 require('../services/datasource.service');
 require('../services/manager.service');
 require('../services/user.service');
+require('../services/work-manager.service');
 
 // DIRECTIVES
 require('../directives/drl-file.directive');
@@ -79,3 +80,5 @@ require('../views/user-management/user-management');
 require('../views/user-form/user-form');
 require('../views/role-management/role-management');
 require('../views/role-form/role-form');
+require('../views/work-manager/work-manager');
+require('../views/work-manager-form/work-manager-form');

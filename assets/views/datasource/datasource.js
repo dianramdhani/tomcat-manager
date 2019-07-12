@@ -10,8 +10,8 @@
             controller: _,
         });
 
-    _.$inject = ['$scope', '$q', '$timeout', 'DatasourceService', 'ManagerService', 'UtilService'];
-    function _($scope, $q, $timeout, DatasourceService, ManagerService, UtilService) {
+    _.$inject = ['$scope', '$q', '$timeout', '$element', 'DatasourceService', 'ManagerService', 'UtilService'];
+    function _($scope, $q, $timeout, $element, DatasourceService, ManagerService, UtilService) {
         /**
          * Get initial data.
          */
@@ -39,7 +39,7 @@
             $timeout(() => {
                 // initial select2
                 for (const i in $scope.datasources) {
-                    angular.element(`#instances-target-${i}`).select2({ width: '100%' });
+                    $element.find(`#instances-target-${i}`).select2({ width: '100%' });
                 }
             });
         };
@@ -48,11 +48,12 @@
             return !angular.equals(a, b);
         };
 
-        $scope.instancesTargetChanges = (datasource, instancesId) => {
-            let instancesTarget = instancesId.map((instanceId) => {
-                let instance = $scope.instances.filter(instance => instance.instanceId === instanceId)[0];
-                return instance;
-            });
+        $scope.instancesTargetChange = (datasource, instancesId) => {
+            // let instancesTarget = instancesId.map((instanceId) => {
+            //     let instance = $scope.instances.filter(instance => instance.instanceId === instanceId)[0];
+            //     return instance;
+            // });
+            console.log('instancesTargetChange', datasource, instancesId);
         };
 
         $scope.delete = (id) => {

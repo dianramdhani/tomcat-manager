@@ -2,7 +2,7 @@
   "name": "tomcat-manager",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "assets/js/app.js",
   "scripts": {
     "build": "webpack -p --progress",
     "build:dev": "webpack --mode=development -p --progress"
