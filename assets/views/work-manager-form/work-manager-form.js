@@ -12,8 +12,8 @@
             controller: _,
         });
 
-    _.$inject = ['$scope', '$stateParams', '$timeout', 'WorkManagerService'];
-    function _($scope, $stateParams, $timeout, WorkManagerService) {
+    _.$inject = ['$scope', '$stateParams', '$timeout', '$state', 'WorkManagerService', 'UtilService'];
+    function _($scope, $stateParams, $timeout, $state, WorkManagerService, UtilService) {
         let $ctrl = this;
         $ctrl.$onInit = () => {
             /**
@@ -36,6 +36,15 @@
                 [$scope.workManager, $scope.canUpdate] = await getInitialData();
                 $scope.$apply();
             });
+        };
+
+        $scope.save = async () => {
+            let message;
+            if ($scope.canUpdate) {
+                message = await WorkManagerService.updateWorkmanagerByWorkmanagerId($scope.workManager).then(_ => _.data.message);
+                UtilService.drlAlert('success', message);
+                $state.go('admin.workManager');
+            }
         };
     }
 })();

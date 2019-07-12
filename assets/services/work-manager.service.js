@@ -9,6 +9,7 @@
         this.listAllWorkManager = listAllWorkManager;
         this.getWorkmanagerInstanceByWorkmanagerId = getWorkmanagerInstanceByWorkmanagerId;
         this.getWorkManagerByWorkManagerId = getWorkManagerByWorkManagerId;
+        this.updateWorkmanagerByWorkmanagerId = updateWorkmanagerByWorkmanagerId;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -17,7 +18,6 @@
 
         }
 
-        // /manager/workmanager/{workManagerId}
         function getWorkManagerByWorkManagerId(workManagerId) {
             return UtilService.showAlertWhenError($http.get(`${url}/manager/workmanager/${workManagerId}`));
         }
@@ -33,8 +33,15 @@
         }
 
         // /manager/workmanager/update/{targetWorkmanagerId}
-        function updateWorkmanagerByWorkmanagerId(targetWorkmanagerId) {
-
+        function updateWorkmanagerByWorkmanagerId(workManager) {
+            return UtilService.showAlertWhenError($http.post(`${url}/manager/workmanager/update/${workManager.workManagerId}`, {
+                maxIdleTime: workManager.maxIdleTime,
+                maxQueueSize: workManager.maxQueueSize,
+                maxThreads: workManager.maxThreads,
+                minThreads: workManager.minThreads,
+                name: workManager.name,
+                namePrefix: workManager.namePrefix
+            }));
         }
 
         // /manager/workmanager/getWorkmanagerInstanceByWorkmanagerId/{workManagerId}
