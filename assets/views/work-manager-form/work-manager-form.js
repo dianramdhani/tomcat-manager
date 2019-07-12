@@ -28,7 +28,6 @@
                 if (canUpdate) {
                     workManager = await WorkManagerService.getWorkManagerByWorkManagerId($stateParams.workManagerId).then(_ => _.data.object);
                 }
-                console.log({ workManager, canUpdate });
                 return [workManager, canUpdate];
             };
 
@@ -42,9 +41,11 @@
             let message;
             if ($scope.canUpdate) {
                 message = await WorkManagerService.updateWorkmanagerByWorkmanagerId($scope.workManager).then(_ => _.data.message);
-                UtilService.drlAlert('success', message);
-                $state.go('admin.workManager');
+            } else {
+                message = await WorkManagerService.addWorkManager($scope.workManager).then(_ => _.data.message);
             }
+            UtilService.drlAlert('success', message);
+            $state.go('admin.workManager');
         };
     }
 })();
