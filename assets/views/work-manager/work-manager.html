@@ -20,27 +20,29 @@
                     <tr ng-repeat="workManager in listWorkManager track by workManager.workManagerId">
                         <td>{{workManager.name}}</td>
                         <td>{{workManager.namePrefix}}</td>
-                        <td class="d-flex flex-sm-row flex-column">
-                            <select class="form-control select2" data-placeholder="Choose Browser" multiple
-                                ng-attr-id="{{'instances-target-'+$index}}"
-                                ng-init="instancesTarget = workManager.instancesTarget" ng-model="instancesTarget">
-                                <option ng-repeat="instance in instances track by $index"
-                                    ng-value="instance.instanceId">
-                                    {{instance.instanceAgentId.agentName}}
-                                </option>
-                            </select>
-                            <button class="btn btn-primary btn-sm pd-y-5"
-                                ng-show="differ(instancesTarget, workManager.instancesTarget)"
-                                ng-click="instancesTargetChange(workManager, instancesTarget)">
-                                Accept change
-                            </button>
+                        <td class="pd-y-4-force wd-400">
+                            <div class="d-flex flex-sm-row flex-column">
+                                <select class="form-control select2" data-placeholder="Choose Browser" multiple
+                                    ng-attr-id="{{'instances-target-'+$index}}"
+                                    ng-init="instancesTarget = workManager.instancesTarget" ng-model="instancesTarget">
+                                    <option ng-repeat="instance in instances track by $index"
+                                        ng-value="instance.instanceId">
+                                        {{instance.instanceAgentId.agentName}}
+                                    </option>
+                                </select>
+                                <button class="btn btn-primary btn-sm pd-y-5"
+                                    ng-show="differ(instancesTarget, workManager.instancesTarget)"
+                                    ng-click="instancesTargetChange(workManager, instancesTarget)">
+                                    Accept change
+                                </button>
+                            </div>
                         </td>
                         <td class="wd-220 pd-y-7-force">
                             <div class="d-flex flex-row justify-content-between">
                                 <button class="btn btn-primary btn-sm pd-x-30"
                                     ui-sref="admin.workManagerForm({workManagerId:workManager.workManagerId})">Edit</button>
-                                <button class="btn btn-danger btn-sm pd-x-30"
-                                    ng-click="delete(datasource.dataSourceId)">Delete</button>
+                                <button class="btn btn-danger btn-sm pd-x-30" ng-click="delete(datasource.dataSourceId)"
+                                    ng-click="delete(workManager.workManagerId)">Delete</button>
                             </div>
                         </td>
                     </tr>

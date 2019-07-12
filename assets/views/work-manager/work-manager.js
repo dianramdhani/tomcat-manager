@@ -10,8 +10,8 @@
             controller: _,
         });
 
-    _.$inject = ['$scope', '$q', '$timeout', '$element', 'WorkManagerService', 'ManagerService'];
-    function _($scope, $q, $timeout, $element, WorkManagerService, ManagerService) {
+    _.$inject = ['$scope', '$q', '$timeout', '$element', 'WorkManagerService', 'ManagerService', 'UtilService'];
+    function _($scope, $q, $timeout, $element, WorkManagerService, ManagerService, UtilService) {
         /**
         * Get initial data.
         */
@@ -51,6 +51,14 @@
 
         $scope.instancesTargetChange = (workManager, instancesTarget) => {
             console.log('change instance target work manager', workManager, instancesTarget);
+        };
+
+        $scope.delete = (id) => {
+            UtilService.drlConfirm('Are you sure want to delete this record?', async () => {
+                // let message = await DatasourceService.deleteDatasource(id).then(_ => _.data.message);
+                // UtilService.drlAlert('success', message);
+                // refreshData();
+            });
         };
     }
 })();
