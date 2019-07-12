@@ -1,0 +1,67 @@
+<div class="card card-customer-overview">
+    <div class="card-header">
+        <h6 class="slim-card-title">New Work Manager</h6>
+    </div>
+    <div class="card-body">
+        <form name="workManagerForm" class="form-layout form-layout-6" ng-submit="save()">
+            <div class="row no-gutters">
+                <div class="col-5 col-sm-4">Work Manager Name</div>
+                <div class="col-7 col-sm-8">
+                    <input class="form-control" type="text" name="" placeholder="Work Manager Name" required
+                        ng-model="workManager.name">
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-5 col-sm-4">Name Prefix</div>
+                <div class="col-7 col-sm-8">
+                    <input class="form-control" type="text" name="" placeholder="Name Prefix" required
+                        ng-model="workManager.namePrefix">
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-5 col-sm-4">Max Threads</div>
+                <div class="col-7 col-sm-8">
+                    <input class="form-control" type="text" name="" placeholder="Max Threads" required
+                        ng-model="workManager.maxThreads">
+                    <span class="tx-11 d-block">
+                        Default: 200
+                    </span>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-5 col-sm-4">Min Threads</div>
+                <div class="col-7 col-sm-8">
+                    <input class="form-control" type="text" name="" placeholder="Min Threads" required
+                        ng-model="workManager.minThreads">
+                    <span class="tx-11 d-block">
+                        Default: 25
+                    </span>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-5 col-sm-4">Max Idle Time</div>
+                <div class="col-7 col-sm-8">
+                    <input class="form-control" type="text" name="" placeholder="Max Idle Time" required
+                        ng-model="workManager.maxIdleTime">
+                    <span class="tx-11 d-block">
+                        In milliseconds, default: 60000
+                    </span>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-5 col-sm-4">Max Queue Size</div>
+                <div class="col-7 col-sm-8">
+                    <input class="form-control" type="text" name="" placeholder="Max Queue Size" required
+                        ng-model="workManager.maxQueueSize">
+                </div>
+            </div>
+            <div class="form-layout-footer mg-t-30">
+                <button type="submit" class="btn btn-primary">
+                    <span ng-show="canUpdate">Update Work Manager</span>
+                    <span ng-hide="canUpdate">Add Work Manager</span>
+                </button>
+                <button class="btn btn-secondary" ui-sref="admin.workManager">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

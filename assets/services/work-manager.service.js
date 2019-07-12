@@ -8,6 +8,7 @@
     function WorkManagerService($http, CONFIG, UtilService) {
         this.listAllWorkManager = listAllWorkManager;
         this.getWorkmanagerInstanceByWorkmanagerId = getWorkmanagerInstanceByWorkmanagerId;
+        this.getWorkManagerByWorkManagerId = getWorkManagerByWorkManagerId;
 
         const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
 
@@ -18,7 +19,7 @@
 
         // /manager/workmanager/{workManagerId}
         function getWorkManagerByWorkManagerId(workManagerId) {
-
+            return UtilService.showAlertWhenError($http.get(`${url}/manager/workmanager/${workManagerId}`));
         }
 
         // /manager/workmanager/listAll

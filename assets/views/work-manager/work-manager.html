@@ -2,7 +2,7 @@
     <div class="card-header">
         <h6 class="slim-card-title">Work Manager Table</h6>
         <nav class="nav">
-            <a href="" class="nav-link">Add Work Manager</a>
+            <a href="" class="nav-link" ui-sref="admin.workManagerForm">Add Work Manager</a>
         </nav>
     </div>
     <div class="card-body">
@@ -35,7 +35,14 @@
                                 Accept change
                             </button>
                         </td>
-                        <td></td>
+                        <td class="wd-220 pd-y-7-force">
+                            <div class="d-flex flex-row justify-content-between">
+                                <button class="btn btn-primary btn-sm pd-x-30"
+                                    ui-sref="admin.workManagerForm({workManagerId:workManager.workManagerId})">Edit</button>
+                                <button class="btn btn-danger btn-sm pd-x-30"
+                                    ng-click="delete(datasource.dataSourceId)">Delete</button>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>

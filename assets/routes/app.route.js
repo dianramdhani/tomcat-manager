@@ -22,6 +22,7 @@
             { name: 'admin.userForm', component: 'userForm', params: { dataUser: { value: null } } },
             { name: 'admin.roleManagement', url: '/user-management/role-management', component: 'roleManagement' },
             { name: 'admin.workManager', url: '/work-manager', component: 'workManager' },
+            { name: 'admin.workManagerForm', component: 'workManagerForm', params: { workManagerId: { value: null } } },
         ]
             .forEach(state => $stateProvider.state(state));
     }
