@@ -59,15 +59,15 @@
                         href: 'admin.datasource'
                     },
                     {
+                        title: 'Work Manager',
+                        icon: 'icon ion-ios-list-box',
+                        href: 'admin.workManager'
+                    },
+                    {
                         title: 'User Management',
                         icon: 'icon ion-ios-contacts',
                         href: 'admin.userManagement'
                     },
-                    {
-                        title: 'Work Manager',
-                        icon: 'icon ion-ios-list-box',
-                        href: 'admin.workManager'
-                    }
                 ],
                 dropdownC: [
                     {
