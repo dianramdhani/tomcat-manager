@@ -44,7 +44,7 @@
                 checkActive();
             });
 
-            $scope.$watch(() => $state.$current, () => {
+            $scope.$watch(() => $state.$current.name, () => {
                 let state = {
                     name: $state.$current.name,
                     params: angular.copy($stateParams)

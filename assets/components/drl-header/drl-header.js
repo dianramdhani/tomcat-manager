@@ -22,7 +22,7 @@
                 $ctrl.menu.dropdownC.forEach(menu => {
                     if (menu.hasOwnProperty('active')) {
                         if (menu.active) {
-                            $scope.active(menu, menu.href);
+                            $scope.active(menu, menu.state);
                         }
                     }
                 });
@@ -31,7 +31,6 @@
             $scope.username = $rootScope.globals.currentUser.object[1];
 
             $timeout(() => {
-                $ctrl.menuActiveNow = [];
                 checkActive();
             });
         };
@@ -61,9 +60,9 @@
             AuthService.logout();
         };
 
-        $scope.active = (element, href) => {
+        $scope.active = (element, state) => {
             clearActive();
-            $state.go(href);
+            $state.go(state.name, state.params);
             $ctrl.menuActiveNow.push(element);
         };
     }
