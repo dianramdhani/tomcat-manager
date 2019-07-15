@@ -10,8 +10,8 @@
             controller: _
         });
 
-    _.$inject = ['$scope', '$timeout', '$q', 'ManagerService', 'AMQManagerService'];
-    function _($scope, $timeout, $q, ManagerService, AMQManagerService) {
+    _.$inject = ['$scope', '$timeout', '$q', '$state', 'ManagerService', 'AMQManagerService'];
+    function _($scope, $timeout, $q, $state, ManagerService, AMQManagerService) {
         let $ctrl = this;
         $ctrl.$onInit = () => {
             /**
@@ -30,7 +30,10 @@
                     {
                         title: 'Dashboard',
                         icon: 'icon ion-ios-keypad',
-                        href: 'admin.dashboard',
+                        state: {
+                            name: 'admin.dashboard',
+                            params: {}
+                        },
                         active: true
                     },
                     {
@@ -39,7 +42,10 @@
                         menu: [
                             {
                                 title: 'Add Instance',
-                                href: 'admin.tomcatForm'
+                                state: {
+                                    name: 'admin.tomcatForm',
+                                    params: { agentId: null }
+                                }
                             }
                         ]
                     },
@@ -49,31 +55,46 @@
                         menu: [
                             {
                                 title: 'Add Instance',
-                                href: 'admin.amqForm'
+                                state: {
+                                    name: 'admin.amqForm',
+                                    params: { amqId: null }
+                                }
                             }
                         ]
                     },
                     {
                         title: 'DataSource',
                         icon: 'icon ion-ios-albums',
-                        href: 'admin.datasource'
+                        state: {
+                            name: 'admin.datasource',
+                            params: {}
+                        }
                     },
                     {
                         title: 'Work Manager',
                         icon: 'icon ion-ios-list-box',
-                        href: 'admin.workManager'
+                        state: {
+                            name: 'admin.workManager',
+                            params: {}
+                        }
                     },
                     {
                         title: 'User Management',
                         icon: 'icon ion-ios-contacts',
-                        href: 'admin.userManagement'
+                        state: {
+                            name: 'admin.userManagement',
+                            params: {}
+                        }
                     },
                 ],
                 dropdownC: [
                     {
                         title: 'Account Settings',
                         icon: 'icon ion-ios-settings',
-                        href: 'admin.userSetting'
+                        state: {
+                            name: 'admin.userSetting',
+                            params: {}
+                        }
                     }
                 ]
             };
@@ -85,17 +106,25 @@
                 listAgent.forEach(agent => {
                     $scope.menu.sidebar.find(({ title }) => title === 'Tomcat Instance').menu.push({
                         title: agent.agentName,
-                        href: `admin.tomcatInstance({agentId:${agent.agentId}})`
+                        state: {
+                            name: 'admin.tomcatInstance',
+                            params: { agentId: agent.agentId.toString() }
+                        }
                     });
                 });
                 listAmq.forEach(amq => {
                     $scope.menu.sidebar.find(({ title }) => title === 'AMQ Instance').menu.push({
                         title: amq.instanceAmqName,
-                        href: `admin.amqInstance({amqId:${amq.instanceAmqId}})`
+                        state: {
+                            name: 'admin.amqInstance',
+                            params: { amqId: amq.instanceAmqId.toString() }
+                        }
                     });
                 });
 
                 $scope.$apply();
+
+                $state.go('admin.dashboard');
             });
         };
     }
