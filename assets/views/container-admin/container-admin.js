@@ -10,8 +10,8 @@
             controller: _
         });
 
-    _.$inject = ['$scope', '$timeout', '$q', 'ManagerService', 'AMQManagerService'];
-    function _($scope, $timeout, $q, ManagerService, AMQManagerService) {
+    _.$inject = ['$scope', '$timeout', '$q', '$state', 'ManagerService', 'AMQManagerService'];
+    function _($scope, $timeout, $q, $state, ManagerService, AMQManagerService) {
         let $ctrl = this;
         $ctrl.$onInit = () => {
             /**
@@ -123,6 +123,8 @@
                 });
 
                 $scope.$apply();
+
+                $state.go('admin.dashboard');
             });
         };
     }
