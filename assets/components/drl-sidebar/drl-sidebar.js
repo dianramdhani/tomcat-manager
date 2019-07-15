@@ -44,22 +44,24 @@
                 checkActive();
             });
 
-            $scope.$watch(() => $state.$current.name, href => {
-                // set params into href
-                let paramsKeys = Object.keys($stateParams);
-                if (paramsKeys.length > 1) {
-                    href = `${href}({${paramsKeys[1]}:${$stateParams[paramsKeys[1]]}})`;
+            $scope.$watch(() => $state.$current, () => {
+                let state = {
+                    name: $state.$current.name,
+                    params: angular.copy($stateParams)
+                };
+                if (state.params.hasOwnProperty('#')) {
+                    delete (state.params['#']);
                 }
 
                 $ctrl.menu.forEach(menu => {
                     if (menu.hasOwnProperty('menu')) {
                         menu.menu.forEach(_menu => {
-                            if (_menu.href === href) {
+                            if (angular.equals(_menu.state, state)) {
                                 $scope.active(_menu, menu);
                             }
-                        });
+                        })
                     } else {
-                        if (menu.href === href) {
+                        if (angular.equals(menu.state, state)) {
                             $scope.active(menu);
                         }
                     }
@@ -84,15 +86,20 @@
         };
 
         $scope.active = (element, elementParent = null) => {
+            clearActive();
             if (!element.hasOwnProperty('menu')) {
-                clearActive();
                 element['active'] = true;
                 $ctrl.menuActiveNow.push(element);
             }
             if (elementParent !== null) {
-                clearActive();
                 elementParent['active'] = true;
                 $ctrl.menuActiveNow.push(elementParent);
+            }
+        };
+
+        $scope.goto = (state) => {
+            if (state) {
+                $state.go(state.name, state.params);
             }
         };
     }
