@@ -18713,6 +18713,7 @@ textarea.parsley-success:focus {
 
 .slim-sidebar {
     width: 230px;
+    min-height: 150vh;
     background-color: #fff;
     border-right: 1px solid #ced4da;
     padding: 20px 0;
