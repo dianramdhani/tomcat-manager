@@ -30,9 +30,10 @@
     "angular-datatables": "^0.6.2",
     "angular-messages": "^1.7.8",
     "angular-ui-router": "^1.0.22",
+    "c3": "^0.7.2",
+    "d3": "^5.9.7",
     "datatables.net": "^1.10.19",
     "file-saver": "^2.0.2",
-    "highcharts": "^7.1.2",
     "ionicons": "^4.6.1",
     "normalize.css": "^8.0.1",
     "select2": "^4.0.7"
