@@ -62,3 +62,6 @@ typings/
 
 # dist
 assets/dist/
+
+# vscode
+.vscode/
