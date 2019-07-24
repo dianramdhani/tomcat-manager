@@ -12,8 +12,8 @@
             controller: _
         });
 
-    _.$inject = ['$timeout', '$stateParams', '$scope', '$q', 'ManagerService'];
-    function _($timeout, $stateParams, $scope, $q, ManagerService) {
+    _.$inject = ['$timeout', '$stateParams', '$scope', '$q', '$element', 'ManagerService'];
+    function _($timeout, $stateParams, $scope, $q, $element, ManagerService) {
         let $ctrl = this;
         $ctrl.$onInit = async () => {
             /**
@@ -29,104 +29,93 @@
                 // set plotting chart function for instanceCpuLineChart, instancePhysicalMemoryChart, andinstanceHeapMemoryChart  
                 instanceCpuLineChart = Object.assign(instanceCpuLineChart, {
                     plotChart: (id) => {
-                        let properties = {
-                            title: {
-                                text: 'Instance CPU Usage'
+                        let x = ['x', ...instanceCpuLineChart.lineSeries.map(_ => new Date(_[0]).toISOString())],
+                            cpu = ['CPU Usage', ...instanceCpuLineChart.lineSeries.map(_ => _[1])];
+
+                        c3.generate({
+                            bindto: $element[0].querySelector(`#${id}`),
+                            data: {
+                                x: 'x',
+                                xFormat: '%Y-%m-%dT%H:%M:%S.%LZ',
+                                columns: [x, cpu]
                             },
-                            xAxis: {
-                                type: 'datetime'
-                            },
-                            yAxis: {
-                                title: {
-                                    text: 'Percentage'
+                            axis: {
+                                x: {
+                                    type: 'timeseries',
+                                    tick: {
+                                        format: '%Y-%m-%d %H:%M:%S',
+                                        rotate: 25,
+                                        multiline: false
+                                    }
                                 },
-                                labels: {
-                                    format: '{value} %'
+                                y: {
+                                    tick: {
+                                        format: d => `${d} %`
+                                    }
                                 }
-                            },
-                            tooltip: {
-                                pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y} %</b><br/>'
-                            },
-                            series: [
-                                {
-                                    name: 'CPU Usage',
-                                    data: instanceCpuLineChart.lineSeries
-                                }
-                            ]
-                        };
-                        Highcharts.chart(id, properties);
+                            }
+                        });
                     }
                 });
                 instancePhysicalMemoryChart = Object.assign(instancePhysicalMemoryChart, {
                     plotChart: (id) => {
-                        let properties = {
-                            title: {
-                                text: 'Instance Physical Memory Usage'
+                        let x = ['x', ...instancePhysicalMemoryChart.map(_ => new Date(_[0][0]).toISOString())],
+                            stacked = ['Stacked', ...instancePhysicalMemoryChart.map(_ => _[0][1])],
+                            stream = ['Stream', ...instancePhysicalMemoryChart.map(_ => _[1][1])];
+
+                        c3.generate({
+                            bindto: $element[0].querySelector(`#${id}`),
+                            data: {
+                                x: 'x',
+                                xFormat: '%Y-%m-%dT%H:%M:%S.%LZ',
+                                columns: [x, stacked, stream]
                             },
-                            xAxis: {
-                                type: 'datetime'
-                            },
-                            yAxis: {
-                                title: {
-                                    text: 'Value in Mega Bytes'
+                            axis: {
+                                x: {
+                                    type: 'timeseries',
+                                    tick: {
+                                        format: '%Y-%m-%d %H:%M:%S',
+                                        rotate: 25,
+                                        multiline: false
+                                    }
                                 },
-                                labels: {
-                                    formatter: function () {
-                                        return `${this.value / 1024} MB`;
+                                y: {
+                                    tick: {
+                                        format: d => `${d / 1024} MB`
                                     }
                                 }
-                            },
-                            tooltip: {
-                                pointFormatter: function () {
-                                    return `<span style="color:${this.color}">\u25CF</span> ${this.series.name}: <b>${this.y / 1024} MB</b><br/>`;
-                                }
-                            },
-                            series: [
-                                {
-                                    name: 'Stacked',
-                                    data: instancePhysicalMemoryChart.map(_ => _[0])
-                                },
-                                {
-                                    name: 'Stream',
-                                    data: instancePhysicalMemoryChart.map(_ => _[1])
-                                }
-                            ]
-                        };
-                        Highcharts.chart(id, properties);
+                            }
+                        });
                     }
                 });
                 instanceHeapMemoryChart = Object.assign(instanceHeapMemoryChart, {
                     plotChart: (id) => {
-                        let properties = {
-                            title: {
-                                text: 'Instance Heap Usage'
+                        let x = ['x', ...instanceHeapMemoryChart.map(_ => new Date(_[0]).toISOString())],
+                            heap = ['Memory Heap Usage', ...instanceHeapMemoryChart.map(_ => _[1])];
+
+                        c3.generate({
+                            bindto: $element[0].querySelector(`#${id}`),
+                            data: {
+                                x: 'x',
+                                xFormat: '%Y-%m-%dT%H:%M:%S.%LZ',
+                                columns: [x, heap]
                             },
-                            xAxis: {
-                                type: 'datetime'
-                            },
-                            yAxis: {
-                                title: {
-                                    text: 'Value in Mega Bytes'
+                            axis: {
+                                x: {
+                                    type: 'timeseries',
+                                    tick: {
+                                        format: '%Y-%m-%d %H:%M:%S',
+                                        rotate: 25,
+                                        multiline: false
+                                    }
                                 },
-                                labels: {
-                                    formatter: function () {
-                                        return `${this.value / 1024} MB`;
+                                y: {
+                                    tick: {
+                                        format: d => `${d / 1024} MB`
                                     }
                                 }
-                            },
-                            tooltip: {
-                                pointFormatter: function () {
-                                    return `<span style="color:${this.color}">\u25CF</span> ${this.series.name}: <b>${this.y / 1024} MB</b><br/>`;
-                                }
-                            },
-                            series: [
-                                {
-                                    name: 'Memory Heap Usage',
-                                    data: instanceHeapMemoryChart
-                                }
-                            ]
-                        };
-                        Highcharts.chart(id, properties);
+                            }
+                        });
                     }
                 });
 
