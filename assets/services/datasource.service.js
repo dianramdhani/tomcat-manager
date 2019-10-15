@@ -13,7 +13,7 @@
         this.addDatasource = addDatasource;
         this.deleteDatasource = deleteDatasource;
 
-        const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
+        const url = `${CONFIG.API}`;
 
         // /manager/datasource/list/{offset}/{limit}
         function listDatasource(offset, limit) {

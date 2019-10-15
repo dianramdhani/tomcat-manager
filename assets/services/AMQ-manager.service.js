@@ -15,7 +15,7 @@
         this.createAmq = createAmq;
         this.deleteAmq = deleteAmq;
 
-        const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
+        const url = `${CONFIG.API}`;
 
         function createAmq(amq) {
             return UtilService.showAlertWhenError($http.post(`${url}/manager/amq/add/`, {

@@ -1,8 +1,5 @@
 window.app = angular.module('TomcatManager', ['ui.router', 'ngCookies', 'datatables', 'ngMessages']);
 
-// CONFIG
-require('./config');
-
 // RUN
 (function () {
     'use strict';

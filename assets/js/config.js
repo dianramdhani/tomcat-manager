@@ -3,8 +3,6 @@
 
     window.app
         .constant('CONFIG', {
-            managerAddress: 'http://192.168.9.19',
-            // managerAddress: 'http://desktop-g6ph7vj',
-            managerPort: 8081
+            API: 'http://10.60.165.83:8082',
         });
 })();

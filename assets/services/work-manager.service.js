@@ -12,7 +12,7 @@
         this.updateWorkmanagerByWorkmanagerId = updateWorkmanagerByWorkmanagerId;
         this.addWorkManager = addWorkManager;
 
-        const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
+        const url = `${CONFIG.API}`;
 
         // /manager/workmanager/list/{offset}/{limit}
         function listWorkManager(offset, limit) {

@@ -14,7 +14,7 @@
         this.listUserRole = listUserRole;
         this.changeUSerPassword = changeUSerPassword;
 
-        const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
+        const url = `${CONFIG.API}`;
 
         function userRegister(dataUser) {
             return UtilService.showAlertWhenError($http.post(`${url}/manager/user/register/${dataUser.userRoleName}`, {

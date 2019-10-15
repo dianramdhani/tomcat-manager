@@ -9,7 +9,7 @@
         this.login = login;
         this.logout = logout;
 
-        const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
+        const url = `${CONFIG.API}`;
 
         /**
          * Login.

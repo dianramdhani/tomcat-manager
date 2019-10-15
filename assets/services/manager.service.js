@@ -29,7 +29,7 @@
         this.startAgent = startAgent;
         this.stopAgent = stopAgent;
 
-        const url = `${CONFIG.managerAddress}:${CONFIG.managerPort}`;
+        const url = `${CONFIG.API}`;
 
         function createAgent(agent) {
             return UtilService.showAlertWhenError($http.post(`${url}/manager/agent/add/`, agent));
